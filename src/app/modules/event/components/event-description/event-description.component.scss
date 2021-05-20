@@ -1,0 +1,90 @@
+@import "src/app/theme/colors";
+.banner-image {
+  max-height: 500px;
+  width: 100%;
+}
+.breadcrumb {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: start;
+  width: auto;
+  align-items: center;
+  vertical-align: center;
+  padding-left: 2px;
+
+  a {
+    display: inline-flex;
+    align-items: center;
+    width: auto;
+    color: color(custom-gray);
+  }
+
+  a:hover {
+    cursor: pointer;
+  }
+
+  span {
+    font-weight: 500;
+  }
+}
+.ticket-card {
+  //width: ;
+  border-radius: 2px;
+  border: 1px solid color(custom-gray-light);
+  padding: 0;
+  margin: 0;
+  color: color(custom-gray);
+
+  .ticket-card-header {
+    padding: 5px 10px;
+    border-bottom: 1px solid color(custom-gray-light);
+
+    h3 {
+      font-weight: 600;
+      margin: 0;
+      padding: 0;
+    }
+  }
+  .ticket-card-body {
+    padding: 5px 10px;
+
+    span {
+      margin-right: 10px;
+    }
+  }
+}
+.event-description {
+  margin-top: 2rem;
+  position: relative;
+  height: auto;
+
+  p {
+    color: color(custom-gray);
+  }
+
+  .text-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 45%;
+    background: rgb(255,255,255);
+    background: linear-gradient(0deg, rgba(255,255,255,1) 30%, rgba(255,255,255,0) 100%);
+  }
+
+  .read-more {
+    position: absolute;
+    z-index: 10;
+    left: 0;
+    bottom: 0;
+    margin-left: 0;
+  }
+}
+:host ::ng-deep .mat-form-field-wrapper {
+  margin: 0 !important;
+  padding: 0;
+}
+.slide {
+  width: auto;
+  border: none;
+}

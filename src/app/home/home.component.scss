@@ -1,0 +1,96 @@
+@import "src/app/theme/colors";
+@import '~igniteui-angular/lib/core/styles/themes/index';
+
+.carousel-slide-container h2 {
+  font-weight: 500;
+}
+
+.search-box-container {
+  //display: none;
+}
+
+.intro-section {
+  padding-bottom: 10px;
+  border-bottom: 1px solid color(custom-gray-lighter);
+}
+
+.horizontal-scroll {
+  width: 100%;
+  height: auto;
+  position: relative;
+  padding-left: 10px;
+
+  ngx-slick-carousel {
+  }
+}
+.prev-button {
+  position: absolute;
+  top: 40%;
+  left: -1%;
+}
+.next-button {
+  position: absolute;
+  top: 40%;
+  right: 0;
+}
+:host ::ng-deep .mat-form-field-wrapper{
+  margin: 0 !important;
+  padding: 0;
+}
+.simple-search-bar {
+  margin-top: 20px;
+  padding-bottom: 15px;
+}
+.padding {
+  padding: 0;
+}
+.newsletter-section {
+  width: 80%;
+  margin: 0 auto;
+  border: 1px solid #DADADA;
+  padding: 60px;
+}
+.newsletter-box {
+  width: 50%;
+  margin: 0 auto;
+}
+.submit-button {
+  padding: .5rem 1rem;
+}
+.mx-1 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+@media screen and (max-width: 599px) {
+  .search-box-container {
+    position: fixed;
+    top: 55px;
+    left: 0;
+    z-index: 10;
+  }
+  .padding {
+    padding: 10px;
+  }
+  .horizontal-scroll {
+    width: 95%;
+    //height: 250px;
+  }
+  .newsletter-section {
+    width: 90%;
+    margin: 0 auto;
+    border: 1px solid #DADADA;
+    padding: 1rem;
+  }
+  .newsletter-box {
+    width: 100%;
+    //margin: 0 auto;
+  }
+  .simple-search-bar {
+    margin-top: 0;
+    padding-bottom: 0;
+  }
+  .submit-button {
+    padding: .5rem 1rem;
+  }
+}
+

@@ -1,0 +1,403 @@
+<app-covid-alert-bar fxHide.xs></app-covid-alert-bar>
+<app-header (toggleSearchBoxEvent)="toggleSearchBox($event)"></app-header>
+<div fxHide [ngStyle]="displayStyle" class="search-box-container">
+  <app-flight-search-box-mobile></app-flight-search-box-mobile>
+</div>
+<mat-toolbar fxHide.xs class="container-fluid sub-toolbar" *ngIf="!flightSearchBoxVisible; else searchBoxComponent">
+  <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center" class="sub-toolbar-content spacer-xs">
+     <div fxFlex="1 1 70" fxLayout="row" fxLayoutAlign="space-between">
+       <button class="flight-filter-button" mat-stroked-button>Lagos, Nigeria</button>
+       <button class="icon-button flight-filter-button"><mat-icon>switch_right</mat-icon></button>
+       <button class="flight-filter-button" mat-stroked-button>Minneapolis, United States</button>
+       <span class="vertical-divider"></span>
+       <button class="flight-filter-button" mat-stroked-button>{{ date | date:'mediumDate' }} - {{ date | date:'mediumDate' }}</button>
+       <span class="vertical-divider"></span>
+       <button class="flight-filter-button" mat-stroked-button>2 Adult, Economy</button>
+     </div>
+     <div fxFlex="1 1 30" fxLayout="row" fxLayoutAlign="end">
+        <button mat-stroked-button
+                class="flight-filter-button"
+                (click)="showFlightSearchBox()"
+        >Modify <mat-icon>drive_file_rename_outline</mat-icon></button>
+     </div>
+  </mat-toolbar-row>
+</mat-toolbar>
+<ng-template  #searchBoxComponent fxHide.xs>
+  <div class="search-box-container">
+    <mat-icon color="accent" (click)="hideFlightSearchBox()" class="close">close</mat-icon>
+    <div style="width: 80%; margin: 0 auto;">
+      <app-flight-search-box></app-flight-search-box>
+    </div>
+  </div>
+</ng-template>
+
+<div class="container spacer-1">
+  <div fxLayout="row" fxLayoutAlign="space-between stretch" fxLayoutGap="2%" class="spacer-xs">
+    <section fxFlex="1 0 30" fxLayout="column" fxLayoutAlign="start stretch" fxHide.xs>
+      <div class="flight-list-featured-card full-width">
+        <img src="assets/images/img_105-sm.png" class="full-width">
+      </div>
+      <p class="flight-description full-width">
+        Minneapolis is the most populous city in the US state of Minnesota and the seat of Hennepin County.
+        With an estimated population of 429,606 as of 2019, it is the 46th most populous city in the US.
+        Seven counties encompassing Minneapolis and its neighbor Saint Paul are known as the Twin Cities.
+        In 2019, those counties are among sixteen making up the Minneapolis–St.
+        Paul–Bloomington MN–WI metropolitan area of 3.6 million, and twenty-two making up the combined statistical area of 4.0 million.<br>
+        Minneapolis lies on both banks of the Mississippi River, just north of the river's confluence with the Minnesota River, and
+        adjoins Saint Paul, the state's capital. With one of the nation's best park systems
+        <span class="text-mask"></span>
+        <span class="read-more">Read more</span>
+      </p>
+      <div class="full-width spacer-1">
+        <h3 class="title-3">Gallery</h3>
+        <img src="assets/images/img_106-sm.png" class="full-width" (click)="openLightBox(0)">
+        <div class="full-width" fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="2%" style="margin-top: 10px;">
+          <div fxFlex="1 0 49" class="full-width">
+            <img src="assets/images/img_107-sm.png" class="full-width" (click)="openLightBox(1)">
+          </div>
+          <div fxFlex="1 0 49" class="full-width">
+            <img src="assets/images/img_108-sm.png" class="full-width" (click)="openLightBox(2  )">
+          </div>
+        </div>
+      </div>
+    </section>
+    <section fxFlex="1 1 70"
+             fxFlex.xs="1 1 100"
+             fxLayout="column"
+             fxLayoutAlign="start"
+             style="padding: 10px"
+    >
+      <h3 class="title-3" style="margin-top: 0; padding-left: 0">Price Comparison</h3>
+      <div fxLayout="row"
+           fxLayoutAlign="start"
+           style="margin-bottom: 10px">
+        <span fxFlex="0 1 8%"
+              fxFlex.xs="1 1 20"
+              class="nav-switcher">Sort by:</span>
+        <span fxFlex="0 1 10%"
+              fxFlex.xs="1 1 20"
+              fxLayoutAlign.xs="start"
+              class="nav-switcher">
+          <a routerLink="#" (click)="activateTab('cheapest')"
+             [ngClass]="{'active': navButtons.cheapest}"
+          >Cheapest</a>
+        </span>
+        <span fxFlex="0 1 10%"
+              fxFlex.xs="1 1 20"
+              fxLayoutAlign="center"
+              fxLayoutAlign.xs="start"
+              class="nav-switcher">
+          <a routerLink="#" (click)="activateTab('fastest')"
+             [ngClass]="{'active': navButtons.fastest}"
+          >Fastest</a></span>
+        <span fxFlex="0 1 20%"
+              fxFlex.xs="1 1 20"
+              fxLayoutAlign.xs="start"
+              class="nav-switcher">
+          <a routerLink="#" (click)="activateTab('recommended')"
+             [ngClass]="{'active': navButtons.recommended}"
+          >Recommended</a></span>
+      </div>
+
+      <div fxLayout="row"
+           fxLayout.xs="column"
+           fxLayoutAlign="space-between start"
+           fxLayoutAlign.xs="start stretch"
+           fxLayoutGap="0"
+           fxLayoutGap.xs="5px"
+      >
+        <div fxFlex="1 1 80%" class="price-comp-card" fxLayout="column" fxLayoutAlign="start stretch">
+          <span class="flight-class">Economy</span>
+          <div fxFlex fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10%">
+            <div fxFlex="1 0 20%">
+              <img src="assets/images/ethopia-airline.png" alt="" class="full-width">
+            </div>
+            <div fxFlex="1 1 70" fxLayout="row" fxLayoutAlign="space-between center">
+              <span fxFlex="auto"><b>13:40</b> (LOS) <br>Lagos</span>
+              <span fxFlex="auto">
+                <i>17h 55m</i><br>
+                <img src="assets/images/img_group2.png" alt=""><br>
+                <i>1 stop</i>
+              </span>
+              <span fxFlex="auto">
+                <b>06:35</b> (MNP) <br>Minneapolis
+              </span>
+            </div>
+          </div>
+          <div fxFlex fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10%">
+            <div fxFlex="1 0 20%">
+              <img src="assets/images/ethopia-airline.png" alt="" class="full-width">
+            </div>
+
+            <div fxFlex="1 1 70" fxLayout="row" fxLayoutAlign="space-between center" class="in-card-spacer">
+              <span fxFlex="1 1 auto"><b>13:40</b> (MNP) <br>Minneapolis</span>
+              <span fxFlex="auto">
+                <i>17h 55m</i><br>
+                <img src="assets/images/img_group1.png" alt=""><br>
+                <i>2 stops</i>
+              </span>
+              <span fxFlex="auto">
+                <b>06:35</b> (LOS) <br>Lagos
+              </span>
+            </div>
+          </div>
+        </div>
+        <div fxFlex="1 0 20%"
+             fxLayout="column"
+             fxLayoutAlign="center center"
+             fxLayoutGap="0"
+             fxLayoutGap.xs="5px"
+             class="price-comp-card full-height">
+          <span fxFlex="1 0 20" fxFlex.xs="1 0 35">4 deals from</span>
+          <span fxFlex="1 1 50" fxFlex.xs="1 0 30"><b style="font-size: 1.5rem">₦772,422</b></span>
+          <span fxFlex="1 1 30" fxFlex.xs="1 0 35">
+            <button mat-button class="flight-view-button"
+                    routerLink="/flights/1/detail"
+            >View</button>
+          </span>
+        </div>
+      </div>
+
+      <div fxLayout="row"
+           fxLayout.xs="column"
+           fxLayoutAlign="space-between start"
+           fxLayoutAlign.xs="start stretch"
+           fxLayoutGap.xs="5px"
+           fxLayoutGap="0"
+           class="out-card-spacer">
+        <div fxFlex="1 1 80%" class="price-comp-card" fxLayout="column" fxLayoutAlign="start stretch">
+          <span class="flight-class">Economy</span>
+          <div fxFlex fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10%">
+            <div fxFlex="1 0 20%">
+              <img src="assets/images/british-airline.png" alt="" class="full-width">
+            </div>
+            <div fxFlex="1 1 70" fxLayout="row" fxLayoutAlign="space-between center">
+              <span fxFlex="auto"><b>13:40</b> (LOS) <br>Lagos</span>
+              <span fxFlex="auto">
+                <i>17h 55m</i><br>
+                <img src="assets/images/img_group2.png" alt=""><br>
+                <i>1 stop</i>
+              </span>
+              <span fxFlex="auto">
+                <b>06:35</b> (MNP) <br>Minneapolis
+              </span>
+            </div>
+          </div>
+          <div fxFlex fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10%">
+            <div fxFlex="1 0 20%">
+              <img src="assets/images/british-airline.png" alt="" class="full-width">
+            </div>
+
+            <div fxFlex="1 1 70" fxLayout="row" fxLayoutAlign="space-between center" class="in-card-spacer">
+              <span fxFlex="1 1 auto"><b>13:40</b> (MNP) <br>Minneapolis</span>
+              <span fxFlex="auto">
+                <i>17h 55m</i><br>
+                <img src="assets/images/img_group1.png" alt=""><br>
+                <i>2 stops</i>
+              </span>
+              <span fxFlex="auto">
+                <b>06:35</b> (LOS) <br>Lagos
+              </span>
+            </div>
+          </div>
+        </div>
+        <div fxFlex="1 0 20%"
+             fxLayout="column"
+             fxLayoutAlign="center center"
+             fxLayoutGap="0"
+             fxLayoutGap.xs="5px"
+             class="price-comp-card full-height">
+          <span fxFlex="1 0 20" fxFlex.xs="1 0 35">2 deals from</span>
+          <span fxFlex="1 1 50" fxFlex.xs="1 0 30"><b style="font-size: 1.5rem">₦872,422</b></span>
+          <span fxFlex="1 1 30" fxFlex.xs="1 0 35">
+            <button mat-button class="flight-view-button"
+                    routerLink="/flights/1/detail"
+            >View</button>
+          </span>
+        </div>
+      </div>
+
+      <div fxLayout="row"
+           fxLayout.xs="column"
+           fxLayoutAlign="space-between start"
+           fxLayoutAlign.xs="start stretch"
+           fxLayoutGap="0"
+           fxLayoutGap.xs="5px"
+           class="out-card-spacer">
+        <div fxFlex="1 1 80%" class="price-comp-card" fxLayout="column" fxLayoutAlign="start stretch">
+          <span class="flight-class">Economy</span>
+          <div fxFlex fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10%">
+            <div fxFlex="1 0 20%">
+              <img src="assets/images/delta-airline.jpg" alt="" class="full-width">
+            </div>
+            <div fxFlex="1 1 70" fxLayout="row" fxLayoutAlign="space-between center">
+              <span fxFlex="auto"><b>13:40</b> (LOS) <br>Lagos</span>
+              <span fxFlex="auto">
+                <i>17h 55m</i><br>
+                <img src="assets/images/img_group2.png" alt=""><br>
+                <i>1 stop</i>
+              </span>
+              <span fxFlex="auto">
+                <b>06:35</b> (MNP) <br>Minneapolis
+              </span>
+            </div>
+          </div>
+          <div fxFlex fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10%">
+            <div fxFlex="1 0 20%">
+              <img src="assets/images/delta-airline.jpg" alt="" class="full-width">
+            </div>
+
+            <div fxFlex="1 1 70" fxLayout="row" fxLayoutAlign="space-between center" class="in-card-spacer">
+              <span fxFlex="1 1 auto"><b>13:40</b> (MNP) <br>Minneapolis</span>
+              <span fxFlex="auto">
+                <i>17h 55m</i><br>
+                <img src="assets/images/img_group2.png" alt=""><br>
+                <i>1 stop</i>
+              </span>
+              <span fxFlex="auto">
+                <b>06:35</b> (LOS) <br>Lagos
+              </span>
+            </div>
+          </div>
+        </div>
+        <div fxFlex="1 0 20%"
+             fxLayout="column"
+             fxLayoutAlign="center center"
+             fxLayoutGap="0"
+             fxLayoutGap.xs="5px"
+             class="price-comp-card full-height">
+          <span fxFlex="1 0 20" fxFlex.xs="1 0 35">3 deals from</span>
+          <span fxFlex="1 1 50" fxFlex.xs="1 0 30"><b style="font-size: 1.5rem">₦600,422</b></span>
+          <span fxFlex="1 1 30" fxFlex.xs="1 0 35">
+            <button mat-button class="flight-view-button"
+                    routerLink="/flights/1/detail"
+            >View</button>
+          </span>
+        </div>
+      </div>
+
+      <div fxLayout="row"
+           fxLayout.xs="column"
+           fxLayoutAlign="space-between start"
+           fxLayoutAlign.xs="start stretch"
+           fxLayoutGap="0"
+           fxLayoutGap.xs="5px"
+           class="out-card-spacer">
+        <div fxFlex="1 1 80%" class="price-comp-card" fxLayout="column" fxLayoutAlign="start stretch">
+          <span class="flight-class">Economy</span>
+          <div fxFlex fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10%">
+            <div fxFlex="1 0 20%">
+              <img src="assets/images/american-airline.png" alt="" class="full-width">
+            </div>
+            <div fxFlex="1 1 70" fxLayout="row" fxLayoutAlign="space-between center">
+              <span fxFlex="auto"><b>13:40</b> (LOS) <br>Lagos</span>
+              <span fxFlex="auto">
+                <i>17h 55m</i><br>
+                <img src="assets/images/img_group2.png" alt=""><br>
+                <i>1 stop</i>
+              </span>
+              <span fxFlex="auto">
+                <b>06:35</b> (MNP) <br>Minneapolis
+              </span>
+            </div>
+          </div>
+          <div fxFlex fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10%">
+            <div fxFlex="1 0 20%">
+              <img src="assets/images/american-airline.png" alt="" class="full-width">
+            </div>
+
+            <div fxFlex="1 1 70" fxLayout="row" fxLayoutAlign="space-between center" class="in-card-spacer">
+              <span fxFlex="1 1 auto"><b>13:40</b> (MNP) <br>Minneapolis</span>
+              <span fxFlex="auto">
+                <i>17h 55m</i><br>
+                <img src="assets/images/img_group1.png" alt=""><br>
+                <i>2 stops</i>
+              </span>
+              <span fxFlex="auto">
+                <b>06:35</b> (LOS) <br>Lagos
+              </span>
+            </div>
+          </div>
+        </div>
+        <div fxFlex="1 0 20%"
+             fxLayout="column"
+             fxLayoutAlign="center center"
+             fxLayoutGap="0"
+             fxLayoutGap.xs="5px"
+             class="price-comp-card full-height">
+          <span fxFlex="1 0 20" fxFlex.xs="1 0 35">3 deals from</span>
+          <span fxFlex="1 1 50" fxFlex.xs="1 0 30"><b style="font-size: 1.5rem">₦845,422</b></span>
+          <span fxFlex="1 1 30" fxFlex.xs="1 0 35">
+            <button mat-button class="flight-view-button"
+                    routerLink="/flights/1/detail"
+            >View</button>
+          </span>
+        </div>
+      </div>
+
+      <div fxLayout="row"
+           fxLayout.xs="column"
+           fxLayoutAlign="space-between start"
+           fxLayoutAlign.xs="start stretch"
+           fxLayoutGap="0"
+           fxLayoutGap.xs="5px"
+           class="out-card-spacer">
+        <div fxFlex="1 1 80%" class="price-comp-card" fxLayout="column" fxLayoutAlign="start stretch">
+          <span class="flight-class">Economy</span>
+          <div fxFlex fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10%">
+            <div fxFlex="1 0 20%">
+              <img src="assets/images/egypt-airline.png" alt="" class="full-width">
+            </div>
+            <div fxFlex="1 1 70" fxLayout="row" fxLayoutAlign="space-between center">
+              <span fxFlex="auto"><b>13:40</b> (LOS) <br>Lagos</span>
+              <span fxFlex="auto">
+                <i>17h 55m</i><br>
+                <img src="assets/images/img_group2.png" alt=""><br>
+                <i>1 stop</i>
+              </span>
+              <span fxFlex="auto">
+                <b>06:35</b> (MNP) <br>Minneapolis
+              </span>
+            </div>
+          </div>
+          <div fxFlex fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10%">
+            <div fxFlex="1 0 20%">
+              <img src="assets/images/egypt-airline.png" alt="" class="full-width">
+            </div>
+
+            <div fxFlex="1 1 70" fxLayout="row" fxLayoutAlign="space-between center" class="in-card-spacer">
+              <span fxFlex="1 1 auto"><b>13:40</b> (MNP) <br>Minneapolis</span>
+              <span fxFlex="auto">
+                <i>17h 55m</i><br>
+                <img src="assets/images/img_group1.png" alt=""><br>
+                <i>2 stops</i>
+              </span>
+              <span fxFlex="auto">
+                <b>06:35</b> (LOS) <br>Lagos
+              </span>
+            </div>
+          </div>
+        </div>
+        <div fxFlex="1 0 20%"
+             fxLayout="column"
+             fxLayoutAlign="center center"
+             fxLayoutGap="0"
+             fxLayoutGap.xs="5px"
+             class="price-comp-card full-height">
+          <span fxFlex="1 0 20" fxFlex.xs="1 0 35">3 deals from</span>
+          <span fxFlex="1 1 50" fxFlex.xs="1 0 30"><b style="font-size: 1.5rem">₦600,422</b></span>
+          <span fxFlex="1 1 30" fxFlex.xs="1 0 35">
+            <button mat-button class="flight-view-button"
+                    routerLink="/flights/1/detail"
+            >View</button>
+          </span>
+        </div>
+      </div>
+      <div class="out-card-spacer">
+        <button mat-stroked-button class="full-width mat-elevation-z1">Load More</button>
+      </div>
+    </section>
+  </div>
+</div>
+
+<app-footer class="spacer-3"></app-footer>

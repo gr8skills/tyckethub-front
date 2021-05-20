@@ -1,0 +1,207 @@
+<app-covid-alert-bar fxHide.xs></app-covid-alert-bar>
+<app-header (toggleSearchBoxEvent)="toggleSearchBox($event)"></app-header>
+<div fxHide [ngStyle]="displayStyle" class="search-box-container">
+  <app-mobile-search-box #mobileSearchBox></app-mobile-search-box>
+</div>
+<div class="carousel-wrapper mat-elevation-z3" fxLayout="row" fxHide.xs fxLayoutAlign="start stretch">
+  <mat-carousel fxFlex="1 1 auto"
+                timings="250ms ease-in"
+                [autoplay]="true"
+                [interval]="10000"
+                color="accent"
+                maxWidth="auto"
+                [proportion]="27"
+                [loop]="true"
+                [hideArrows]="false"
+                [hideIndicators]="false"
+
+  >
+    <mat-carousel-slide
+      #matCarouselSlide
+      *ngFor="let image of carouselImages; let i = index"
+      [image]="image"
+      overlayColor="#00000080"
+      [hideOverlay]="false"
+    >
+      <div class="carousel-slide-container" fxLayout="row" fxLayoutAlign="start center">
+        <div fxFlex="1 1 auto" fxLayout="row" fxLayoutAlign="start center">
+          <div [ngSwitch]="i">
+            <div *ngSwitchCase="0">
+              <div style="position: absolute; top: 45%; left: 5%;">
+                <button mat-flat-button color="accent" style="padding: 5px 30px;">Get Ticket</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-carousel-slide>
+  </mat-carousel>
+</div>
+
+<div class="container spacer-1">
+  <h3 class="title-3 spacer-xs">Popular Events</h3>
+  <div *ngIf="events$ | async as events">
+    <mat-tab-group>
+      <mat-tab label="All">
+        <mat-grid-list cols="{{matGridLayoutConfig.col}}"
+                       gutterSize="{{matGridLayoutConfig.gutterSize}}"
+                       rowHeight="{{matGridLayoutConfig.rowHeight}}"
+        >
+          <mat-grid-tile
+            colspan="1"
+            rowspan="1"
+            *ngFor="let event of events"
+          >
+            <app-event-card [event]="event"></app-event-card>
+          </mat-grid-tile>
+        </mat-grid-list>
+      </mat-tab>
+      <mat-tab label="For you">
+        <mat-grid-list [cols]="matGridLayoutConfig.col"
+                       gutterSize="{{matGridLayoutConfig.gutterSize}}"
+                       rowHeight="{{matGridLayoutConfig.rowHeight}}"
+        >
+          <mat-grid-tile
+            colspan="1"
+            rowspan="1"
+            *ngFor="let event of events"
+          >
+            <app-event-card [event]="event"></app-event-card>
+          </mat-grid-tile>
+        </mat-grid-list>
+      </mat-tab>
+      <mat-tab label="Today">
+        <mat-grid-list [cols]="matGridLayoutConfig.col"
+                       gutterSize="{{matGridLayoutConfig.gutterSize}}"
+                       rowHeight="{{matGridLayoutConfig.rowHeight}}"
+        >
+          <mat-grid-tile
+            colspan="1"
+            rowspan="1"
+            *ngFor="let event of events"
+          >
+            <app-event-card [event]="event"></app-event-card>
+          </mat-grid-tile>
+        </mat-grid-list>
+      </mat-tab>
+      <mat-tab label="This Weekend">
+        <mat-grid-list [cols]="matGridLayoutConfig.col"
+                       gutterSize="{{matGridLayoutConfig.gutterSize}}"
+                       rowHeight="{{matGridLayoutConfig.rowHeight}}"
+        >
+          <mat-grid-tile
+            colspan="1"
+            rowspan="1"
+            *ngFor="let event of events"
+          >
+            <app-event-card [event]="event"></app-event-card>
+          </mat-grid-tile>
+        </mat-grid-list>
+      </mat-tab>
+      <mat-tab label="Concerts">
+        <mat-grid-list [cols]="matGridLayoutConfig.col"
+                       gutterSize="{{matGridLayoutConfig.gutterSize}}"
+                       rowHeight="{{matGridLayoutConfig.rowHeight}}"
+        >
+          <mat-grid-tile
+            colspan="1"
+            rowspan="1"
+            *ngFor="let event of events"
+          >
+            <app-event-card [event]="event"></app-event-card>
+          </mat-grid-tile>
+        </mat-grid-list>
+      </mat-tab>
+      <mat-tab label="Artists">
+        <mat-grid-list [cols]="matGridLayoutConfig.col"
+                       gutterSize="{{matGridLayoutConfig.gutterSize}}"
+                       rowHeight="{{matGridLayoutConfig.rowHeight}}"
+        >
+          <mat-grid-tile
+            colspan="1"
+            rowspan="1"
+            *ngFor="let event of events"
+          >
+            <app-event-card [event]="event"></app-event-card>
+          </mat-grid-tile>
+        </mat-grid-list>
+      </mat-tab>
+      <mat-tab label="Parties">
+        <mat-grid-list [cols]="matGridLayoutConfig.col"
+                       gutterSize="{{matGridLayoutConfig.gutterSize}}"
+                       rowHeight="{{matGridLayoutConfig.rowHeight}}"
+        >
+          <mat-grid-tile
+            colspan="1"
+            rowspan="1"
+            *ngFor="let event of events"
+          >
+            <app-event-card [event]="event"></app-event-card>
+          </mat-grid-tile>
+        </mat-grid-list>
+      </mat-tab>
+      <mat-tab label="Theaters">
+        <mat-grid-list [cols]="matGridLayoutConfig.col"
+                       gutterSize="{{matGridLayoutConfig.gutterSize}}"
+                       rowHeight="{{matGridLayoutConfig.rowHeight}}"
+        >
+          <mat-grid-tile
+            colspan="1"
+            rowspan="1"
+            *ngFor="let event of events"
+          >
+            <app-event-card [event]="event"></app-event-card>
+          </mat-grid-tile>
+        </mat-grid-list>
+      </mat-tab>
+      <mat-tab label="Shows">
+        <mat-grid-list [cols]="matGridLayoutConfig.col"
+                       gutterSize="{{matGridLayoutConfig.gutterSize}}"
+                       rowHeight="{{matGridLayoutConfig.rowHeight}}"
+        >
+          <mat-grid-tile
+            colspan="1"
+            rowspan="1"
+            *ngFor="let event of events"
+          >
+            <app-event-card [event]="event"></app-event-card>
+          </mat-grid-tile>
+        </mat-grid-list>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</div>
+
+<div class="block-divider spacer-1"></div>
+
+<div class=" container spacer-2">
+  <h2 class="title-3">More Events</h2>
+  <ng-container *ngIf="eventsDynamic$ | async as additionalEvents">
+    <mat-grid-list [cols]="matGridLayoutConfig.col"
+                   gutterSize="{{matGridLayoutConfig.gutterSize}}"
+                   rowHeight="{{matGridLayoutConfig.rowHeight}}"
+    >
+      <mat-grid-tile
+        colspan="1"
+        rowspan="1"
+        *ngFor="let event of additionalEvents"
+      >
+        <app-event-card [event]="event" [isFavorite]="true"></app-event-card>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </ng-container>
+</div>
+
+<div fxLayout="row"
+     fxLayoutAlign="center center"
+     class="container spacer-1">
+  <div fxFlex="0 1 auto" fxFlex.xs="1 1 100" fxLayout="row" fxLayoutAlign="center">
+    <app-more-button></app-more-button>
+  </div>
+</div>
+
+<div class="container-fluid spacer-3">
+  <app-footer></app-footer>
+</div>
+
+

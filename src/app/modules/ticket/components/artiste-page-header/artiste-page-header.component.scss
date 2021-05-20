@@ -1,0 +1,66 @@
+@import "src/app/theme/dimensions";
+@import "src/app/theme/colors";
+
+.header-section {
+  width: 100%;
+  height: auto;
+  position: relative;
+  margin: 0;
+  padding: 0;
+}
+
+mat-toolbar.header-container {
+  max-width: 100%;
+  height: auto;
+  background-color: rgba(0,0,0,0.2);
+  position: absolute;
+  padding: 0 5%;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
+mat-toolbar-row.searchbox {
+  height: auto;
+  display: flex;
+  flex-direction: row-reverse;
+}
+mat-form-field.header-search {
+  max-height: 30px;
+  padding: 0;
+}
+.search-field-wrapper {
+  position: relative;
+}
+.search-field-wrapper mat-icon{
+  position: absolute;
+  top: auto;
+  left: 5px;
+}
+input.search-field {
+  border: 1px solid white;
+  border-radius: 10px;
+  padding: 5px 10px;
+  padding-left: 30px;
+  color: #f8f8f8;
+  max-width: 300px;
+}
+.active-link {
+  border-bottom: $header-nav-menu-link-active-borders;
+}
+.banner-overlay {
+  position: absolute;
+  bottom: 1.2rem;
+  left: 15%;
+
+  .prompt-text, .artiste-name {
+    color: color(custom-white);
+  }
+
+  .prompt-text {
+    font-size: 1.2rem;
+  }
+
+  .artiste-name {
+    font-size: 2rem;
+  }
+}

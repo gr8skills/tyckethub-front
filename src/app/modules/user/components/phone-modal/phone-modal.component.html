@@ -1,0 +1,22 @@
+<div class="modal-container">
+  <button mat-icon-button class="close" (click)="closeDialog()" color="accent">
+    <mat-icon color="primary">close</mat-icon>
+  </button>
+  <div fxLayout="column" fxLayoutAlign="center center">
+    <h2 class="modal-title">Edit Phone Number</h2>
+    <br>
+    <div fxFlex fxLayout="row" fxLayoutAlign="start center" class="full-width">
+      <span fxFlex style="margin-bottom: 10px">
+        <b>Phone Number: </b>
+      </span>
+    </div>
+    <mat-form-field appearance="fill" color="primary">
+      <input type="tel" matInput [value]="data.phone">
+    </mat-form-field>
+    <br><br>
+    <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px" class="full-width">
+      <button mat-stroked-button (click)="closeDialog()" class="full-width cancel">Cancel</button>
+      <button mat-stroked-button (click)="closeDialog()" class="full-width submit">Save</button>
+    </div>
+  </div>
+</div>

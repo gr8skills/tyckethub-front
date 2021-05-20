@@ -1,0 +1,18 @@
+<div [ngClass]="{'flight-card': flight.type === 'NORMAL', 'flight-card-featured': flight.type === 'FEATURED'}">
+  <div fxLayout="row" fxLayoutAlign="start" class="flight-card-body">
+<!--    <img [src]="flight.smallImageUrl" alt="">-->
+    <img data-src="{{flight.smallImageUrl}}" class="lazyload" alt="flight destination">
+  </div>
+  <div fxLayout="row" fxLayoutAlign="space-between center"
+       [ngClass]="{'flight-card-footer': flight.type === 'NORMAL', 'flight-card-footer-featured': flight.type === 'FEATURED'}">
+    <div fxFlex="1 1 70" class="title">{{flight.name}}</div>
+    <div fxFlex="1 1 30" fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px" class="action">
+      <button mat-mini-fab color="accent">
+        <mat-icon>favorite_border</mat-icon>
+      </button>
+      <button mat-mini-fab color="accent">
+        <mat-icon>ios_share</mat-icon>
+      </button>
+    </div>
+  </div>
+</div>

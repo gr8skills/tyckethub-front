@@ -1,0 +1,75 @@
+<div fxLayout="column" fxLayoutAlign="start start" class="search-box">
+  <div fxFlex="1 1 15%" class="full-width" fxLayout="row" fxLayoutAlign="stretch center" fxLayoutGap="2%">
+    <div fxFlex="1 1 49" fxLayout="row" fxLayoutAlign="start" class="search-field-wrapper full-width">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-select value="Round Trip">
+          <mat-option [value]="'Round Trip'">Round Trip</mat-option>
+          <mat-option [value]="'One-way'">One-way</mat-option>
+          <mat-option [value]="'Multi-city'">Multi-city</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div fxFlex="1 1 49" fxLayout="row" fxLayoutAlign="start" class="search-field-wrapper full-width">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-select value="1 Passengers">
+          <mat-option [value]="'1 Passengers'">1 Passengers</mat-option>
+          <mat-option [value]="'2 Passengers'">2 Passengers</mat-option>
+          <mat-option [value]="'3 Passengers'">3 Passengers</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div fxFlex="1 1 15%" class="search-field-wrapper full-width" fxLayout="row" fxLayoutAlign="stretch center"
+       fxLayoutGap="2%">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-select value="Economy">
+        <mat-option [value]="'Economy'">Economy</mat-option>
+        <mat-option [value]="'Premium Economy'">Premium Economy</mat-option>
+        <mat-option [value]="'Business'">Business</mat-option>
+        <mat-option [value]="'First Class'">First Class</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div fxFlex="1 1 15%" class="search-field-wrapper full-width" fxLayout="row" fxLayoutAlign="stretch center"
+       fxLayoutGap="2%">
+    <mat-form-field appearance="outline" color="primary" class="full-width">
+      <mat-label>From where?</mat-label>
+      <input matInput placeholder="Country, city or airport">
+      <mat-icon matPrefix color="primary">place</mat-icon>
+    </mat-form-field>
+  </div>
+  <div fxFlex="1 1 15%" class="search-field-wrapper full-width" fxLayout="row" fxLayoutAlign="stretch center"
+       fxLayoutGap="2%">
+    <mat-form-field appearance="outline" color="primary" class="full-width">
+      <mat-label>To where?</mat-label>
+      <input matInput placeholder="Country, city or airport">
+      <mat-icon matPrefix color="primary">place</mat-icon>
+    </mat-form-field>
+  </div>
+  <div fxFlex="1 1 15%" class="search-field-wrapper full-width" fxLayout="row" fxLayoutAlign="stretch center"
+       fxLayoutGap="2%">
+    <mat-form-field appearance="outline" color="primary" class="full-width">
+      <mat-label>Leaving on</mat-label>
+      <input matInput placeholder="Country, city or airport">
+      <mat-icon matPrefix color="primary">event</mat-icon>
+    </mat-form-field>
+  </div>
+  <div fxFlex="1 1 15%" class="search-field-wrapper full-width" fxLayout="row" fxLayoutAlign="stretch center"
+       fxLayoutGap="2%">
+    <mat-form-field appearance="outline" color="primary" class="full-width">
+      <mat-label>Returning on</mat-label>
+      <input matInput placeholder="Country, city or airport">
+      <mat-icon matPrefix color="primary">event</mat-icon>
+    </mat-form-field>
+  </div>
+
+  <div fxFlex="1 1 15%" class="full-width" fxLayout="row" fxLayoutAlign="stretch center"
+       fxLayoutGap="2%">
+    <div fxFlex="1 1 auto" fxLayout="row" fxLayoutAlign="center center">
+      <button mat-flat-button color="warn" class="submit" routerLink="/flights/list">Let's Go</button>
+    </div>
+  </div>
+
+</div>

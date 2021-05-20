@@ -1,0 +1,28 @@
+@import "src/app/theme/dimensions";
+@import "src/app/theme/colors";
+
+.search-box {
+  border-radius: $search-box-fields-border-radius;
+  width: 100%;
+  background-color: color(custom-base);
+  padding: 45px 10px;
+
+
+  mat-card {
+    background-color: transparent;
+    padding: 0;
+    margin: 0;
+
+    mat-label {
+      color: color(custom-base);
+    }
+
+    #flight-search {
+      padding: 0.5rem;
+    }
+  }
+}
+:host ::ng-deep .mat-form-field-wrapper{
+  margin: 0 !important;
+  padding: 0;
+}

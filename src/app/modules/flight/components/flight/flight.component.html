@@ -1,0 +1,195 @@
+<app-covid-alert-bar fxHide.xs></app-covid-alert-bar>
+<app-header (toggleSearchBoxEvent)="toggleSearchBox($event)"></app-header>
+
+<div class="carousel-wrapper mat-elevation-z3" fxLayout="row" fxHide.xs fxLayoutAlign="start stretch">
+  <mat-carousel fxFlex="1 1 auto"
+                timings="250ms ease-in"
+                [autoplay]="true"
+                [interval]="10000"
+                color="accent"
+                maxWidth="auto"
+                [proportion]="27"
+                [loop]="true"
+                [hideArrows]="false"
+                [hideIndicators]="false"
+  >
+    <mat-carousel-slide
+      #matCarouselSlide
+      *ngFor="let image of carouselImages; let i = index"
+      [image]="image"
+      overlayColor="#00000080"
+      [hideOverlay]="false"
+    >
+      <div class="carousel-slide-container" fxLayout="row" fxLayoutAlign="start center">
+        <div fxFlex="1 1 auto" fxLayout="row" fxLayoutAlign="start center">
+          <div [ngSwitch]="i">
+            <div *ngSwitchCase="0">
+              <h2>Plan on travelling?</h2><br>
+              <h2>Let's help you compare flight prices,</h2><br>
+              <h2>And book flight with ease.</h2>
+            </div>
+            <div *ngSwitchCase="1">
+              <h2>Love skiing?</h2><br>
+              <h2>We got you covered</h2><br>
+              <h2>Make your flights comparison now.</h2>
+            </div>
+            <div *ngSwitchCase="2">
+              <h2>Like your privacy?</h2><br>
+              <h2>Check out our offers for discrete locations</h2><br>
+              <h2>And compare prices.</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-carousel-slide>
+  </mat-carousel>
+</div>
+
+<div class="container" style="margin-top: 40px;" fxHide.xs>
+  <app-flight-search-box></app-flight-search-box>
+</div>
+
+<div fxHide [ngStyle]="displayStyle" class="search-box-container">
+  <app-flight-search-box-mobile></app-flight-search-box-mobile>
+</div>
+
+<div class="container spacer-1">
+  <h2 class="title-3 spacer-xs">Flight deals</h2>
+  <mat-tab-group dynamicHeight>
+    <mat-tab label="All">
+      <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="2%" fxLayoutGap.xs="50px" fxLayoutAlign="space-between center" style="margin-top: 30px;">
+        <div fxFlex="1 1 auto" *ngFor="let flight of flights; let i = index">
+          <app-flight-card [flight]="flight"></app-flight-card>
+        </div>
+      </div>
+      <div fxLayout="row" style="margin-top: 20px" fxHide.xs>
+        <app-flight-card [flight]="specialFlight"></app-flight-card>
+      </div>
+      <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="2%" fxLayoutGap.xs="50px" fxLayoutAlign="space-between center" style="margin-top: 20px;">
+        <div fxFlex="1 1 auto" *ngFor="let flight of moreFlights; let i = index">
+          <app-flight-card [flight]="flight"></app-flight-card>
+        </div>
+      </div>
+    </mat-tab>
+    <mat-tab label="For you">
+      <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="2%" fxLayoutGap.xs="50px" fxLayoutAlign="space-between center" style="margin-top: 30px;">
+        <div fxFlex="auto" *ngFor="let flight of flights; let i = index">
+          <app-flight-card [flight]="flight"></app-flight-card>
+        </div>
+      </div>
+      <div fxLayout="row" style="margin-top: 20px" fxHide.xs>
+        <app-flight-card [flight]="specialFlight"></app-flight-card>
+      </div>
+      <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="2%" fxLayoutGap.xs="50px" fxLayoutAlign="space-between center" style="margin-top: 20px;">
+        <div fxFlex="auto" *ngFor="let flight of moreFlights; let i = index">
+          <app-flight-card [flight]="flight"></app-flight-card>
+        </div>
+      </div>
+    </mat-tab>
+    <mat-tab label="Today">
+      <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="2%" fxLayoutGap.xs="50px" fxLayoutAlign="space-between center" style="margin-top: 30px;">
+        <div fxFlex="auto" *ngFor="let flight of flights; let i = index">
+          <app-flight-card [flight]="flight"></app-flight-card>
+        </div>
+      </div>
+      <div fxLayout="row" style="margin-top: 20px" fxHide.xs>
+        <app-flight-card [flight]="specialFlight"></app-flight-card>
+      </div>
+      <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="2%" fxLayoutGap.xs="50px" fxLayoutAlign="space-between center" style="margin-top: 20px;">
+        <div fxFlex="auto" *ngFor="let flight of moreFlights; let i = index">
+          <app-flight-card [flight]="flight"></app-flight-card>
+        </div>
+      </div>
+    </mat-tab>
+    <mat-tab label="Vacation packages">
+      <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="2%" fxLayoutGap.xs="50px" fxLayoutAlign="space-between center" style="margin-top: 30px;">
+        <div fxFlex="auto" *ngFor="let flight of flights; let i = index">
+          <app-flight-card [flight]="flight"></app-flight-card>
+        </div>
+      </div>
+      <div fxLayout="row" style="margin-top: 20px" fxHide.xs>
+        <app-flight-card [flight]="specialFlight"></app-flight-card>
+      </div>
+      <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="2%" fxLayoutGap.xs="50px" fxLayoutAlign="space-between center" style="margin-top: 20px;">
+        <div fxFlex="auto" *ngFor="let flight of moreFlights; let i = index">
+          <app-flight-card [flight]="flight"></app-flight-card>
+        </div>
+      </div>
+    </mat-tab>
+    <mat-tab label="Exclusive offers">
+      <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="2%" fxLayoutGap.xs="50px" fxLayoutAlign="space-between center" style="margin-top: 30px;">
+        <div fxFlex="auto" *ngFor="let flight of flights; let i = index">
+          <app-flight-card [flight]="flight"></app-flight-card>
+        </div>
+      </div>
+      <div fxLayout="row" style="margin-top: 20px" fxHide.xs>
+        <app-flight-card [flight]="specialFlight"></app-flight-card>
+      </div>
+      <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="2%" fxLayoutGap.xs="50px" fxLayoutAlign="space-between center" style="margin-top: 20px;">
+        <div fxFlex="auto" *ngFor="let flight of moreFlights; let i = index">
+          <app-flight-card [flight]="flight"></app-flight-card>
+        </div>
+      </div>
+    </mat-tab>
+    <mat-tab label="Honeymoon spots">
+      <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="2%" fxLayoutGap.xs="50px" fxLayoutAlign="space-between center" style="margin-top: 30px;">
+        <div fxFlex="auto" *ngFor="let flight of flights; let i = index">
+          <app-flight-card [flight]="flight"></app-flight-card>
+        </div>
+      </div>
+      <div fxLayout="row" style="margin-top: 20px" fxHide.xs>
+        <app-flight-card [flight]="specialFlight"></app-flight-card>
+      </div>
+      <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="2%" fxLayoutGap.xs="50px" fxLayoutAlign="space-between center" style="margin-top: 20px;">
+        <div fxFlex="auto" *ngFor="let flight of moreFlights; let i = index">
+          <app-flight-card [flight]="flight"></app-flight-card>
+        </div>
+      </div>
+    </mat-tab>
+    <mat-tab label="Discrete">
+      <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="2%" fxLayoutGap.xs="50px" fxLayoutAlign="space-between center" style="margin-top: 30px;">
+        <div fxFlex="auto" *ngFor="let flight of flights; let i = index">
+          <app-flight-card [flight]="flight"></app-flight-card>
+        </div>
+      </div>
+      <div fxLayout="row" style="margin-top: 20px" fxHide.xs>
+        <app-flight-card [flight]="specialFlight"></app-flight-card>
+      </div>
+      <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="2%" fxLayoutGap.xs="50px" fxLayoutAlign="space-between center" style="margin-top: 20px;">
+        <div fxFlex="auto" *ngFor="let flight of moreFlights; let i = index">
+          <app-flight-card [flight]="flight"></app-flight-card>
+        </div>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</div>
+
+<div class="block-divider spacer-1"></div>
+
+<div class="container spacer-1">
+  <h2 class="title-3">More flight deals</h2>
+
+  <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center" fxLayoutGap="2%" fxLayoutGap.xs="50px" style="margin-top: 20px;">
+    <div fxFlex="auto" *ngFor="let flight of additionalFlights.slice(3, 7); let i = index">
+      <app-flight-card [flight]="flight"></app-flight-card>
+    </div>
+  </div>
+
+  <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center" fxLayoutGap="2%" fxLayoutGap.xs="50px" style="margin-top: 20px;">
+    <div fxFlex="auto" *ngFor="let flight of additionalFlights.slice(0, 3); let i = index">
+      <app-flight-card [flight]="flight"></app-flight-card>
+    </div>
+  </div>
+</div>
+
+<div fxLayout="row"
+     fxLayoutAlign="center center"
+     class="container spacer-1">
+  <div fxFlex="0 1 auto" fxFlex.xs="1 1 100" fxLayout="row" fxLayoutAlign="center">
+    <app-more-button></app-more-button>
+  </div>
+</div>
+
+<div class="container-fluid spacer-3">
+  <app-footer></app-footer>
+</div>

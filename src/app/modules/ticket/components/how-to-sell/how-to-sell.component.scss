@@ -1,0 +1,40 @@
+@import "src/app/theme/colors";
+
+.local-container {
+  width: 90%;
+  margin: 0 auto -70px;
+  padding: 50px 0;
+  border-left: 1px solid color(custom-gray-light);
+  border-right: 1px solid color(custom-gray-light);
+}
+.separator {
+  margin-top: 4.0rem;
+}
+.item-card {
+  height: 200px;
+  width: 90%;
+  border-radius: 0 10px 10px 0;
+}
+.lead {
+  height: 100%;
+  img {
+    width: auto;
+    height: 100%;
+    object-fit: fill;
+  }
+}
+.trail {
+  height: 100%;
+  p{
+    font-size: 1.0rem;
+    font-weight: 500;
+    width: 80%;
+  }
+}
+.count-holder {
+  height: 150px;
+}
+.img-svg {
+  width: auto;
+  height: 150px;
+}

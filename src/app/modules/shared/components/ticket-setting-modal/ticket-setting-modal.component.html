@@ -1,0 +1,92 @@
+<div class="modal-container">
+  <form [formGroup]="ticketSettingsForm">
+    <button mat-icon-button class="close" (click)="closeDialog()" color="accent">
+      <mat-icon color="primary">close</mat-icon>
+    </button>
+    <div fxLayout="column" fxLayoutAlign="center stretch" class="full-width">
+      <h2 class="modal-title" style="text-align: center">Ticket Settings</h2>
+      <br>
+      <mat-form-field appearance="outline" class="full-width" color="primary">
+        <mat-label>Ticket sales starts</mat-label>
+        <input matInput
+               [matDatepicker]="startDatePicker"
+               formControlName="salesStart"
+               required>
+        <mat-datepicker-toggle matPrefix [for]="startDatePicker">
+          <mat-icon matDatepickerToggleIcon>today</mat-icon>
+        </mat-datepicker-toggle>
+        <mat-datepicker #startDatePicker>
+          <mat-datepicker-actions>
+            <button mat-button matDatepickerCancel>Cancel</button>
+            <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+          </mat-datepicker-actions>
+        </mat-datepicker>
+      </mat-form-field>
+      <br>
+      <mat-form-field appearance="outline" class="full-width" color="primary">
+        <mat-label>Ticket sales ends</mat-label>
+        <input matInput
+               [matDatepicker]="endDatePicker"
+               formControlName="salesEnd"
+               required>
+        <mat-datepicker-toggle matPrefix [for]="endDatePicker">
+          <mat-icon matDatepickerToggleIcon>today</mat-icon>
+        </mat-datepicker-toggle>
+        <mat-datepicker #endDatePicker>
+          <mat-datepicker-actions>
+            <button mat-button matDatepickerCancel>Cancel</button>
+            <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+          </mat-datepicker-actions>
+        </mat-datepicker>
+      </mat-form-field>
+      <br>
+      <h4>Ticket Status</h4>
+      <div fxLayout="row" fxLayoutAlign="start" style="margin-bottom: 2rem;">
+        <button mat-stroked-button class="select-btn"
+                (click)="selectTicketStatus('public')"
+                [ngClass]="{'select-btn-active': ticketStatus.public}">Public
+        </button>
+        <button mat-stroked-button class="select-btn"
+                (click)="selectTicketStatus('private')"
+                [ngClass]="{'select-btn-active': ticketStatus.private}">Private
+        </button>
+      </div>
+      <h4>Tickets allowed per order</h4>
+      <div fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="10%" class="full-width">
+        <div fxFlex="45%" fxLayout="row">
+          <mat-form-field appearance="outline" color="accent" class="full-width">
+            <mat-label>Minimum</mat-label>
+            <input matInput type="number" min="1"
+            formControlName="minimumPerOrder">
+          </mat-form-field>
+        </div>
+        <div fxFlex="45%" fxLayout="row">
+          <mat-form-field appearance="outline" color="accent" class="full-width">
+            <mat-label>Maximum</mat-label>
+            <input matInput type="number" min="1"
+                   formControlName="maximumPerOrder">
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+    <h4>Ticket sales channel</h4>
+    <div fxLayout="row" fxLayoutAlign="start">
+      <button mat-stroked-button class="select-btn"
+              (click)="selectSalesChannel('online')"
+              [ngClass]="{'select-btn-active': salesChannel.online}">Online
+      </button>
+      <button mat-stroked-button class="select-btn"
+              (click)="selectSalesChannel('outlet')"
+              [ngClass]="{'select-btn-active': salesChannel.outlet}">Outlets
+      </button>
+    </div>
+    <div style="margin-top: 2rem;">
+      <button mat-stroked-button class="btn-add"
+              (click)="closeDialog()">Cancel
+      </button>
+      <button mat-flat-button color="primary" class="btn-add"
+              (click)="save()">Save
+      </button>
+    </div>
+  </form>
+</div>

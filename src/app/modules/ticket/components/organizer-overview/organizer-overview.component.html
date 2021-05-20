@@ -1,0 +1,41 @@
+<h2 class="title-3">Overview</h2>
+
+<div fxLayout="row"
+     fxLayout.xs="column"
+     fxLayoutAlign="space-between stretch"
+     fxLayoutAlign.xs="start stretch"
+     fxLayoutGap="1%"
+     fxLayoutGap.xs="10%"
+>
+  <div fxFlex="49%"
+       fxLayout="column">
+      <app-overview-card [showViewButton]="false">
+        <div class="title">Revenues</div>
+        <div class="content card-content">0</div>
+      </app-overview-card>
+  </div>
+  <div fxFlex="49%"
+       fxLayout="column">
+    <app-overview-card [showViewButton]="false">
+      <div class="title">Tickets Sold</div>
+      <div class="content card-content">0</div>
+    </app-overview-card>
+  </div>
+</div>
+
+<div fxLayout="row" style="padding-top: 30px">
+  <div fxFlex>
+    <app-overview-card [showViewButton]="false">
+      <div class="title">Sales Report</div>
+      <div class="content">
+        <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px" style="padding: 20px 0">
+          <span fxFlex=""><img src="assets/images/icon_7.svg"></span>
+          <div fxFlex="" class="text-center">Once you’ve sold tickets to your event,<br> a table will be displayed here.</div>
+          <div fxFlex="">
+            <button mat-flat-button color="primary" routerLink="/events/create">Create Event</button>
+          </div>
+        </div>
+      </div>
+    </app-overview-card>
+  </div>
+</div>

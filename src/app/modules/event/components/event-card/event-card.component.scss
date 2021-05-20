@@ -1,0 +1,51 @@
+@import "src/app/theme/colors";
+@import "src/app/theme/dimensions";
+
+
+.event-card {
+  max-width: 350px;
+  height: auto;
+  margin-bottom: 0;
+}
+mat-card {
+  position: relative;
+  padding: 0;
+  margin: 0 !important;
+}
+mat-card mat-card-actions{
+  position: absolute;
+  bottom: 65px;
+  right: 20px;
+}
+
+mat-card img {
+  margin-top: 0;
+}
+mat-card-content {
+  padding: 10px 20px;
+}
+mat-card-content p {
+  color: color(custom-danger); //'red'
+}
+
+mat-card img {
+  width: 100%;
+  margin: 0;
+}
+
+mat-card h3 {
+  margin: 0;
+  color: #8b8e9e;
+  font-weight: bold;
+  cursor: pointer;
+}
+.tag {
+  position: absolute;
+  right: -2%;
+  top: 10%;
+  background-color: color(custom-base-light);
+  padding: 5px 10px;
+  color: color(custom-white);
+  border-radius: $search-box-fields-border-radius;
+  text-transform: uppercase;
+}

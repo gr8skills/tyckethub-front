@@ -1,0 +1,169 @@
+<app-covid-alert-bar fxHide.xs></app-covid-alert-bar>
+<app-artiste-page-header fxHide.xs></app-artiste-page-header>
+<app-header fxHide.gt-xs (toggleSearchBoxEvent)="toggleSearchBox($event)"></app-header>
+
+<div fxHide [ngStyle]="displayStyle" class="search-box-container">
+  <app-mobile-search-box></app-mobile-search-box>
+</div>
+
+<div class="container" style="margin: 1rem auto;">
+  <div class="breadcrumb">
+    <a (click)="navigateToHome()">Home
+      <mat-icon>chevron_right</mat-icon>
+    </a>
+    <a (click)="navigateToArtistesPage()">Artistes
+      <mat-icon>chevron_right</mat-icon>
+    </a>
+    <span>{{artiste.name}}</span>
+  </div>
+  <section fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="3%" style="margin-top: 1rem;">
+    <div fxFlex="70%" fxLayout="column" fxLayoutAlign="start" fxLayoutGap="20px">
+      <div class="ticket-card">
+        <div class="ticket-card-header">
+          <h3>Upcoming Concerts</h3>
+        </div>
+        <div class="ticket-card-body">
+          <ng-container *ngIf="events.length > 0">
+            <div *ngFor="let event of events" fxLayout="row" fxLayoutAlign="space-between center" class="ticket-item">
+              <div fxFlex="13%" fxLayout="column" class="lead">
+                <span><b>{{event.start_date | date: 'EEEE' | uppercase}}</b></span>
+                <span><b>{{event.start_time | timeFormat: 'am-pm' | uppercase}}</b></span>
+                <span>{{event.start_date | date: 'longDate' | uppercase}}</span>
+              </div>
+              <div fxFlex="87%" fxLayout="row" fxLayoutAlign="space-between start" style="padding-left: 10px;">
+                <div fxFlex="80%" fxLayout="column">
+                  <span><b>{{event.name | capitalize}}</b></span>
+                  <span>{{event.location?.venue_address}}, {{event.location?.city_name}}, {{event.location?.state?.name}}, {{event.location?.country?.name}}</span>
+                </div>
+                <div fxFlex="20%" fxFlexAlign="center">
+                  <button mat-flat-button color="primary" (click)="buyTicket(event.id)">Buy Ticket</button>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+          <ng-container *ngIf="events.length === 0">
+            No upcoming concerts
+          </ng-container>
+        </div>
+      </div>
+      <div class="ticket-card" style="margin-top: 2rem;">
+        <div class="ticket-card-header">
+          <h3>All Concerts</h3>
+        </div>
+        <ng-container *ngIf="events.length > 0">
+          <div fxLayout="row" fxLayoutAlign="space-between start" class="ticket-card-body">
+            <div fxFlex="13%" fxLayout="column" class="lead">
+              <span><b>{{events[0].start_date | date: 'EEEE' | uppercase}}</b></span>
+              <span><b>{{events[0].start_time | timeFormat: 'am-pm' | uppercase}}</b></span>
+              <span>{{events[0].start_date | date: 'longDate' | uppercase}}</span>
+            </div>
+            <div fxFlex="87%" fxLayout="row" fxLayoutAlign="space-between start" style="padding-left: 10px;">
+              <div fxFlex="80%" fxLayout="column">
+                <span><b>{{events[0].name | capitalize}}</b></span>
+                <span>{{events[0].location?.venue_address}}, {{events[0].location?.city_name}}, {{events[0].location?.state?.name}}, {{events[0].location?.country?.name}}</span>
+              </div>
+              <div fxFlex="20%" fxFlexAlign="center">
+                <button mat-flat-button color="primary" (click)="buyTicket(events[0].id)">Buy Ticket</button>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+
+      <ng-container *ngIf="events.length > 1">
+        <ng-container *ngFor="let event of events; index as i; first as isFirst">
+          <div *ngIf="!isFirst" fxLayout="row" fxLayoutAlign="space-between start" class="ticket-item">
+            <div fxFlex="13%" fxLayout="column" class="lead">
+              <span><b>TUESDAY</b></span>
+              <span><b>7:00 PM</b></span>
+              <span>JUNE 20 2021</span>
+            </div>
+            <div fxFlex="87%" fxLayout="row" fxLayoutAlign="space-between start" style="padding-left: 10px;">
+              <div fxFlex="80%" fxLayout="column">
+                <span><b>30 Billion Concert II</b></span>
+                <span>ORIENTAL HOTEL, VICTORIA ISLAND, LAGOS Lagos Oriental Hotel, 3 Lekki - Epe Expy, Victoria Island, Lagos, Nigeria</span>
+              </div>
+              <div fxFlex="20%" fxFlexAlign="center">
+                <button mat-flat-button color="primary" (click)="buyTicket(1)">Buy Ticket</button>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+      </ng-container>
+      <div *ngIf="events.length >= 10" style="margin-top: 2rem;">
+        <button mat-button color="primary">
+          <mat-icon color="primary">arrow_drop_down_circle</mat-icon>
+          View more
+        </button>
+      </div>
+    </div>
+
+    <div fxFlex="27%" fxLayout="column" fxLayoutAlign="start" fxLayoutGap="15px">
+      <div class="ticket-highlight">
+        <div fxLayout="row" fxLayoutAlign="start start">
+          <mat-icon color="primary" class="tick">verified</mat-icon>
+          <h2>Buyer Guarantee</h2>
+        </div>
+        <div fxLayout="column" fxLayoutAlign="space-between start" style="margin-top: 2rem">
+          <div fxLayout="row" fxLayoutAlign="start center" class="highlight-item">
+            <mat-icon class="highlight-item-tick">done</mat-icon>
+            <span>Low & competitive prices</span>
+          </div>
+          <div fxLayout="row" fxLayoutAlign="start center" class="highlight-item">
+            <mat-icon class="highlight-item-tick">done</mat-icon>
+            <span>100% Buyer Guarantee</span>
+          </div>
+          <div fxLayout="row" fxLayoutAlign="start start" class="highlight-item">
+            <mat-icon class="highlight-item-tick">done</mat-icon>
+            <span>All tickets are authentic and valid for the described event or VIP amenity</span>
+          </div>
+          <div fxLayout="row" fxLayoutAlign="start start" class="highlight-item">
+            <mat-icon class="highlight-item-tick">done</mat-icon>
+            <span>Your ticket will be delivered before the event</span>
+          </div>
+          <div fxLayout="row" fxLayoutAlign="start center" class="highlight-item">
+            <mat-icon class="highlight-item-tick">done</mat-icon>
+            <span>The tickets you receive will be the ones you requested, or better</span>
+          </div>
+        </div>
+      </div>
+      <div class="favorite-box">
+        <div fxLayout="row" fxLayoutAlign="space-between start">
+          <div fxFlex="80%">
+            <p><b>Get {{artiste.name}} Updates <br>and discover similar events</b></p>
+          </div>
+          <div fxFlex="15%">
+            <button mat-mini-fab>
+              <mat-icon color="warn">favorite</mat-icon>
+            </button>
+          </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center" style="margin-top: 1rem">
+          <button mat-stroked-button color="primary">Add to Favorite</button>
+        </div>
+      </div>
+      <div fxLayout="column" fxLayoutAlign="start stretch" class="tags-box">
+        <h3>Tags</h3>
+        <div fxLayout="row wrap">
+          <ng-container *ngFor="let event of events">
+            <ng-container *ngFor="let tag of event.tags">
+              <span class="tag">{{tag.name}}</span>
+            </ng-container>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<mat-divider></mat-divider>
+
+<div class="container artiste-description">
+  <p>{{artiste.bio}}</p>
+  <div *ngIf="descriptionMasked" class="text-overlay"></div>
+  <span *ngIf="descriptionMasked" class="read-more">
+    <button mat-button color="primary" (click)="onReadMore()">Read more...</button>
+  </span>
+</div>
+
+<app-footer></app-footer>

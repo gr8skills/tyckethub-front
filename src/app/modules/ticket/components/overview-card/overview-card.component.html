@@ -1,0 +1,13 @@
+<div class="card full-height">
+  <div class="card-header">
+    <h3>
+      <ng-content select=".title"></ng-content>
+    </h3>
+    <span *ngIf="displayViewButton">
+      <button mat-button color="primary">View all <mat-icon>keyboard_arrow_right</mat-icon></button>
+    </span>
+  </div>
+  <div class="card-body">
+    <ng-content select=".content"></ng-content>
+  </div>
+</div>

@@ -1,0 +1,82 @@
+@import "./colors";
+//Display correction factor
+$display-factor: 0.7;
+
+$header-background-color: transparent;
+$header-margin: 0 auto;
+$header-padding: 0;
+$header-width: 90%;
+$header-inner-row-display: flex;
+$header-inner-row-justify: space-between;
+
+$header-logo-padding: 10px;
+
+$header-menu-item-margin: 0;
+$header-menu-item-span-display:  flex;
+$header-menu-item-span-justify:  space-between;
+$header-menu-item-span-min-width:  200px;
+$header-menu-item-span-icon-margin:  12px 0 0 0;
+
+$header-nav-wrapper-height: 45px;
+$header-nav-wrapper-display: flex;
+$header-nav-wrapper-justify: flex-end;
+$header-nav-wrapper-margin: 0 0 5px 0;
+$header-nav-wrapper-padding: 2px 40px 2px 0;
+$header-nav-menu-link-active-borders: 5px solid color(custom-base-dark);
+
+$search-box-fields-border-radius: 5px;
+
+$content-space-margin-1: 10vh;
+$content-space-margin-2: 15vh;
+$content-space-margin-3: 25vh;
+
+$content-padding-1: 10vh;
+$content-padding-2: 20vh;
+$content-padding-3: 30vh;
+
+$card-padding: 20px;
+$auth-form-title-font: 14pt;
+$auth-form-title-weight: bold;
+
+//Typography
+$heading-font-size-1: 50pt;
+$heading-font-weight-1: bold;
+
+$heading-font-size-2: 47pt;
+$heading-font-weight-2: bold;
+
+$title-font-size-1: 30pt;
+$title-font-weight-1: bold;
+
+$title-font-size-2: 24pt;
+$title-font-weight-2: bold;
+
+$title-font-size-3: 20pt;
+$title-font-weight-3: 500;
+
+$title-font-size-4: 16pt;
+$title-font-weight-4: 600;
+
+$title-font-size-5: 10pt;
+$title-font-weight-5: 600;
+
+$body-font-large: 20pt;
+$body-weight-large: 600;
+
+$body-font-normal: 15pt;
+$body-weight-normal: 400;
+
+$body-font-secondary: 19pt;
+$body-weight-secondary: 400;
+
+$button-font-size-1: 18pt;
+$button-font-weight-1: bold;
+
+$button-font-size-2: 15pt;
+$button-font-weight-2: bold;
+
+$button-font-size-3: 14pt;
+$button-font-weight-3: bold;
+
+$more-button-width: 400px;
+$more-button-height: 50px;

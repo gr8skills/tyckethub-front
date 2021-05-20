@@ -1,0 +1,57 @@
+<div class="header-section">
+  <div style="background-color: rgba(0,0,0,.2); width: 100%; height: auto">
+    <mat-toolbar class="header-container">
+      <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between start" fxLayoutGap="10px">
+        <div fxFlex="10" fxLayout="row" fxLayoutAlign="start center">
+          <a routerLink="/">
+            <img src="assets/images/logo-light.png" alt="">
+          </a>
+        </div>
+        <div fxFlex="40" fxFlexAlign="end" fxLayout="row" fxLayoutAlign="start center" class="search-field-wrapper">
+          <input matInput placeholder="Events, artistes, flights or movies" class="search-field">
+          <mat-icon color="accent">search</mat-icon>
+        </div>
+        <div fxFlex="30" fxLayout="row" fxLayoutAlign="end center">
+          <button mat-button [matMenuTriggerFor]="menu" color="accent"><mat-icon>location_on</mat-icon>Lagos, Nigeria<mat-icon>expand_more</mat-icon></button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item><span>Search by city <mat-icon>close</mat-icon></span></button>
+            <mat-divider></mat-divider>
+            <button mat-menu-item><span>Current location <mat-icon>location_searching</mat-icon></span> </button>
+          </mat-menu>
+        </div>
+      </mat-toolbar-row>
+
+      <mat-toolbar-row class="searchbox">
+        <div class="nav-menus">
+          <a mat-button [routerLink]="['/events']" routerLinkActive="active-link" color="accent">Events</a>
+          <a mat-button [routerLink]="['/flights']" routerLinkActive="active-link" color="accent">Flights</a>
+          <a mat-button [routerLink]="['/movies']" routerLinkActive="active-link" color="accent">Movies</a>
+          <ng-container *ngIf="isLoggedIn">
+            <ng-container *ngIf="userRole === 'attendee'; then attendeeMenu else organizerMenu"></ng-container>
+          </ng-container>
+          <ng-template #attendeeMenu>
+            <a mat-button [matMenuTriggerFor]="resellOptions" routerLinkActive="active-link" color="accent">Resell Tickets</a>
+            <mat-menu #resellOptions="matMenu">
+              <button mat-menu-item [routerLink]="'/tickets/sales'">My Sales</button>
+              <button mat-menu-item [routerLink]="'/tickets/my-tickets'">My Tickets</button>
+            </mat-menu>
+          </ng-template>
+          <ng-template #organizerMenu>
+            <a mat-button [routerLink]="'/tickets/organizer/overview'" color="accent">My Events</a>
+          </ng-template>
+          <a *ngIf="!isLoggedIn" mat-button [routerLink]="['/users/sign-in']" color="accent">Sign In</a>
+          <a *ngIf="isLoggedIn" mat-button (click)="logout()" color="accent">Logout</a>
+          <a mat-flat-button [routerLink]="['/events/create']" color="primary">Create Event</a>
+        </div>
+      </mat-toolbar-row>
+    </mat-toolbar>
+  </div>
+  <div style="min-height: 450px; position: relative">
+    <img src="assets/images/img_125-sm.png" alt="" class="img-responsive">
+    <div class="banner-overlay">
+      <h2 class="prompt-text">On Sale Now</h2>
+      <h2 class="artiste-name">Davido Tickets</h2> <!--Artiste name should be dynamic-->
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,24 @@
+//Project wide additional color
+
+$colors: (
+  custom-base: #3851A3,
+  custom-base-light: #1880E7,
+  custom-base-dark: #213C93,
+  custom-dark: #000000,
+  custom-dark-light: #484545,
+  custom-danger: #F21C24,
+  custom-danger-dark: #FE5F5F,
+  custom-deep-purple: #EF464C,
+  custom-lime: #37DB22,
+  custom-gray: #575757,
+  custom-gray-light: #D5D5D5,
+  custom-gray-lighter: #DADADA,
+  custom-gray-lightest: #F8F8F8,
+  custom-white: #FFFFFF,
+  custom-sky-blue: #1880E7,
+  custom-sky-blue-light: #CBE4FC
+);
+
+@function color($color-name) {
+  @return map_get($colors, $color-name)
+}

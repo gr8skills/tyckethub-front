@@ -1,0 +1,111 @@
+<div class="container-local">
+  <div fxLayout="row"
+       fxLayout.xs="column"
+       fxLayoutAlign="space-between start"
+       style="margin-bottom: 20px;"
+       fxLayoutGap="2%" class="spacer-1">
+    <div fxFlex="1 0 10%"
+         fxLayout="column"
+         fxLayoutAlign="start end">
+      <span><img src="assets/images/icon_8.png"></span>
+    </div>
+    <div fxFlex="1 1 88%" fxLayout="column" fxLayoutAlign="space-between stretch">
+      <h2 class="title-2 no-margin">Event Ticket Offers</h2>
+      <p>Add Ticket offers that will be available for attendees</p>
+
+      <div fxLayout="row" fxLayoutAlign="start start" style="margin-top: 20px;">
+        <button mat-flat-button
+                class="btn-add"
+                color="accent"
+                [ngClass]="{'venue-button-active': pricingMethod.fixed}"
+                (click)="selectPricingMethod('fixed')"
+        >Fixed Price
+        </button>
+
+        <button mat-flat-button
+                class="btn-add"
+                color="accent"
+                [ngClass]="{'venue-button-active': pricingMethod.dynamic}"
+                (click)="selectPricingMethod('dynamic')"
+        >Dynamic Pricing
+        </button>
+
+        <span [matTooltip]="toolTipText"
+              [matTooltipPosition]="'above'"
+              matTooltipHideDelay="1000"
+        >
+          <img src="assets/images/icon_23.png">
+        </span>
+      </div>
+
+      <div style="margin-top: 2rem" class="full-width">
+        <p *ngIf="!eventHasTickets" class="info">You don’t have any tickets created yet, create your first ticket</p>
+        <button *ngIf="eventHasTickets" mat-button color="primary" class="info" routerLink="/tickets/organizer/tickets">
+          <mat-icon>confirmation_number</mat-icon> See Event Tickets
+        </button>
+        <mat-expansion-panel (opened)="ticketPanelOpened = true"
+                             (closed)="ticketPanelOpened = false"
+                             class="mat-elevation-z0 ticket-panel">
+          <mat-expansion-panel-header>
+            <mat-panel-title *ngIf="!ticketPanelOpened">Add a ticket</mat-panel-title>
+          </mat-expansion-panel-header>
+          <ng-template matExpansionPanelContent>
+            <div fxLayout="column" fxLayoutAlign="space-between start">
+              <h4 fxFlex class="input-header">Ticket Type</h4>
+              <div fxFlex fxLayout="row" fxLayoutAlign="start center">
+                <button mat-flat-button class="select-btn"
+                        (click)="selectTicketType('free')"
+                        [ngClass]="{'select-btn-active': selectedTicketType === 'free'}"
+                >Free</button>
+                <button mat-flat-button class="select-btn"
+                        (click)="selectTicketType('paid')"
+                        [ngClass]="{'select-btn-active': selectedTicketType === 'paid'}"
+                >Paid</button>
+                <button mat-flat-button class="select-btn"
+                        (click)="selectTicketType('invite')"
+                        [ngClass]="{'select-btn-active': selectedTicketType === 'invite'}"
+                >Invite Only</button>
+              </div>
+              <div fxFlex style="width: 80%; margin-top: 10px">
+                <app-event-ticket-form [ticketType]="selectedTicketType" (onSubmit)="saveTicketData($event)"></app-event-ticket-form>
+              </div>
+              <div fxFlex fxLayout="row" fxLayoutAlign="end center" class="full-width">
+                <button mat-button color="primary" (click)="openTicketSettingModal()">
+                  <mat-icon>settings</mat-icon> Ticket Setting
+                </button>
+                <button mat-button color="primary">
+                  <mat-icon>add_circle_outline</mat-icon> Add another ticket
+                </button>
+              </div>
+            </div>
+          </ng-template>
+        </mat-expansion-panel>
+      </div>
+
+      <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="2%" fxLayoutAlign.xs="space-between"
+           class="full-width" style="padding: 30px 0;">
+        <div fxFlex="1 1 20" fxFlex.xs="1 1 49">
+          <button type="button" mat-stroked-button color="primary" class="full-width btn-add"
+                  (click)="onCancel()">
+            Discard
+          </button>
+        </div>
+        <div fxFlex="1 1 20" fxFlex.xs="1 1 49">
+          <button type="button" mat-stroked-button color="primary" class="full-width btn-add"
+                  (click)="onCancel()">
+            Cancel
+          </button>
+        </div>
+        <div fxFlex="1 1 20" fxFlex.xs="1 1 49">
+          <button mat-flat-button color="primary"
+                  class="full-width btn-add" type="submit"
+                  [ladda]="isLoading"
+                  (click)="createEventTicket()"
+          >Save
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

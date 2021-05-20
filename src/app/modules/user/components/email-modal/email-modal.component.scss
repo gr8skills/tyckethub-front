@@ -1,0 +1,58 @@
+@import "src/app/theme/colors";
+
+.full-width {
+  width: 100%;
+}
+
+.modal-container {
+  min-width: 20vw;
+  max-height: 100%;
+  padding: 2rem;
+  position: relative;
+
+  h3 {
+    //font-weight: 600;
+  }
+  p{}
+
+  button.close {
+    position: absolute;
+    top: 0;
+    right: 5%;
+    background: transparent;
+  }
+
+  mat-form-field {
+    width: 100%;
+  }
+
+  button.submit {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    background-color: #f6f6f6;
+  }
+
+  button.cancel {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    background-color: color(custom-white);
+  }
+
+}
+
+@media screen and (max-width: 599px) {
+  .modal-container {
+    min-width: 100%;
+    max-width: 100%;
+    padding: 0;
+    margin: 0;
+  }
+
+  button.close {
+    position: absolute;
+    padding: 0;
+    margin-top: -20px;
+    margin-right: -10px;
+    background: transparent;
+  }
+}

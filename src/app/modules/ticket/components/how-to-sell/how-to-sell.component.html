@@ -1,0 +1,97 @@
+<app-covid-alert-bar fxHide.xs></app-covid-alert-bar>
+<app-header (toggleSearchBoxEvent)="toggleSearchBox($event)"></app-header>
+<div fxHide [ngStyle]="displayStyle" class="search-box-container">
+  <app-mobile-search-box #mobileSearchBox></app-mobile-search-box>
+</div>
+<div class=".carousel-wrapper">
+  <img src="assets/images/img_122.png" alt="banner" class="img-responsive">
+</div>
+<div class="local-container">
+  <div fxLayout="column" fxLayoutAlign="space-between center">
+    <h3 fxFlex class="title-4">How do I sell tickets on TycketHub?</h3>
+
+    <div fxFlex fxLayout="column" fxLayoutAlign="space-between center" class="container separator">
+      <div fxFlex fxLayout="row" fxLayoutAlign="space-between start" fxLayoutGap="0" class="mat-elevation-z4 item-card">
+        <div fxFlex="30%" class="lead">
+          <img src="assets/images/img_114.png" alt="" class="img-responsive">
+        </div>
+        <div fxFlex="70%" fxLayout="row" fxLayoutAlign="start stretch" class="trail">
+          <div fxLayout="row" fxLayoutAlign="space-between center" class="full-width">
+            <div fxFlex="30%" fxLayout="column" fxLayoutAlign="center" class="count-holder-one">
+              <img src="assets/images/img_116.svg" alt="" class="img-svg">
+            </div>
+            <div fxFlex="70%" fxLayout="column" fxLayoutAlign="center" class="full-height">
+              <p>Log on to your TycketHub account</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div fxFlex fxLayout="row" fxLayoutAlign="space-between start" fxLayoutGap="0"
+           class="mat-elevation-z4 item-card separator">
+        <div fxFlex="30%" class="lead">
+          <img src="assets/images/img_113.svg" alt="" class="img-responsive">
+        </div>
+        <div fxFlex="70%" fxLayout="row" fxLayoutAlign="start stretch" class="trail">
+          <div fxLayout="row" fxLayoutAlign="space-between center" class="full-width">
+            <div fxFlex="30%" fxLayout="column" fxLayoutAlign="center" class="count-holder-one">
+              <img src="assets/images/img_117.svg" alt="" class="img-svg">
+            </div>
+            <div fxFlex="70%" fxLayout="column" fxLayoutAlign="center" class="full-height">
+              <p>Find the ticket (or tickets) you no longer need.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div fxFlex fxLayout="row" fxLayoutAlign="space-between start" fxLayoutGap="0"
+           class="mat-elevation-z4 item-card separator">
+        <div fxFlex="30%" class="lead">
+          <img src="assets/images/img_111.svg" alt="" class="img-responsive">
+        </div>
+        <div fxFlex="70%" fxLayout="row" fxLayoutAlign="start stretch" class="trail">
+          <div fxLayout="row" fxLayoutAlign="space-between center" class="full-width">
+            <div fxFlex="30%" fxLayout="column" fxLayoutAlign="center" class="count-holder-one">
+              <img src="assets/images/img_118.svg" alt="" class="img-svg">
+            </div>
+            <div fxFlex="70%" fxLayout="column" fxLayoutAlign="center" class="full-height">
+              <p>Hit ‘Resell’.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div fxFlex fxLayout="row" fxLayoutAlign="space-between start" fxLayoutGap="0"
+           class="mat-elevation-z4 item-card separator">
+        <div fxFlex="30%" class="lead">
+          <img src="assets/images/img_110.svg" alt="" class="img-responsive">
+        </div>
+        <div fxFlex="70%" fxLayout="row" fxLayoutAlign="start stretch" class="trail">
+          <div fxLayout="row" fxLayoutAlign="space-between center" class="full-width">
+            <div fxFlex="30%" fxLayout="column" fxLayoutAlign="center" class="count-holder-one">
+              <img src="assets/images/img_119.svg" alt="" class="img-svg">
+            </div>
+            <div fxFlex="70%" fxLayout="column" fxLayoutAlign="center" class="full-height">
+              <p>Set the price. This will be the same price you paid, or less if you wish.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div fxFlex fxLayout="row" fxLayoutAlign="space-between start" fxLayoutGap="0" class="mat-elevation-z4 item-card separator">
+        <div fxFlex="30%" class="lead">
+          <img src="assets/images/img_112.svg" alt="" class="img-responsive">
+        </div>
+        <div fxFlex="70%" fxLayout="row" fxLayoutAlign="start stretch" class="trail">
+          <div fxLayout="row" fxLayoutAlign="space-between center" class="full-width">
+            <div fxFlex="30%" fxLayout="column" fxLayoutAlign="center" class="count-holder-one">
+              <img src="assets/images/img_120.svg" alt="" class="img-svg">
+            </div>
+            <div fxFlex="70%" fxLayout="column" fxLayoutAlign="center" class="full-height">
+              <p>That’s it, your tickets will be listed on TycketHub. We’ll automatically reissue most tickets to the
+                buyer. You’ll get your money back and another fan gets to go to the show.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

@@ -1,0 +1,80 @@
+<app-header-auth fxHide.gt-xs></app-header-auth>
+<form [formGroup]="loginForm" (ngSubmit)="login()" novalidate>
+  <div class="sign-in-container" fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="2%">
+
+    <div fxFlex="1 1 8" fxLayout="row" fxLayoutAlign="center center">
+      <a routerLink="/">
+        <img src="assets/images/logo.png" alt="logo">
+      </a>
+    </div>
+    <div *ngIf="(error$ | async) as error" class="form-error">
+      {{error}}
+    </div>
+    <div fxFlex="1 1 8" fxLayout="row" fxLayoutAlign="center center" style="padding-bottom: 20px;">
+      <h2 class="title-3">Sign in</h2>
+    </div>
+    <div fxFlex="1 1 8" fxLayout="row" fxLayoutAlign="start center" class="full-width">
+      <mat-form-field color="primary" class="full-width" appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" formControlName="email">
+        <mat-icon matSuffix (click)="clearField()">close</mat-icon>
+        <mat-error *ngIf="controls.email?.touched && controls.email?.invalid">
+          <span *ngIf="controls.email?.hasError('required')">Email is required.</span>
+          <span *ngIf="controls.email?.hasError('email')">Email address is invalid</span>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div fxFlex="1 1 8" fxLayout="row" fxLayoutAlign="start center" class="full-width">
+      <mat-form-field color="primary" class="full-width" appearance="outline">
+        <mat-label>Password</mat-label>
+        <input matInput #passwordFiled type="password" formControlName="password">
+        <mat-icon matSuffix (click)="toggleVisibility(passwordFiled)">
+          <ng-container *ngIf="passwordMasked; then visible else invisible"></ng-container>
+          <ng-template #visible>visibility</ng-template>
+          <ng-template #invisible>visibility_off</ng-template>
+        </mat-icon>
+        <mat-error *ngIf="controls.password?.touched && controls.password?.invalid">
+          <span *ngIf="controls.password?.hasError('required')">Password field is empty.</span>
+          <span *ngIf="controls.password?.hasError('minlength')">Password length is not up to 8 characters long.</span>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div fxFlex="1 1 8" fxLayout="row" fxLayoutAlign="space-between center" class="full-width">
+    <span fxFlex="1 1 50%" fxLayout="row" fxLayoutAlign="start">
+      <mat-checkbox color="primary" >Keep me logged in</mat-checkbox>
+    </span>
+      <span fxFlex="1 1 50%" fxLayout="row" fxLayoutAlign="end">
+      <a routerLink="/users/forgot-password" class="form-link">Forgot Password</a>
+    </span>
+    </div>
+    <div fxFlex="1 1 8" fxLayout="row" fxLayoutAlign="center center" class="full-width">
+      <button mat-flat-button color="accent"
+              id="submit" class="full-width"
+              [ladda]="isLoading"
+      >Sign In</button>
+    </div>
+    <div fxFlex="1 1 8" fxLayout="row" fxLayoutAlign="center center">
+      <p class="form-text">By purchasing or signing in, you agree to our<br>
+        <span class="form-link">Terms of use</span> and acknowledge our <span class="form-link">privacy policy</span>.</p>
+    </div>
+    <div fxFlex="1 1 8" fxLayout="row" fxLayoutAlign="center center">
+      <h4 class="title-5">Or Sign In with</h4>
+    </div>
+    <div fxFlex="1 1 8" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="2%" class="full-width">
+    <span fxFlex="1 1 45">
+      <button class="social-button full-width" mat-flat-button color="primary" appMaterialCardElevation>
+        <mat-icon>facebook</mat-icon> <span>Facebook</span>
+      </button>
+    </span>
+      <span fxFlex="1 1 45">
+      <button class="social-button full-width" mat-flat-button color="accent" appMaterialCardElevation>
+        <mat-icon>g_translate</mat-icon> <span>Google</span>
+      </button>
+    </span>
+    </div>
+    <div fxFlex="1 1 8" fxLayout="row" fxLayoutAlign="center center" style="padding-top: 30px">
+      <p>New to TycketHub? <a routerLink="/users/sign-up" class="form-link">Sign Up Here</a></p>
+    </div>
+  </div>
+</form>
+

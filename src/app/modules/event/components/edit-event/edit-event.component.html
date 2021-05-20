@@ -1,0 +1,99 @@
+<app-covid-alert-bar fxHide.xs></app-covid-alert-bar>
+<app-ticket-page-header fxHide.xs></app-ticket-page-header>
+<app-header fxHide.gt-xs (toggleSearchBoxEvent)="toggleSearchBox($event)"></app-header>
+
+<div fxHide [ngStyle]="displayStyle" class="search-box-container">
+  <app-mobile-search-box #mobileSearchBox></app-mobile-search-box>
+</div>
+
+<div class="container ">
+  <div fxLayout="row"
+       fxLayout.xs="column"
+       fxLayoutAlign="start start"
+       fxLayoutAlign.xs="start"
+       class="full-height full-width">
+    <div fxFlex="25"
+         fxLayout="column"
+         fxLayout.xs="row"
+         fxLayoutAlign="start start"
+         fxLayoutAlign.xs="space-between start"
+         class="side-nav">
+      <div class="user-info"
+           fxFlex.xs="1 0 40"
+      >
+        <a mat-button routerLink="/tickets/organizer/events"
+           color="primary"
+           style="margin-left: -15px; margin-bottom: 20px">
+          Manage my events
+          <mat-icon>navigate_next</mat-icon>
+        </a>
+        <h2 class="title-3">{{createdEvent.name}}</h2>
+        <p>{{createdEvent.start_date | date:'fullDate'}} at {{eventStartTime}}</p>
+      </div>
+      <div class="navs" fxHide.xs>
+        <a matRipple class="nav-item" routerLink="basic-info" routerLinkActive="nav-active">
+          <span *ngIf="!createdEvent" class="count">1</span>
+          <span *ngIf="createdEvent" class="count"><mat-icon>done</mat-icon></span>
+          <span>Basic Info</span>
+        </a>
+        <a matRipple class="nav-item" routerLink="details" routerLinkActive="nav-active">
+          <span *ngIf="createdEvent.images.length < 3" class="count">2</span>
+          <span *ngIf="createdEvent.images.length === 3" class="count"><mat-icon>done</mat-icon></span>Details
+        </a>
+        <a *ngIf="createdEvent.location.platform === 2"
+           matRipple class="nav-item"
+           routerLink="online-event"
+           routerLinkActive="nav-active">
+          <span *ngIf="createdEvent.location.online_platforms.length === 0" class="count">3</span>
+          <span *ngIf="createdEvent.location.online_platforms.length > 0" class="count">
+            <mat-icon>done</mat-icon></span>Online Event Page
+        </a>
+        <a matRipple class="nav-item" routerLink="tickets" routerLinkActive="nav-active">
+          <span *ngIf="createdEvent.location.platform === 2">
+              <span *ngIf="createdEvent.tickets.length === 0" class="count">4</span>
+              <span *ngIf="createdEvent.tickets.length > 0" class="count"><mat-icon>done</mat-icon></span>
+          </span>
+          <span *ngIf="createdEvent.location.platform !== 2">
+            <span *ngIf="createdEvent.tickets.length === 0" class="count">3</span>
+            <span *ngIf="createdEvent.tickets.length > 0" class="count"><mat-icon>done</mat-icon></span>
+          </span>Tickets
+        </a>
+        <a matRipple class="nav-item" routerLink="publish" routerLinkActive="nav-active">
+          <span *ngIf="createdEvent.location.platform === 2">
+            <span *ngIf="createdEvent.is_completed !== 1" class="count">5</span>
+            <span *ngIf="createdEvent.is_completed === 1" class="count"><mat-icon>done</mat-icon></span>
+          </span>
+          <span *ngIf="createdEvent.location.platform !== 2">
+            <span *ngIf="createdEvent.is_completed !== 1" class="count">4</span>
+            <span *ngIf="createdEvent.is_completed === 1" class="count"><mat-icon>done</mat-icon></span>
+          </span>Publish
+        </a>
+        <a matRipple class="nav-item" routerLink="dashboard" routerLinkActive="nav-active">
+          <span class="dash"><mat-icon>dashboard</mat-icon></span>Event Dashboard
+        </a>
+      </div>
+      <div fxHide.gt-xs fxFlex.xs="1 1 45" fxLayoutAlign.xs="start">
+        <button mat-flat-button [matMenuTriggerFor]="navs" color="primary" style="width: auto">
+          <span style="margin-right: 2rem">{{currentPath}}</span>
+          <mat-icon>expand_more</mat-icon>
+        </button>
+        <mat-menu #navs=matMenu xPosition="before">
+          <button mat-menu-item (click)="navigateToPath('overview')">Overview</button>
+          <button mat-menu-item (click)="navigateToPath('my-tickets')">My Tickets</button>
+          <button mat-menu-item (click)="navigateToPath('sales')">My Sales</button>
+          <button mat-menu-item (click)="navigateToPath('payments')">My Payment</button>
+          <button mat-menu-item (click)="navigateToPath('favorites')">Favorites</button>
+          <button mat-menu-item (click)="navigateToPath('rf-id')">RF ID</button>
+          <button mat-menu-item (click)="navigateToPath('settings')">Settings</button>
+        </mat-menu>
+      </div>
+    </div>
+    <div fxFlex="75"
+         fxLayout="column"
+         fxLayoutAlign="start stretch"
+         class="container-inner"
+    >
+      <router-outlet class="full-width"></router-outlet>
+    </div>
+  </div>
+</div>

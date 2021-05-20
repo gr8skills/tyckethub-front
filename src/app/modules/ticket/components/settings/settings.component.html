@@ -1,0 +1,95 @@
+<!--<h2 class="" style="font-size: 25px; font-weight: 700; margin: 20px 0;">Settings</h2>-->
+<h2 class="title-3">Settings</h2>
+
+<div fxLayout="row"
+     fxLayout.xs="column"
+     fxLayoutAlign="space-between start"
+     style="padding: 10px;"
+>
+  <div fxFlex="auto">
+    <a mat-stroked-button [class.active-tab]="tabs[0] === openTab"
+       [class.inactive-tab]="tabs[0] !== openTab"
+       (click)="switchTab(tabs[0])">Communication</a>&nbsp;
+    <a mat-stroked-button [class.active-tab]="tabs[1] === openTab"
+       [class.inactive-tab]="tabs[1] !== openTab"
+       (click)="switchTab(tabs[1])">Contact</a>&nbsp;
+    <a mat-stroked-button [class.active-tab]="tabs[2] === openTab"
+       [class.inactive-tab]="tabs[2] !== openTab"
+       (click)="switchTab(tabs[2])">Privacy</a>
+  </div>
+</div>
+
+<div [ngSwitch]="openTab"
+     class="fancy-text"
+     fxLayout="row"
+     fxLayout.xs="column"
+     fxLayoutAlign="space-between"
+     fxLayoutGap="1%"
+     style="margin-top: 15px; padding: 10px">
+  <ng-container *ngSwitchCase="tabs[0]" style="width: 100%">
+    <div fxFlex="55">
+      <div class="card-section">
+        <p>We‘ll always tell you what you need to know about your tickets<br> and listings. Whatever additional event information we send is up to you.</p>
+        <br>
+        <h3>Email</h3>
+        <div fxLayout="row" fxLayoutAlign="space-between center">
+          <div fxFlex="80%">
+            <span>{{currentUser.email}}</span>
+            <button mat-button (click)="openChangeEmailModal()">
+              <mat-icon color="primary">mode</mat-icon>
+            </button>
+          </div>
+          <div fxFlex="20%" fxLayoutAlign="end">
+            <mat-slide-toggle [checked]="true" color="primary"></mat-slide-toggle>
+          </div>
+        </div>
+        <h3>Mobile</h3>
+        <div fxLayout="row" fxLayoutAlign="space-between start">
+          <div fxFlex="80%">
+            <span>{{currentUser?.phone}}</span>
+            <button mat-button (click)="openChangePhoneModal()">
+              <mat-icon color="primary">mode</mat-icon>
+            </button>
+          </div>
+        </div>
+        <br>
+        <p>To receive SMS messages, Msg & data rates may apply.</p>
+        <p class="toc"><a>Terms & Conditions</a></p>
+        <br>
+        <div fxLayout="row" fxLayoutAlign="space-between start">
+          <div fxFlex="80%">
+            <p>Marketing phone calls</p>
+          </div>
+          <div fxFlex="20" fxLayoutAlign="end">
+            <mat-slide-toggle [checked]="true" color="primary"></mat-slide-toggle>
+          </div>
+        </div>
+        <br>
+        <p>Unsubscribe from all marketing communications</p>
+        <p>Manage favorites</p>
+      </div>
+    </div>
+    <div fxFlex="44" >
+      <div class="card-section">
+        <h3>Download the TycketHub App</h3>
+        <p>Stay up-to-date and receive push notifications with the<br>TycketHub app for iOS or Android</p>
+        <div>
+          <img src="assets/images/Image 2.png" alt="">
+        </div>
+      </div>
+    </div>
+  </ng-container>
+  <div *ngSwitchCase="tabs[1]" class="card-section" style="width: 100%" fxFlex.xs="">
+    <h2>Contact information</h2>
+    <div fxLayout.xs="row" fxLayoutAlign.xs="space-between">
+      <button mat-stroked-button color="primary" style="margin-right: 2rem">Add a new address</button>
+      <button mat-stroked-button color="primary" (click)="openChangePasswordModal()">Change Password</button>
+    </div>
+  </div>
+  <div *ngSwitchCase="tabs[2]" class="card-header-section" style="width: 100%">
+    <div class="header">
+      <h2 style="margin-bottom: 0; font-size: 1.2rem">Your personal Info</h2>
+    </div>
+    <p class="body">You can ask us to send you a copy of your personal info, delete your personal info, or help you with other privacy-related questions by <span class="toc"><a>sending us a request.</a></span></p>
+  </div>
+</div>

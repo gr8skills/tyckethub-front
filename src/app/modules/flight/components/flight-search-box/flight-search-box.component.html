@@ -1,0 +1,137 @@
+<div class="search-box">
+  <mat-card class="mat-elevation-z0">
+    <mat-card-content fxLayout="column" fxLayoutAlign="center start">
+      <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px;" style="margin-bottom: 20px">
+        <button mat-flat-button
+                [matMenuTriggerFor]="tripOption"
+                style="min-width: 150px; height: auto; background-color: rgba(255,255,255,.7); padding: 0; margin-right: 10px;"
+        >
+          <span style="margin-right: 2rem;">Round Trip</span> <mat-icon>expand_more</mat-icon>
+        </button>
+        <mat-menu #tripOption="matMenu" xPosition="after">
+          <button mat-menu-item style="min-width: 170px; padding: 0 10px; margin: 0;">Round Trip</button>
+          <button mat-menu-item style="min-width: 170px; padding: 0 10px; margin: 0;">One-Way</button>
+          <button mat-menu-item style="min-width: 170px; padding: 0 10px; margin: 0;">Multi-City</button>
+        </mat-menu>
+
+        <button mat-flat-button
+                [matMenuTriggerFor]="passengerOption"
+                style="min-width: 150px; height: auto; background-color: rgba(255,255,255,.7); padding: 0; margin-right: 10px;"
+        >
+          <span style="margin-right: 2rem;">Passenger</span> <mat-icon>expand_more</mat-icon>
+        </button>
+        <mat-menu #passengerOption="matMenu" xPosition="after">
+          <button mat-menu-item style="height: auto; padding: 0 10px; margin: 0;">
+            <div fxLayout="row" fxLayoutAlign="space-between" style="width: 200px">
+              <div fxFlex="50" fxLayout="column" fxLayoutAlign="center stretch">
+                <span fxFlex="" >Adult</span>
+              </div>
+              <div fxFlex="50" fxLayout="row" fxLayoutAlign="end center">
+                  <span fxFlex="">
+                    <button mat-icon-button color="warn">
+                      <mat-icon>remove</mat-icon>
+                    </button>
+                  </span>
+                <span fxFlex="">1</span>
+                <span fxFlex="">
+                    <button mat-icon-button color="primary">
+                      <mat-icon>add</mat-icon>
+                    </button>
+                  </span>
+              </div>
+            </div>
+          </button>
+          <button mat-menu-item style="height: auto; padding: 0 10px; margin: 0;">
+            <div fxLayout="row" fxLayoutAlign="space-between" style="width: 200px">
+              <div fxFlex="50" fxLayout="column" fxLayoutAlign="center stretch">
+                <span fxFlex="" >Children</span>
+              </div>
+              <div fxFlex="50" fxLayout="row" fxLayoutAlign="end center">
+                  <span fxFlex="">
+                    <button mat-icon-button color="warn">
+                      <mat-icon>remove</mat-icon>
+                    </button>
+                  </span>
+                <span fxFlex="">1</span>
+                <span fxFlex="">
+                    <button mat-icon-button color="primary">
+                      <mat-icon>add</mat-icon>
+                    </button>
+                  </span>
+              </div>
+            </div>
+          </button>
+          <button mat-menu-item style="height: auto; padding: 0 10px; margin: 0;">
+            <div fxLayout="row" fxLayoutAlign="space-between" style="width: 200px">
+              <div fxFlex="50" fxLayout="column" fxLayoutAlign="center stretch">
+                <span fxFlex="" >Infants</span>
+              </div>
+              <div fxFlex="50" fxLayout="row" fxLayoutAlign="end center">
+                  <span fxFlex="">
+                    <button mat-icon-button color="warn">
+                      <mat-icon>remove</mat-icon>
+                    </button>
+                  </span>
+                <span fxFlex="">1</span>
+                <span fxFlex="">
+                    <button mat-icon-button color="primary">
+                      <mat-icon>add</mat-icon>
+                    </button>
+                  </span>
+              </div>
+            </div>
+          </button>
+        </mat-menu>
+
+        <button mat-flat-button
+                [matMenuTriggerFor]="classOption"
+                style="min-width: 150px; height: auto; background-color: rgba(255,255,255,.7); padding: 0; margin-right: 10px;"
+        >
+          <span style="margin-right: 2rem;">Economy</span> <mat-icon>expand_more</mat-icon>
+        </button>
+        <mat-menu #classOption="matMenu" xPosition="after">
+          <button mat-menu-item style="min-width: 170px; padding: 0 10px; margin: 0;">Economy</button>
+          <button mat-menu-item style="min-width: 170px; padding: 0 10px; margin: 0;">Premium Economy</button>
+          <button mat-menu-item style="min-width: 170px; padding: 0 10px; margin: 0;">Business</button>
+          <button mat-menu-item style="min-width: 170px; padding: 0 10px; margin: 0;">First Class</button>
+        </mat-menu>
+      </div>
+
+      <div fxLayout="row" fxLayout.xs="row" fxLayoutAlign="space-between center" fxLayoutGap="10px" style="width: 100%">
+        <div fxFlex="22%" fxFlexAlign="center" style="background-color: white; height: auto; border-radius: 4px;">
+          <mat-form-field appearance="outline" color="primary" class="full-width">
+            <mat-label>From where?</mat-label>
+            <input matInput placeholder="Country, City or Airport">
+          </mat-form-field>
+        </div>
+        <div fxFlex="22%" fxFlexAlign="center" style="background-color: white; height: auto; border-radius: 4px;">
+          <mat-form-field appearance="outline" color="accent" class="full-width">
+            <mat-label>To where</mat-label>
+            <input matInput placeholder="Country, City or Airport">
+          </mat-form-field>
+        </div>
+        <div fxFlex="44%" fxFlexAlign="center" style="background-color: white; height: auto; border-radius: 4px;">
+          <div fxLayout="row" fxLayoutAlign="space-between">
+            <div fxFlex="auto">
+              <mat-form-field appearance="outline" color="accent" style="width: 100%">
+                <mat-label>Leaving on</mat-label>
+                <input matInput placeholder="Country, City or Airport">
+                <mat-icon matPrefix color="primary">event</mat-icon>
+              </mat-form-field>
+            </div>
+            <div fxFlex="auto">
+              <mat-form-field appearance="outline" color="accent" style="width: 100%">
+                <mat-label>Returning on</mat-label>
+                <input matInput placeholder="Country, City or Airport">
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+        <div fxFlex="11%" fxFlexAlign="center" style="height: auto">
+          <button mat-flat-button routerLink="/flights/list" color="warn" id="flight-search" class="full-width">Let's Go</button>
+        </div>
+      </div>
+
+    </mat-card-content>
+  </mat-card>
+</div>

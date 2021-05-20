@@ -1,0 +1,36 @@
+<h2 class="title-3">Overview</h2>
+
+<div fxLayout="row"
+     fxLayout.xs="column"
+     fxLayoutAlign="space-between stretch"
+     fxLayoutAlign.xs="start stretch"
+     fxLayoutGap="1%"
+     fxLayoutGap.xs="10%"
+     style="padding: 10px"
+>
+  <div fxFlex="50"
+       fxLayout="column"
+       fxLayoutGap="20px">
+    <div fxFlex="">
+      <app-overview-card>
+        <ng-container class="title">Upcoming Events</ng-container>
+        <ng-container class="content">You don't have any upcoming event scheduled right now</ng-container>
+      </app-overview-card>
+    </div>
+    <div fxFlex="">
+      <app-overview-card>
+        <ng-container class="title">Sales</ng-container>
+        <ng-container class="content">You don't have any active sale right now</ng-container>
+      </app-overview-card>
+    </div>
+  </div>
+  <div fxFlex="50">
+    <div fxLayout="column" fxLayoutAlign="start">
+      <app-overview-card fxFlex="1 0  100%">
+        <ng-container class="title">All Events</ng-container>
+        <ng-container class="content">You don't have any upcoming events scheduled right now</ng-container>
+      </app-overview-card>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,179 @@
+<app-covid-alert-bar fxHide.xs></app-covid-alert-bar>
+<app-header (toggleSearchBoxEvent)="toggleSearchBox($event)"></app-header>
+<div fxHide [ngStyle]="displayStyle" class="search-box-container">
+  <app-mobile-search-box #mobileSearchBox></app-mobile-search-box>
+</div>
+<div class="carousel-wrapper mat-elevation-z3" fxLayout="row" fxHide.xs fxLayoutAlign="start stretch">
+  <mat-carousel fxFlex="1 1 auto"
+                timings="250ms ease-in"
+                [autoplay]="true"
+                [interval]="10000"
+                color="accent"
+                maxWidth="auto"
+                [proportion]="27"
+                [loop]="true"
+                [hideArrows]="false"
+                [hideIndicators]="false"
+
+  >
+    <mat-carousel-slide
+      #matCarouselSlide
+      *ngFor="let image of carouselImages; let i = index"
+      [image]="image"
+      overlayColor="#00000080"
+      [hideOverlay]="false"
+    >
+      <div class="carousel-slide-container" fxLayout="row" fxLayoutAlign="start center">
+        <div fxFlex="1 1 auto" fxLayout="row" fxLayoutAlign="start center">
+          <div [ngSwitch]="i">
+            <div *ngSwitchCase="0">
+              <h2>Book Tickets faster</h2><br>
+              <h2>with ease, and organize events. Plans change?</h2> <br>
+              <h2>Resell your tickets now.</h2>
+            </div>
+            <div *ngSwitchCase="1">
+              <h2>Plan on travelling?</h2> <br>
+              <h2>Let's help you compare flight prices,</h2> <br>
+              <h2>And book flights with ease.</h2>
+            </div>
+            <div *ngSwitchCase="2">
+              <h2>Love watching movies?</h2> <br>
+              <h2>Compare movie prices from different</h2> <br>
+              <h2>cinemas across the country.</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-carousel-slide>
+  </mat-carousel>
+</div>
+<div class="container" fxHide.xs>
+  <app-search-box></app-search-box>
+</div>
+<div class="container text-center spacer-1 intro-section">
+  <h3 class="title-2 spacer-xs">Ticket Booking made easy</h3>
+  <p class="body-regular">At TycketHub we help you book event tickets, resell tickets and also compare flights & movies
+    prices</p>
+  <div style="height: 8px; width: 75px; background-color: #213C93; margin: 20px auto 0;"></div>
+</div>
+<div class="container spacer-1">
+  <div fxLayout="row"
+       fxLayoutAlign="space-between center"
+  >
+    <h3 class="title-3" fxFlex="1 1 30" fxFlex.xs="1 1 60">Upcoming events for you.</h3>
+    <div fxFlex="1 1 30" fxFlex.xs="1 0 40" fxLayout="row" fxLayoutAlign="end center" class="padding">
+      <button mat-stroked-button color="primary" routerLink="/events">
+        View all
+        <mat-icon>keyboard_arrow_right</mat-icon>
+      </button>
+    </div>
+  </div>
+
+  <div fxLayout="row"
+       fxLayoutAlign="space-between center">
+    <div class="horizontal-scroll" fxHide.xs>
+      <ngx-slick-carousel class="carousel full-width"
+                          #slickModal="slick-carousel"
+                          [config]="slickSlideConfig"
+      >
+        <div ngxSlickItem *ngFor="let event of events" class="slide">
+          <app-event-card [event]="event"></app-event-card>
+        </div>
+      </ngx-slick-carousel>
+    </div>
+    <div fxHide.gt-xs class="horizontal-scroll" fxLayout="row" fxLayoutAlign.xs="center center">
+      <ng-container *ngFor="let event of events.slice(0,1)"> <!--To be replaced with a carousel-->
+        <app-event-card [event]="event"></app-event-card>
+      </ng-container>
+    </div>
+  </div>
+
+  <div fxLayout="row"
+       fxLayoutAlign="space-between center"
+       class="spacer-1">
+    <h3 class="title-3" fxFlex="1 1 50" fxFlex.xs="1 1 60">Recommended flights for you</h3>
+    <div fxFlex="1 1 30" fxFlex.xs="1 0 40" fxLayout="row" fxLayoutAlign="end center" class="padding">
+      <button mat-stroked-button color="primary" routerLink="/flights">
+        View all
+        <mat-icon>keyboard_arrow_right</mat-icon>
+      </button>
+    </div>
+  </div>
+
+  <div fxLayout="row" fxLayoutAlign="space-between center" style="margin-top: 15px;">
+    <div class="horizontal-scroll" fxHide.xs><!--To be replace with virtual scroll-->
+      <ngx-slick-carousel class="carousel"
+                          #slickModal="slick-carousel"
+                          [config]="slickSlideConfig"
+      >
+        <div ngxSlickItem *ngFor="let flight of flights" class="slide">
+          <app-flight-card [flight]="flight"></app-flight-card>
+        </div>
+      </ngx-slick-carousel>
+      <!--      <ng-container *ngFor="let flight of flightsToDisplay">-->
+      <!--        <app-flight-card fxFlex="1 1 auto" [flight]="flight"></app-flight-card>-->
+      <!--      </ng-container>-->
+      <!--      <button mat-mini-fab class="prev-button" (click)="previous('flight')" [disabled]="disablePrev">-->
+      <!--        <mat-icon>arrow_back_ios</mat-icon>-->
+      <!--      </button>-->
+      <!--      <button mat-mini-fab class="next-button" (click)="next('flight')" [disabled]="disableNext">-->
+      <!--        <mat-icon>arrow_forward_ios</mat-icon>-->
+      <!--      </button>-->
+    </div>
+    <div class="horizontal-scroll" fxHide.gt-xs fxLayout="row" fxLayoutAlign="center center">
+      <ng-container *ngFor="let flight of flights.slice(0 ,1)">
+        <app-flight-card [flight]="flight"></app-flight-card>
+      </ng-container>
+    </div>
+  </div>
+
+  <div fxLayout="row"
+       fxLayoutAlign="space-between center"
+       class="spacer-1">
+    <h3 class="title-3" fxFlex="1 1 50" fxFlex.xs="1 1 60">Movies picked for you</h3>
+    <div fxFlex="1 1 30" fxFlex.xs="1 0 40" fxLayout="row" fxLayoutAlign="end center" class="padding">
+      <button mat-stroked-button color="primary" routerLink="/movies">
+        View all
+        <mat-icon>keyboard_arrow_right</mat-icon>
+      </button>
+    </div>
+  </div>
+
+  <div fxLayout="row" fxLayoutAlign="space-between center" style="margin-top: 15px;">
+    <div class="horizontal-scroll" fxHide.xs><!--To be replace with virtual scroll-->
+      <ngx-slick-carousel class="carousel"
+                          #slickModal="slick-carousel"
+                          [config]="slickMoviesSlideConfig"
+      >
+        <div ngxSlickItem *ngFor="let movie of movies" class="slide mx-1">
+          <app-movie-card [movie]="movie"></app-movie-card>
+        </div>
+      </ngx-slick-carousel>
+    </div>
+    <div fxHide.gt-xs class="horizontal-scroll" fxLayout="row" fxLayoutAlign="center center">
+      <ng-container *ngFor="let movie of movies.slice(0, 1)">
+        <app-movie-card [movie]="movie"></app-movie-card>
+      </ng-container>
+    </div>
+  </div>
+</div>
+
+<div class="spacer-3 newsletter-section">
+  <div class="newsletter-box">
+    <h3 class="title-4">For exclusives, events and incredible deals straight to your inbox.</h3>
+    <div class="simple-search-bar" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="2%">
+      <div fxFlex="0 1 60" fxLayout="row">
+        <mat-form-field appearance="outline" color="primary" class="full-width">
+          <input matInput placeholder="Enter your email address">
+        </mat-form-field>
+      </div>
+      <div fxFlex="0 1 30" fxFlexAlign="center" fxLayout="row">
+        <button mat-flat-button color="primary" class="submit-button">Let's do this</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid spacer-3">
+  <app-footer></app-footer>
+</div>

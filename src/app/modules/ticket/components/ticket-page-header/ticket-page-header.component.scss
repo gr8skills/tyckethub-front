@@ -1,0 +1,48 @@
+@import "src/app/theme/colors";
+
+.header-section {
+  width: 100%;
+  //height: auto;
+  height: 110px;
+  position: relative;
+  //margin-bottom: 10px;
+}
+
+mat-toolbar.header-container {
+  max-width: 100%;
+  height: auto;
+  background-color: transparent;
+  position: absolute;
+  padding: 0 5%;
+  top: 0;
+  left: 0;
+  //z-index: 10;
+}
+mat-toolbar-row.searchbox {
+  height: auto;
+  display: flex;
+  flex-direction: row-reverse;
+  margin-bottom: 10px;
+}
+.search-field-wrapper {
+  position: relative;
+  margin-top: 20px;
+}
+.search-field-wrapper mat-icon{
+  position: absolute;
+  top: auto;
+  left: 5px;
+}
+input.search-field {
+  border: 1px solid color(custom-base);
+  border-radius: 10px;
+  padding: 10px 10px;
+  padding-left: 30px;
+  color: color(custom-white);
+  max-width: 300px;
+  min-width: 300px;
+}
+.active-link {
+  border-bottom: 5px solid color(custom-base);
+}
+

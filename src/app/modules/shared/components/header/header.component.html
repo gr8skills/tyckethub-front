@@ -1,0 +1,58 @@
+<mat-toolbar class="header-container" [class.mat-elevation-z2]="headerLinks.style.display === 'none'">
+  <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center" fxLayoutAlign.xs="center center">
+    <div class="logo-container" fxFlex="20" fxFlex.xs="auto" fxLayout="column" fxLayoutAlign="center center">
+      <a mat-button color="accent" routerLink="/" class="logo">
+        <img src="assets/images/logo.png" alt="">
+      </a>
+    </div>
+
+    <button mat-icon-button
+            fxHide.gt-xs id="search-button"
+            (click)="toggleSearchBox()"
+    >
+      <mat-icon>search</mat-icon>
+    </button>
+
+    <div fxFlex="50" fxHide.xs></div>
+
+    <div fxFlex="30" fxLayout="row" fxLayoutAlign="end" fxHide.xs>
+      <button mat-button [matMenuTriggerFor]="menu">
+        <mat-icon color="primary">location_on</mat-icon>
+        Lagos, Nigeria
+        <mat-icon>expand_more</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu" xPosition="before">
+        <button mat-menu-item><span>Search by city <mat-icon>close</mat-icon></span></button>
+        <mat-divider></mat-divider>
+        <button mat-menu-item><span>Current location <mat-icon color="accent">near_me</mat-icon></span></button>
+      </mat-menu>
+    </div>
+  </mat-toolbar-row>
+
+  <mat-toolbar-row class="nav-bar" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="end center" fxHide.xs
+                   #headerLinks>
+    <div fxFlex="50" fxLayout="row" fxLayoutAlign="end">
+      <a mat-button [routerLink]="['/events']" routerLinkActive="active-link">Events</a>
+      <a mat-button [routerLink]="['/flights']" routerLinkActive="active-link">Flights</a>
+      <a mat-button [routerLink]="['/movies']" routerLinkActive="active-link">Movies</a>
+      <ng-container *ngIf="isLoggedIn">
+        <ng-container *ngIf="userRole === 'attendee'; then attendeeMenu else organizerMenu"></ng-container>
+      </ng-container>
+      <ng-template #attendeeMenu>
+        <a mat-button [matMenuTriggerFor]="resellOptions" routerLinkActive="active-link">Resell Tickets</a>
+        <mat-menu #resellOptions="matMenu" xPosition="after" yPosition="below">
+          <button mat-menu-item [routerLink]="'/tickets/sales'">My Sales</button>
+          <button mat-menu-item [routerLink]="'/tickets/my-tickets'">My Tickets</button>
+        </mat-menu>
+      </ng-template>
+      <ng-template #organizerMenu>
+        <a mat-button [routerLink]="'/tickets/organizer/overview'">My Events</a>
+      </ng-template>
+
+      <a *ngIf="!isLoggedIn" mat-button [routerLink]="['/users/sign-in']">Sign In</a>
+      <a *ngIf="isLoggedIn" mat-button (click)="logout()">Logout</a>
+      <a mat-flat-button [routerLink]="['/events/create']" color="primary">Create Event</a>
+<!--      <a *ngIf="userRole === 'organizer' && isLoggedIn" mat-flat-button [routerLink]="['/events/create']" color="primary">Create Event</a>-->
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>

@@ -1,0 +1,27 @@
+@import "src/app/theme/dimensions";
+
+.header-container {
+  height: 50px;
+  position: relative;
+  background-color: color(custom-white);
+}
+#button-home {
+  position: fixed;
+  top: 6px;
+  right: 10px;
+  z-index: 11;
+  color: color(custom-base);
+}
+@media screen and (max-width: 599px) {
+  .header-container {
+    max-width: 100%;
+    min-width: 100%;
+    margin: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    background-color: color(custom-white);
+  }
+}

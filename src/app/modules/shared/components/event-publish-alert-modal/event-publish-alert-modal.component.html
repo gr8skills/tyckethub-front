@@ -1,0 +1,28 @@
+<div class="modal-container">
+  <button mat-icon-button class="close" (click)="closeDialog()" color="accent">
+    <mat-icon color="primary">close</mat-icon>
+  </button>
+  <div fxLayout="column" fxLayoutAlign="center stretch" class="full-width">
+    <h3 class="modal-title" style="text-align: center; color: #F21C24;">Error publishing event</h3>
+    <p><b>Please fix the following errors and try publishing again.</b></p>
+    <mat-divider></mat-divider>
+    <br>
+    <ng-container *ngIf="errors.length > 0">
+        <div *ngFor="let error of errors" fxLayout="row" fxLayoutAlign="space-between start" class="full-width">
+          <div fxFlex="60%" fxLayout="row" fxLayoutAlign="start" class="full-width">
+            <p class="error">{{error.message}}</p>
+          </div>
+          <div fxFlex="40%" fxLayout="row" fxLayoutAlign="end" class="full-width">
+            <button mat-flat-button (click)="navigationToActionLink(error.actionLink)" color="primary">
+              {{error.actionLabel}}
+            </button>
+          </div>
+        </div>
+    </ng-container>
+    <br>
+    <mat-divider></mat-divider>
+    <div fxLayout="row" fxLayoutAlign="end end" style="margin-top: 3rem;">
+      <button mat-flat-button color="primary" (click)="closeDialog()">Dismiss</button>
+    </div>
+  </div>
+</div>

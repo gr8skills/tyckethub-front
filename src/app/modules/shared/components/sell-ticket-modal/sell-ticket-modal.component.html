@@ -1,0 +1,73 @@
+<div class="modal-container">
+  <button mat-icon-button class="close" (click)="closeDialog()" color="accent">
+    <mat-icon color="primary">close</mat-icon>
+  </button>
+  <div fxLayout="column" fxLayoutAlign="space-between stretch" class="full-width">
+    <h2 class="modal-title" style="text-align: center">Sell Ticket</h2>
+    <div *ngIf="errors$ | async as errors" style="margin-bottom: 10px">
+      <p *ngFor="let error of errors" class="form-error">{{error}}</p>
+    </div>
+    <div>
+      <h4>Event:</h4>
+      <mat-form-field appearance="outline" class="full-width">
+        <input matInput type="text" readonly [value]="data.eventTitle">
+      </mat-form-field>
+    </div>
+    <div>
+      <h4>Date Purchased:</h4>
+      <mat-form-field appearance="outline" class="full-width">
+        <input matInput type="text" readonly [value]="data.datePurchased">
+      </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="space-between center" class="full-width">
+      <div fxFlex="45%">
+        <h4>Ticket Type:</h4>
+        <mat-form-field appearance="outline" class="full-width">
+          <input matInput type="text" readonly [value]="data.ticketType">
+        </mat-form-field>
+      </div>
+      <div fxFlex="45%">
+        <h4>Ticket ID</h4>
+        <mat-form-field appearance="outline" class="full-width">
+          <input matInput type="text" readonly [value]="data.ticketId">
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="space-between center" class="full-width">
+      <div fxFlex="45%">
+        <h4>Amount(per ticket):</h4>
+        <mat-form-field appearance="outline" class="full-width">
+          <input matInput type="number"
+                 #amountInput
+                 [(ngModel)]="data.amountPerTicket"
+                 [max]="data.amountPerTicket"
+                (change)="normalizeInputValue(amountInput, 'amount')"
+                 (blur)="normalizeInputValue(amountInput, 'amount')">
+        </mat-form-field>
+      </div>
+      <div fxFlex="45%">
+        <h4>Quantity:</h4>
+        <mat-form-field appearance="outline" class="full-width">
+          <input matInput type="number"
+                 #quantityInput
+                 [(ngModel)]="data.quantity"
+                 [max]="data.quantity"
+                 (change)="normalizeInputValue(quantityInput, 'quantity')"
+                 (blur)="normalizeInputValue(quantityInput, 'quantity')">
+        </mat-form-field>
+      </div>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="space-between center" class="container">
+      <button mat-stroked-button class="btn-add" (click)="closeDialog()">Cancel</button>
+      <button mat-flat-button color="accent"
+              class="btn-add"
+              [ladda]="isLoading"
+              (click)="sell()">Sell</button>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="center">
+      <p><img src="assets/images/icon_23.png"><span>&nbsp;Recommended price N {{data.recommendedPrice}}</span></p>
+    </div>
+  </div>
+</div>

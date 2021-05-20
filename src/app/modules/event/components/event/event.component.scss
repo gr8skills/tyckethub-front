@@ -1,0 +1,21 @@
+mat-tab-group{
+  padding: 0;
+}
+mat-tab {
+  padding-top: 20px;
+}
+mat-tab-body {
+  padding-top: 20px;
+}
+mat-grid-list {
+  //height: 600px;
+  height: auto;
+}
+:host ::ng-deep .mat-list-item-content {
+  width: auto;
+  height: auto;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+

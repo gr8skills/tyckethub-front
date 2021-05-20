@@ -1,0 +1,14 @@
+<mat-sidenav-container id="app-container">
+  <mat-sidenav #sidenav id="app-sidebar">
+    <app-sidenav [parentContainer]="sidenav"></app-sidenav>
+  </mat-sidenav>
+  <mat-sidenav-content id="content-wrapper">
+    <button mat-icon-button id="menu-toggle" (click)="sidenav.toggle()" fxHide.gt-xs>
+      <mat-icon>menu</mat-icon>
+    </button>
+    <router-outlet></router-outlet>
+    <!-- Snotify -->
+    <ng-snotify></ng-snotify>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+<ngx-ui-loader [fgsSize]="75" [fgsType]="SPINNER.doubleBounce"></ngx-ui-loader>

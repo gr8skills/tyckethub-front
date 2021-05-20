@@ -1,0 +1,139 @@
+@import "src/app/theme/colors";
+@import "src/app/theme/dimensions";
+
+.sub-toolbar {
+  background-color: color(custom-base);
+  //padding: 10px;
+}
+
+.sub-toolbar-content {
+  width: 80%;
+  margin: 0 auto;
+  max-height: 65px;
+}
+
+.search-box-container {
+  background-color: color(custom-base);
+  width: 100%;
+  padding-top: 10px;
+  position: relative;
+  height: auto;
+
+}
+
+.close {
+  position: absolute;
+  top: 5%;
+  right: 10%;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.flight-filter-button {
+  border: 1px solid color(custom-white);
+  border-radius: $search-box-fields-border-radius;
+  color: color(custom-white);
+  background-color: transparent;
+  font-weight: 400;
+}
+
+.icon-button {
+  border: none;
+}
+
+mat-divider.vertical-bar {
+  color: color(custom-white);
+}
+
+.vertical-divider {
+  display: inline-block;
+  height: 35px;
+  width: 1px;
+  background-color: color(custom-white);
+}
+
+p.flight-list-featured-card {
+  width: 400px;
+  //height: 200px;
+  position: relative;
+
+  img {
+    width: 100%;
+    height: auto;
+  }
+}
+p.flight-description {
+  color: color(custom-gray);
+  padding-left: 5px;
+  max-height: 300px;
+  position: relative;
+
+  .text-mask {
+    display: block;
+    height: 100px;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    margin: 0;
+    padding: 0;
+    background-image: linear-gradient(rgba(255,255,255, 0), rgba(255,255,255, 1));
+  }
+  .read-more {
+    position: absolute;
+    left: 6px;
+    bottom: 5px;
+    color: color(custom-base);
+    cursor: pointer;
+  }
+}
+.nav-switcher {
+  color: color(custom-gray);
+
+  a {
+    color: color(custom-gray);
+    text-decoration: none;
+    font-weight: 500;
+  }
+}
+.nav-switcher .active {
+  border-bottom: 3px solid color(custom-base);
+  color: color(custom-base);
+}
+
+.price-comp-card {
+  border: 1px solid color(custom-gray-light);
+  border-radius: $search-box-fields-border-radius;
+  padding: 20px 10px 10px;
+  position: relative;
+}
+.flight-class {
+  position: absolute;
+  right: 3%;
+  top: 2%;
+  font-size: 0.8rem;
+  color: color(custom-gray);
+}
+.flight-view-button {
+  background-color: color(custom-base);
+  color: color(custom-white);
+}
+.flight-view-button:hover {
+  background-color: color(custom-white);
+  color: color(custom-base);
+}
+.in-card-spacer {
+  margin-top: 20px;
+}
+.out-card-spacer {
+  margin-top: 30px;
+}
+
+@media screen and (max-width: 599px) {
+  .search-box-container {
+    position: fixed;
+    top: 55px;
+    left: 0;
+    z-index: 10;
+  }
+}

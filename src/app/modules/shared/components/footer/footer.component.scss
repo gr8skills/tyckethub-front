@@ -1,0 +1,135 @@
+@import "src/app/theme/colors";
+
+.app-footer {
+  width: 100%;
+  background-color: color(custom-base);
+  margin-top: 70px;
+}
+.footer-wrapper {
+  padding: 3% 8%;
+  position: relative;
+  //border-top: 1px solid white;
+}
+.nav-start mat-list-item {
+  margin-bottom: 10px;
+}
+.footer-link, .footer-link a {
+  color: white;
+  text-align: left;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: bold;
+  //padding: 0;
+}
+.footer-link h3 {
+  text-transform: uppercase;
+  font-weight: bold;
+}
+.footer-link mat-list-item {
+  padding: 0;
+  margin-bottom: 0;
+}
+.mat-list-base {
+  padding-top: 0;
+}
+div.mat-list-item-content {
+  padding: -2px !important;
+  margin: 0;
+  line-height: 2px;
+}
+mat-form-field{
+  //border: 1px solid white;
+  min-width: 350px;
+}
+.mat-select-value-text {
+  color: white !important ;
+}
+mat-option div {
+  display: flex;
+  justify-content: flex-start;
+}
+mat-option div span {
+  font-size: 1.3rem;
+}
+mat-option img {
+  width: 30px;
+  height: 30px;
+  margin-top: 5px;
+  margin-right: 10px;
+}
+.footer-link mat-nav-link a {
+  margin: 0;
+  padding: 0;
+}
+//mat-list-item-content a.mat-list-item div.mat-list-item-content {
+//  font-weight: 400;
+//}
+.mat-list-base .mat-list-item, .mat-list-base .mat-list-option {
+  font-weight: 400;
+  padding: 0;
+}
+
+//.mat-list-base .mat-list-item .mat-list-item-content, .mat-list-base .mat-list-option .mat-list-item-content {
+//  font-weight: 400;
+//}
+
+.footer-division {
+  border-top: 1px solid white;
+  padding: 20px 0;
+  margin: 0 auto;
+  width: 90%;
+  p {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 600;
+  }
+}
+
+#back-to-top {
+  position: absolute;
+  right: 5%;
+  bottom: 0;
+  width: auto;
+  height: auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  .to-top-icon {
+    background-color: white;
+    border-radius: 5px;
+    width: 40px;
+    height: 40px;
+    padding-bottom: 0;
+  }
+  .to-top-label {
+    color: white;
+    font-size: 0.8rem;
+    letter-spacing: normal;
+  }
+}
+
+@media screen and (max-width: 599px) {
+  #back-to-top {
+    position: absolute;
+    right: 5%;
+    bottom: 6%;
+    align-items: center;
+    .to-top-icon {
+      background-color: white;
+      border-radius: 5px;
+      width: 40px;
+      height: 40px;
+      padding-bottom: 0;
+    }
+    .to-top-label {
+      color: white;
+      font-size: 0.8rem;
+      letter-spacing: normal;
+    }
+  }
+
+  mat-form-field{
+    //border: 1px solid white;
+    min-width: 300px;
+  }
+}

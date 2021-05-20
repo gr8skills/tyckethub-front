@@ -1,0 +1,70 @@
+<div class="header-section">
+  <div style="width: 100%; height: auto">
+    <mat-toolbar class="header-container mat-elevation-z1">
+      <mat-toolbar-row fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="10px">
+        <div fxFlex="0 1 auto" fxLayout="row" fxLayoutAlign="start center">
+          <a routerLink="/">
+            <img src="assets/images/logo.png" alt="">
+          </a>
+        </div>
+        <div fxFlex="auto" fxLayout="row" fxLayoutAlign="start center" class="search-field-wrapper">
+          <input placeholder="Events, artistes, flights or movies" class="search-field">
+          <mat-icon color="primary">search</mat-icon>
+        </div>
+        <div *ngIf="userRole === 'attendee'" fxFlex="20" fxLayout="row" fxLayoutAlign="space-between center">
+          <a mat-button routerLink="/">Gift cards</a>
+          <a mat-button>Help</a>
+          <a mat-button>
+            <mat-icon>language</mat-icon>&nbsp;English
+          </a>
+        </div>
+
+        <div fxLayout="20" fxLayout="row" fxLayoutAlign="end center">
+          <a mat-button>
+            <mat-icon>language</mat-icon>&nbsp;English
+          </a>
+        </div>
+      </mat-toolbar-row>
+
+      <mat-toolbar-row class="searchbox">
+        <div *ngIf="userRole === 'attendee'" class="nav-menus">
+          <a mat-button [matMenuTriggerFor]="findEventOptions">
+            Find Events
+            <mat-icon>expand_more</mat-icon>
+          </a>
+          <mat-menu #findEventOptions="matMenu">
+            <button mat-menu-item>Artistes</button>
+            <button mat-menu-item>Concerts</button>
+            <button mat-menu-item>Parties</button>
+            <button mat-menu-item>Theaters</button>
+            <button mat-menu-item>Festivals</button>
+          </mat-menu>
+          <a mat-button>
+            <img src="assets/images/icon_3.svg" width="30">Resell Tickets
+          </a>
+          <a mat-button [matMenuTriggerFor]="ticketListOption">
+            <mat-icon>book_online</mat-icon>&nbsp;My Tickets <mat-icon>expand_more</mat-icon>
+          </a>
+          <mat-menu #ticketListOption="matMenu">
+            <a mat-menu-item [routerLink]="'/tickets/my-tickets'">Orders</a>
+            <a mat-menu-item [routerLink]="'/tickets/sales'">Sales</a>
+            <a mat-menu-item [routerLink]="'/tickets/payments'">Payment</a>
+          </mat-menu>
+          <a mat-button [matMenuTriggerFor]="profileOption">
+            <mat-icon>person_outline</mat-icon>&nbsp;My Profile
+          </a>
+          <mat-menu #profileOption="matMenu">
+            <button mat-menu-item [routerLink]="'/tickets/overview'">Overview</button>
+            <button mat-menu-item [routerLink]="'/tickets/rf-id'">RF ID</button>
+            <button mat-menu-item [routerLink]="'/tickets/settings'">Settings</button>
+            <button *ngIf="isLoggedIn" mat-menu-item (click)="logout()">Sign Out</button>
+          </mat-menu>
+        </div>
+        <div *ngIf="userRole === 'organizer'" class="nav-menus">
+          <button mat-button>Help</button>
+          <button mat-button (click)="logout()"><mat-icon>logout</mat-icon>&nbsp;Logout</button>
+        </div>
+      </mat-toolbar-row>
+    </mat-toolbar>
+  </div>
+</div>

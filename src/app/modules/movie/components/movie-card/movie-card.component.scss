@@ -1,0 +1,23 @@
+.movie-card {
+  position: relative;
+  //height: 500px;
+  height: auto;
+  width: 250px;
+  margin-bottom: 30px;
+
+  .movie-card-image {
+    width: 100%;
+    height: auto;
+  }
+
+  .movie-card-actions {
+    position: absolute;
+    bottom: 7%;
+    right: 5%;
+  }
+
+  .movie-card-text {
+    text-align: center;
+    font-size: 1.2rem;
+  }
+}

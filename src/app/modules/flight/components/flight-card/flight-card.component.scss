@@ -1,0 +1,55 @@
+@import "src/app/theme/colors";
+
+.flight-card {
+  width: 350px;
+  position: relative;
+  padding: 0;
+  margin: -5px;
+  //background-color: color(custom-dark);
+}
+.flight-card-featured {
+  width: 100%;
+  position: relative;
+  padding: 0;
+  margin: -5px;
+}
+
+.flight-card-body {
+  width: 100%;
+  height: auto;
+  position: relative;
+}
+.flight-card-body img{
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+.flight-card-footer {
+  position: absolute;
+  bottom: 4%;
+  left: 6px;
+  width: 97%;
+  margin: 0 auto;
+  padding: 20px 20px;
+  border-radius: 3px;
+  background-color: rgba(0,0,0,.4);
+}
+.flight-card-footer-featured {
+  position: absolute;
+  bottom: 2%;
+  left: 6px;
+  width: 99%;
+  margin: 0 auto;
+  padding: 20px 20px;
+  border-radius: 3px;
+  background-color: rgba(0,0,0,.4);
+}
+.flight-card-footer .title {
+  color: color(custom-white);
+  font-size: 1.0rem;
+}
+.flight-card-footer-featured .title{
+  color: white;
+  font-size: 1.3rem;
+}
+

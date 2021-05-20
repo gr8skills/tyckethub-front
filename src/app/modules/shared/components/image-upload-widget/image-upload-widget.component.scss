@@ -1,0 +1,22 @@
+@import "src/app/theme/colors";
+
+.image-canvas {
+  border: 1px solid color(custom-gray-light);
+  min-height: 200px;
+  border-radius: 3px;
+  padding: 0 10px;
+  width: 100%;
+}
+p {
+  text-align: center;
+}
+.placeholder-caption {
+  font-size: 1.0rem;
+  font-weight: 600;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+.placeholder-description {
+  font-size: 0.8rem;
+  font-weight: normal;
+}

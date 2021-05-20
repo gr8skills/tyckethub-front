@@ -1,0 +1,47 @@
+@import "src/app/theme/colors";
+
+:host ::ng-deep .mat-form-field-wrapper{
+  margin: 0 !important;
+  padding: 0;
+}
+.long-form-field {
+  width: 300px;
+}
+
+table {
+  width: 100%;
+  margin-top: 20px;
+}
+.status-text {
+  display: flex;
+  align-items: center;
+  vertical-align: center;
+  //justify-contents: start;
+}
+.status-indicator, .status-indicator-danger {
+  display: inline-block;
+  height: 10px;
+  width: 10px;
+  border-radius: 5px;
+  margin-right: 5px;
+}
+.status-indicator {
+  background-color: forestgreen;
+}
+.status-indicator-danger {
+  background-color: color(custom-danger);
+}
+
+@media screen and (max-width: 599px) {
+
+  .table-wrapper {
+    width: 100%;
+    overflow-x: scroll;
+    padding: 10px;
+  }
+
+  table {
+    width: auto;
+    margin-top: 10px;
+  }
+}

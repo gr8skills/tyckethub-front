@@ -1,0 +1,66 @@
+@import "src/app/theme/colors";
+
+.modal-container {
+  min-width: 24vw;
+  padding: 2rem;
+  position: relative;
+
+  h4 {
+    font-weight: 500;
+    margin: 0;
+    padding: 0;
+  }
+
+  p {
+    display: flex;
+    align-items: center;
+    margin-top: 2rem;
+  }
+  p.form-error {
+    padding: 0 0 0 10px;
+    margin: 10px 0 0;
+    border-left: solid 8px color(custom-danger);
+    border-radius: 7px 0 0 7px;
+  }
+  button.close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: transparent;
+  }
+
+  mat-form-field {
+    width: 100%;
+  }
+
+  button.submit {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    background-color: #f6f6f6;
+  }
+}
+
+.btn-add {
+  padding: 0.5rem;
+  margin-right: 1.2rem;
+  border: 1px solid color(custom-gray);
+  border-radius: 10px;
+  min-width: 120px !important;
+}
+
+@media screen and (max-width: 599px) {
+  .modal-container {
+    min-width: 100%;
+    max-width: 100%;
+    padding: 0;
+    margin: 0;
+  }
+
+  button.close {
+    position: absolute;
+    padding: 0;
+    margin-top: -20px;
+    margin-right: -10px;
+    background: transparent;
+  }
+}

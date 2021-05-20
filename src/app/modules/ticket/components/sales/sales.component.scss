@@ -1,0 +1,26 @@
+:host ::ng-deep .mat-form-field-wrapper{
+  margin: 0 !important;
+  padding: 0;
+}
+.long-form-field {
+  width: 300px;
+}
+.table-wrapper{}
+table {
+  width: 100%;
+  margin-top: 20px;
+}
+
+@media screen and (max-width: 599px) {
+
+  .table-wrapper {
+    width: 100%;
+    overflow-x: scroll;
+    padding: 10px;
+  }
+
+  table {
+    width: auto;
+    margin-top: 10px;
+  }
+}

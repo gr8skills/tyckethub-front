@@ -1,0 +1,16 @@
+@import '~@angular/material/theming';
+@import './custom';
+
+@include mat-core();
+$app-default-primary: mat-palette($app-primary);
+$app-default-accent: mat-palette($mat-gray,A200);
+$app-default-warn: mat-palette($mat-red);
+
+$app-default-theme: mat-light-theme((
+  color: (
+    primary: $app-default-primary,
+    accent: $app-default-accent,
+    warn: $app-default-warn
+  )
+));
+@include angular-material-theme($app-default-theme);

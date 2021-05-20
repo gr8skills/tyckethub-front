@@ -1,0 +1,29 @@
+@import "src/app/theme/dimensions";
+@import "src/app/theme/colors";
+
+.search-box {
+  border-radius: 0 0 $search-box-fields-border-radius $search-box-fields-border-radius;
+  width: 100vw;
+  background-color: color(custom-base);
+  padding: 45px 10px;
+  height: auto;
+  opacity: 0.9;
+
+  .search-field-wrapper {
+    border-radius: $search-box-fields-border-radius;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    background-color: color(custom-white);
+  }
+  .submit {
+    padding: 0.5rem;
+    width: 50%;
+    margin-top: 10px;
+  }
+}
+
+:host ::ng-deep .mat-form-field-wrapper {
+  margin: 0 !important;
+  padding: 0;
+}

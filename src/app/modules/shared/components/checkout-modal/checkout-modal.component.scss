@@ -1,0 +1,116 @@
+@import "src/app/theme/colors";
+
+.modal-container-lg {
+  min-width: 70vw;
+  max-height: 100%;
+  padding: 2rem;
+  position: relative;
+
+  h4 {
+    font-weight: 500;
+    margin: 0;
+    padding: 0;
+  }
+
+  p {
+    display: flex;
+    align-items: center;
+    margin-top: 2rem;
+  }
+  button.close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: transparent;
+  }
+
+  mat-form-field {
+    width: 100%;
+  }
+
+  button.submit {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    background-color: #f6f6f6;
+  }
+}
+
+.btn-add {
+  padding: 0.5rem;
+  margin-right: 1.2rem;
+  border: 1px solid color(custom-gray);
+  border-radius: 10px;
+  min-width: 120px !important;
+
+}
+
+.error {
+  font-size: 0.8rem;
+  color: color(custom-danger);
+}
+
+.icon-holder {
+position: relative;
+
+  span {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    -webkit-clip-path: polygon(50% 0, 100% 13%, 100% 53%, 82% 81%, 50% 100%, 17% 80%, 0 53%, 0 12%);
+    clip-path: polygon(50% 0, 100% 13%, 100% 53%, 82% 81%, 50% 100%, 17% 80%, 0 53%, 0 12%);
+    background-color: color(custom-gray);
+  }
+
+  .icon-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    background-color: transparent;
+  }
+}
+
+.card-field-group, .summary {
+  background-color: color(custom-gray-lightest);
+  border-radius: 5px;
+  padding: 0.7rem;
+
+  ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+    background-color: white;
+    border-radius: 5px;
+  }
+}
+.summary {
+  color: color(custom-gray);
+  div {
+    margin: 0.8rem 0;
+  }
+}
+.platform-logo {
+  img {
+    width: 34px;
+    height: 34px;
+    margin-left: 1rem;
+  }
+}
+
+
+@media screen and (max-width: 599px) {
+  .modal-container {
+    min-width: 100%;
+    max-width: 100%;
+    padding: 0;
+    margin: 0;
+  }
+
+  button.close {
+    position: absolute;
+    padding: 0;
+    margin-top: -20px;
+    margin-right: -10px;
+    background: transparent;
+  }
+}

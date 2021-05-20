@@ -1,0 +1,346 @@
+@import "src/app/theme/default";
+@import "src/app/theme/colors";
+@import "src/app/theme/dimensions";
+@import "~ngx-lightbox/lightbox.css";
+@import '~ngx-bar-rating/themes/br-default-theme';
+@import "~ng-snotify/styles/material";
+
+html, body { height: 100%; }
+body {
+  margin: 0;
+  font-family: 'Source Sans Pro', sans-serif;
+
+  //body * {
+  //  font-family: 'Source Sans Pro', sans-serif;
+  //}
+
+  #app-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: transparent;
+
+    #app-sidebar {
+      max-width: 250px;
+      padding: 0.2rem;
+    }
+    #content-wrapper {
+      position: relative;
+
+      #menu-toggle {
+        position: fixed;
+        top: 6px;
+        left: 10px;
+        z-index: 11;
+        color: color(custom-base);
+      }
+    }
+
+  }
+
+  //Slick carousel styles
+  //.slick-slider {
+  //  width: 88%;
+  //  margin: auto;
+  //  background: rgb(14, 13, 13);
+  //}
+
+  //body .slick-prev,
+  //body .slick-next {
+  //  height: 45px;
+  //  width: 40px;
+  //  background: grey !important;
+  //  z-index: 100;
+  //}
+  //End slick carousel
+
+  .carousel-wrapper {
+    width: 100%;
+    min-height: 200px;
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+    position: relative;
+
+    mat-carousel {
+      z-index: 10;
+    }
+
+    .carousel-slide-container {
+      width: 80%;
+      height: 100%;
+      margin: auto;
+
+      h2 {
+        color: color(custom-white);
+        display: inline-block;
+        padding: 5px;
+        margin: 0 0 2px 0;
+        font-size: 2.5rem;
+        font-weight: 500;
+        background-color: rgba(203, 228, 252, 0.1);
+        width: auto;
+      }
+    }
+  }
+
+  button {
+    font-family: 'Source Sans Pro', sans-serif;
+  }
+  .container {
+    padding: 0;
+    width: 70%;
+    //max-width: 1390px;
+    margin: 0 auto;
+  }
+
+  .container-fluid {
+    width: 100%;
+  }
+
+  .full-width {
+    width: 100%;
+    display: block;
+  }
+
+  .full-height {
+    height: 100%;
+  }
+
+  button.select-btn {
+    margin-right: 1.0rem;
+    border: 1px solid color(custom-gray-light);
+    border-radius: 5px;
+  }
+  button.select-btn-active {
+    background-color: color(custom-sky-blue-light);
+    color: color(custom-base-light);
+    border: 1px solid color(custom-base-light);
+  }
+
+  .text-center { text-align: center;  }
+  .text-left { text-align: left; }
+  .text-right {text-align: right; }
+  .text-justify { text-align: justify; }
+
+  .spacer-1 { margin-top: $content-space-margin-1 !important; }
+  .spacer-2 {margin-top: $content-space-margin-2 !important; }
+  .spacer-3 { margin-top: $content-space-margin-3 !important; }
+
+  //.heading-1, .heading-2, .title-1, .title-2, .title-3, .body-large, .body-regular, .body-secondary {
+  //  //letter-spacing: 0.1rem;
+  //}
+  .heading-1 {
+    font-size: $heading-font-size-1;
+    font-weight: $heading-font-weight-1;
+    margin: 0;
+    padding: 0;
+  }
+
+  .heading-2 {
+    font-size: $heading-font-size-2;
+    font-weight: $heading-font-weight-2;
+    margin: 0;
+    padding: 0;
+  }
+
+  .title-1 {
+    font-size: $title-font-size-1;
+    font-weight: $title-font-weight-1;
+    margin: 10px 0;
+    padding: 0;
+  }
+
+  .title-2 {
+    font-size: $title-font-size-2;
+    font-weight: $title-font-weight-2;
+    margin: 15px 0;
+    padding: 0;
+  }
+
+  .title-3 {
+    font-size: $title-font-size-3;
+    font-weight: $title-font-weight-3;
+    margin: 10px 0;
+    padding: 0;
+  }
+
+  .title-4 {
+    font-size: $title-font-size-4;
+    font-weight: $title-font-weight-4;
+    margin: 8px 0;
+    padding: 0;
+  }
+
+  .title-5 {
+    font-size: $title-font-size-5;
+    font-weight: $title-font-weight-5;
+    margin: 8px 0;
+    padding: 0;
+  }
+
+  .title-auth-form {
+    font-size: $auth-form-title-font;
+    font-weight: $auth-form-title-weight;
+    margin: 10px 0;
+  }
+
+  .modal-title {
+    font-weight: 500;
+    font-size: 1.2rem;
+  }
+  .modal-text {
+    font-size: 0.8rem;
+    color: color(custom-gray);
+  }
+
+  .body-large {
+    font-size: $body-font-large;
+    font-weight: $body-weight-large;
+    margin: 0;
+    padding: 0;
+  }
+
+  .body-regular {
+    font-size: $body-font-normal;
+    font-weight: $body-weight-normal;
+    margin: 0;
+    padding: 0;
+  }
+
+  .body-secondary {
+    font-size: $body-font-secondary;
+    font-weight: $body-weight-secondary;
+    margin: 0;
+    padding: 0;
+  }
+
+  .block-divider {
+    background-color: color(custom-gray-lighter);
+    height: 20px;
+    width: 100%;
+    display: block;
+  }
+
+  .more-button {
+    width: $more-button-width;
+    height: $more-button-height;
+    display: block;
+    border: 2px solid color(custom-base);
+    color: color(custom-base);
+    background-color: color(custom-white);
+    font-size: 1.2rem;
+    border-radius: $search-box-fields-border-radius;
+  }
+  .form-error {
+    color: color(custom-danger);
+  }
+
+  .img-responsive {
+    width: 100%;
+    height: auto;
+    padding:0;
+    margin: 0;
+  }
+}
+
+//Table column utility class
+.w-50 {
+  width: 50px;
+}
+.w-75 {
+  width: 75px;
+}
+.w-100 {
+  width: 100px;
+}
+.w-200 {
+  width: 200px;
+}
+.w-250 {
+  width: 250px;
+}
+.w-300 {
+  width: 300px;
+}
+.tx-rt {
+  text-align: right !important;
+}
+.tx-lf {
+  text-align: left !important;
+}
+.tx-ct {
+  text-align: center !important;
+}
+
+@media only screen and (max-width: 1550px) and (min-width: 1200px) {
+  body {
+    zoom: 80%;
+  }
+}
+
+@media only screen and (max-width: 1199px) and (min-width: 600px){
+  body {
+    zoom: 70%;
+  }
+}
+
+@media screen and (max-width: 599px) {
+  body {
+    margin: 0; font-family: 'Source Sans Pro', Roboto, "Helvetica Neue", sans-serif;
+    width: 100%;
+
+    .container {
+      padding: 0;
+      width: 100%;
+    }
+
+    .search-box-container {
+      position: fixed;
+      top: 55px;
+      left: 0;
+      z-index: 10;
+    }
+
+    .title-2 {
+      font-size: 20px;
+      font-weight: 500;
+      margin: 10px 0;
+    }
+
+    .title-3 {
+      font-size: 16px;
+      font-weight: $title-font-weight-3;
+      margin: 10px 0;
+      padding-left: 10px;
+    }
+    .title-4 {
+      font-size: 14px;
+      font-weight: 400;
+      margin: 8px 0;
+      padding: 0;
+    }
+    .body-regular {
+      font-size: 1.0rem;
+      font-weight: $body-weight-normal;
+      margin: 0;
+      padding: 0;
+    }
+
+    .spacer-1 { margin-top: 15px !important; }
+    .spacer-2 {margin-top: 20px !important; }
+    .spacer-3 { margin-top: 25px !important; }
+
+    .more-button {
+      max-width: 300px;
+      height: auto;
+      padding: 1rem 2rem;
+    }
+
+    .spacer-xs {
+      margin-top: 70px;
+    }
+  }
+}

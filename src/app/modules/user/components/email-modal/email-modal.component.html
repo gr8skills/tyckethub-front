@@ -1,0 +1,27 @@
+<!--<form>-->
+  <div class="modal-container">
+    <button mat-icon-button class="close" (click)="closeDialog()" color="accent">
+      <mat-icon color="primary">close</mat-icon>
+    </button>
+    <div fxLayout="column" fxLayoutAlign="center center">
+      <h2 class="modal-title">Edit Email Address</h2>
+      <br>
+      <mat-form-field appearance="fill" color="primary">
+        <input type="email" matInput [(ngModel)]="data.email">
+      </mat-form-field>
+      <br>
+      <div fxLayout="row" fxLayoutAlign="start stretch" style="margin-bottom: 20px;">
+        <div fxFlex="10%"><img src="assets/images/icon_23.png" alt="icon"></div>
+        <div fxFlex="80%">
+          <p class="modal-text">Just a reminder: you are changing your primary email address. Next time, please use this
+            email address to log
+            in.</p>
+        </div>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px" class="full-width">
+        <button mat-stroked-button (click)="closeDialog()" class="full-width cancel">Cancel</button>
+        <button mat-stroked-button (click)="onSubmit()" class="full-width submit">Save</button>
+      </div>
+    </div>
+  </div>
+<!--</form>-->

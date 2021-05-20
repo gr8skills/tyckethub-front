@@ -1,0 +1,151 @@
+<form [formGroup]="onlinePlatformCreationForm">
+<div class="container-local">
+  <div fxLayout="row"
+       fxLayout.xs="column"
+       fxLayoutAlign="space-between start"
+       style="margin-bottom: 20px;"
+       fxLayoutGap="2%" class="spacer-1">
+    <div fxFlex="1 0 10%"
+         fxLayout="column"
+         fxLayoutAlign="start end">
+      <span><img src="assets/images/icon_21.png"></span>
+    </div>
+    <div fxFlex="1 1 88%" fxLayout="column" fxLayoutAlign="space-between stretch">
+      <h2 class="title-2 no-margin">Online event page</h2>
+      <p style="margin-top: 15px"><span style="font-weight: 500">A virtual venue for your event</span><br><br>
+        Use this page to share access to your online event and other exclusive content with ticket holders. Attendees
+        need to be signed in to view this page.</p>
+
+      <div fxLayout="row"
+           fxLayout.xs="column"
+           fxLayoutGap="2%"
+           fxLayoutAlign="space-between center" class="full-width">
+        <div fxFlex class="full-width">
+          <h3 class="title-4">Add live video</h3>
+          <p>Add your webinar, livestream, or meeting. Attendees will need to be signed in to join your event. You can
+            limit access to certain ticket types or event times.</p>
+
+          <div fxLayout="row" fxLayoutAlign="start" class="video-link-wrapper">
+            <a class="video-add-btn" (click)="toggleForm('zoom meeting')">
+              <img src="assets/images/icon_13.png"><br>
+              <span>Connect<br>Zoom</span>
+            </a>
+            <a class="video-add-btn" (click)="toggleForm('google meet')">
+              <img src="assets/images/icon_11.png"><br>
+              <span>Google<br>Meet</span>
+            </a>
+            <a class="video-add-btn" (click)="toggleForm('youtube')">
+              <img src="assets/images/icon_9.png"><br>
+              <span>YouTube<br>Live</span>
+            </a>
+            <a class="video-add-btn" (click)="toggleForm('vimeo')">
+              <img src="assets/images/icon_10.png"><br>
+              <span>Vimeo<br>Live</span>
+            </a>
+            <a class="video-add-btn" (click)="toggleForm('livestream')">
+              <img src="assets/images/icon_18.png"><br>
+              <span>Livestream</span>
+            </a>
+            <a class="video-add-btn" (click)="toggleForm('webinar')">
+              <img src="assets/images/icon_12.png"><br>
+              <span>Webinar</span>
+            </a>
+          </div>
+
+          <div class="online-event-form">
+            <ng-container *ngIf="formShown">
+              <button fxHide.xs mat-icon-button class="clear-btn" (click)="closeForm()">
+                <mat-icon>delete</mat-icon>
+              </button>
+              <app-online-event-link-form [platform]="platformLabel"
+                                          (onSubmit)="save($event)"></app-online-event-link-form>
+            </ng-container>
+          </div>
+
+          <h3 class="title-4">Add live video</h3>
+          <p>Share any important details with your attendees before the join the event.</p>
+
+          <div fxLayout="row" fxLayoutAlign="start center">
+            <a class="video-add-btn" (click)="selectInputFiled('text')">
+              <img src="assets/images/icon_14.png" alt=""><br>
+              <span>Add Text</span>
+            </a>
+            <a class="video-add-btn" (click)="selectInputFiled('image')">
+              <img src="assets/images/icon_15.png" alt=""><br>
+              <span>Add Image</span>
+            </a>
+            <a class="video-add-btn" (click)="selectInputFiled('video')">
+              <img src="assets/images/icon_16.png" alt=""><br>
+              <span>Add Video</span>
+            </a>
+            <a class="video-add-btn" (click)="selectInputFiled('link')">
+              <img src="assets/images/icon_17.png" alt=""><br>
+              <span>Add Link</span>
+            </a>
+          </div>
+
+          <div class="online-event-form">
+            <ng-container [ngSwitch]="activeInput">
+              <div *ngSwitchCase="'text'">
+                <h4 class="input-header">Text</h4>
+                <mat-form-field appearance="outline" class="full-width">
+                  <textarea matInput rows="5"
+                            formControlName="eventText"
+                            placeholder="Tell attendees how to prepare, what to bring and other important details.">
+                  </textarea>
+                </mat-form-field>
+              </div>
+              <div *ngSwitchCase="'image'">
+                <h4 class="input-header">Image</h4>
+                <app-image-upload-widget></app-image-upload-widget>
+              </div>
+              <div *ngSwitchCase="'video'">
+                <h4 class="input-header">Video</h4>
+                <mat-form-field appearance="outline" class="full-width">
+                  <input matInput type="text" placeholder="Add video URL"
+                         formControlName="eventVideo">
+                </mat-form-field>
+              </div>
+              <div *ngSwitchCase="'link'">
+                <h4 class="input-header">Link</h4>
+                <mat-form-field appearance="outline" class="full-width">
+                  <input matInput type="text" placeholder="Link Title"
+                         formControlName="eventLinkTitle">
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="full-width">
+                  <input matInput type="text" placeholder="External document or presentation URL"
+                         formControlName="eventUrl">
+                </mat-form-field>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+
+      <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="2%" fxLayoutAlign.xs="space-between"
+           class="full-width" style="padding: 30px 0;">
+        <div fxFlex="1 1 20" fxFlex.xs="1 1 49">
+          <button type="button" mat-stroked-button color="primary" class="full-width btn-add"
+                  (click)="onCancel()">
+            Discard
+          </button>
+        </div>
+        <div fxFlex="1 1 20" fxFlex.xs="1 1 49">
+          <button type="button" mat-stroked-button color="primary" class="full-width btn-add"
+                  (click)="onCancel()">
+            Cancel
+          </button>
+        </div>
+        <div fxFlex="1 1 20" fxFlex.xs="1 1 49">
+          <button mat-flat-button color="primary"
+                  class="full-width btn-add" type="submit"
+                  (click)="submitEventsDetails()"
+                  [ladda]="isLoading"
+          >Save
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</form>

@@ -1,0 +1,9 @@
+<div class="movie-card">
+<!--  <img [src]="movie.smallImage" alt="movie thumbnail" class="movie-card-image">-->
+  <img data-src="{{movie.smallImage}}" alt="movie thumbnail" class="movie-card-image lazyload">
+  <div class="movie-card-actions">
+    <button mat-mini-fab color="accent"><mat-icon>ios_share</mat-icon></button>&nbsp;
+    <button mat-mini-fab color="accent"><mat-icon>favorite_border</mat-icon></button>
+  </div>
+  <div style="text-align: center" class="movie-card-text">{{movie.name}}</div>
+</div>

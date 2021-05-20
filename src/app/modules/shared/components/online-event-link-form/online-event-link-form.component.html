@@ -1,0 +1,25 @@
+<form [formGroup]="onlinePlatformCreationForm">
+  <h3 class="title-4">{{label | capitalize}}</h3>
+  <div fxLayout="column" fxLayoutAlign="space-between start" class="full-width">
+<!--    <div fxFlex fxLayout="row" fxLayoutAlign="space-between center" style="margin-bottom: 20px;" class="full-width">-->
+<!--      <app-image-upload-widget class="full-width"></app-image-upload-widget>-->
+<!--    </div>-->
+    <div fxFlex fxLayout="column" fxLayoutAlign="space-between center" class="full-width">
+      <mat-form-field class="full-width" appearance="outline">
+        <mat-label>{{label | capitalize}} Title</mat-label>
+        <input matInput formControlName="title" type="text" required>
+      </mat-form-field>
+      <mat-form-field class="full-width" appearance="outline">
+        <mat-label>{{label | capitalize}} URL</mat-label>
+        <input matInput type="text" formControlName="url" placeholder="https//my-link.domain" required>
+      </mat-form-field>
+      <mat-form-field class="full-width" appearance="outline">
+        <mat-label>{{label | capitalize}} Description</mat-label>
+        <textarea matInput formControlName="description" required rows="4"></textarea>
+      </mat-form-field>
+    </div>
+    <div fxFlex fxLayout="row" fxLayoutAlign="end center">
+      <button mat-flat-button (click)="submitForm()" color="primary"><mat-icon>save</mat-icon> submit</button>
+    </div>
+  </div>
+</form>

@@ -1,0 +1,84 @@
+@import "src/app/theme/colors";
+@import "src/app/theme/dimensions";
+
+header {
+  position: relative;
+
+  button {
+    position: absolute;
+    left: 10%;
+    top: 15%;
+    border: 0;
+  }
+}
+
+.hero {
+  background-color: color(custom-base);
+  padding: 3rem;
+  color: color(custom-white);
+
+  h2 {
+    font-size: 2.0rem;
+  }
+}
+
+p.flight-description {
+  color: color(custom-gray);
+  padding-left: 5px;
+  max-height: 300px;
+  position: relative;
+
+  .text-mask {
+    display: block;
+    height: 100px;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    margin: 0;
+    padding: 0;
+    background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 1));
+  }
+
+  .read-more {
+    position: absolute;
+    left: 6px;
+    bottom: 5px;
+    color: color(custom-base);
+    cursor: pointer;
+  }
+}
+
+.flight-class {
+  font-size: 0.8rem;
+  color: color(custom-gray);
+}
+
+.flight-detail-item {
+  border-radius: $search-box-fields-border-radius;
+}
+
+.action-button {
+  border: 1px solid color(custom-danger);
+  border-radius: $search-box-fields-border-radius;
+  padding: .3rem;
+}
+
+.flight-vendor-list-item {
+  padding: 1.0rem;
+  padding-right: 0.0rem;
+  border-radius: $search-box-fields-border-radius;
+}
+
+@media screen and (max-width: 599px) {
+  .hero {
+    padding: 2rem;
+
+    h2 {
+      font-size: 1.5rem;
+    }
+  }
+  .flight-vendor-list-item {
+    padding: 1.0rem;
+  }
+}
