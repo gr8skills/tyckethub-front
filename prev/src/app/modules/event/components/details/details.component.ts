@@ -79,11 +79,10 @@ export class DetailsComponent implements OnInit, OnDestroy {
 
   processFile(event: any, imageLabel: string): void {
     const imageFile: File = event.target.files[0];
-
     if (imageFile) {
       this.updateFileNamesLabel(imageLabel, imageFile.name);
       const formData = new FormData();
-      formData.set(imageLabel, imageFile);
+      formData.append(imageLabel, imageFile);
       this.uiService.busy = true;
       this.eventFacade.uploadEventsImages(formData, this.createdEvent.id).subscribe(
         response => {

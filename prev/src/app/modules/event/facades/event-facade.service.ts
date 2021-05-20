@@ -86,6 +86,7 @@ export class EventFacadeService {
   }
 
   uploadEventsImages(payload: any, eventId: any): Observable<any> {
+    console.log(payload);
     return this.eventService.uploadEventImages(payload, +eventId);
   }
 
