@@ -1,0 +1,136 @@
+<section class="modal-container-lg">
+  <button mat-icon-button class="close" (click)="closeDialog()" color="accent">
+    <mat-icon color="primary">close</mat-icon>
+  </button>
+  <div fxLayout="column" fxLayoutAlign="space-between stretch" class="full-width">
+    <h2 class="modal-title" style="text-align: center">Checkout</h2>
+    <div fxLayout="row" fxLayoutAlign="space-between start" fxLayoutGap="5%">
+      <div fxFlex="65%" fxLayout="column" fxLayoutAlign="start stretch">
+        <h4>Buyer Information</h4>
+        <div fxFlex fxLayout="row" fxLayoutAlign="space-between">
+          <div fxFlex="47%">
+            <mat-form-field appearance="outline">
+              <mat-label>First Name</mat-label>
+              <input matInput type="text" required [value]="data?.user?.name.split(' ')[0]" readonly>
+            </mat-form-field>
+          </div>
+          <div fxFlex="47%">
+            <mat-form-field appearance="outline">
+              <mat-label>Last Name</mat-label>
+              <input matInput type="text" required [value]="data?.user?.name.split(' ')[1]" readonly>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div fxFlex fxLayout="row" fxLayoutAlign="space-between">
+          <div fxFlex="47%">
+            <mat-form-field appearance="outline">
+              <mat-label>Email</mat-label>
+              <input matInput type="email" required [value]="data?.user?.email" readonly>
+            </mat-form-field>
+          </div>
+          <div fxFlex="47%">
+            <mat-form-field appearance="outline">
+              <mat-label>Phone Number</mat-label>
+              <input matInput type="tel" required [value]="data?.user?.phone" readonly>
+            </mat-form-field>
+          </div>
+        </div>
+        <h4>Choose payment type</h4>
+        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="0" style="margin-bottom: 1rem">
+          <div fxFlex="4%" class="icon-holder">
+            <mat-icon color="primary">verified_user</mat-icon>
+          </div>
+          <div fxFlex="80%">All transactions are secure and encrypted.</div>
+        </div>
+
+        <div fxFlex fxLayout="column" fxLayoutAlign="start stretch" class="card-field-group">
+          <div fxFlex="" fxLayout="row" fxLayoutAlign="end center">
+            <span class="platform-logo"><img src="assets/images/logo_flutter-wave.svg" alt=""></span>
+            <span class="platform-logo"><img src="assets/images/logo_paystack-sm.png" alt=""></span>
+            <span class="platform-logo"><img src="assets/images/logo_master-card.svg" alt=""></span>
+            <span class="platform-logo"><img src="assets/images/logo_visa.svg" alt=""></span>
+          </div>
+            <div fxFlex="" fxLayout="row" fxLayoutAlign="start">
+              <button mat-flat-button color="primary" fxFlex="30"
+                angular4-paystack
+                [email]="data?.user?.email"
+                [amount]=calculateTicketTotal()*100
+                [ref]="reference"
+                [channels]="['card','bank','USSD','mobile_money','eft','qr']"
+                [class]="'btn btn-primary'"
+                (onClose)="paymentCancel()"
+                (callback)="paymentDone($event)"
+              >
+                Pay with Paystack
+              </button>
+<!--              <mat-form-field appearance="outline" style="width: 70%">-->
+
+<!--                <input matInput type="text" [(ngModel)]="cardModel.cardHolderName" #cardHolderName required>-->
+<!--                <div *ngIf="!cardModel.cardHolderName" class="error">Card holder name is required</div>-->
+<!--              </mat-form-field>-->
+            </div>
+<!--            <div fxFlex="" fxLayout="row" fxLayoutAlign="start" fxLayoutGap="10px">-->
+<!--              <mat-form-field appearance="outline" fxFlex="40">-->
+<!--                <mat-label>CARD NUMBER</mat-label>-->
+<!--                <input matInput type="number" [(ngModel)]="cardModel.cardNumber" #cardNumber required>-->
+<!--                <div *ngIf="!cardModel.cardNumber" class="error">Card holder name is required</div>-->
+<!--                <div *ngIf="cardModel.cardNumber">-->
+<!--                  <span *ngIf="cardNumber.size < 16">Card number invalid</span>-->
+<!--                </div>-->
+<!--              </mat-form-field>-->
+<!--              <mat-form-field appearance="outline" fxFlex="20">-->
+<!--                <mat-label>MONTH</mat-label>-->
+<!--                <input matInput type="number" [(ngModel)]="cardModel.month" #month required>-->
+<!--                <div *ngIf="!cardModel.month" class="error">Month is required</div>-->
+<!--              </mat-form-field>-->
+<!--              <mat-form-field appearance="outline" fxFlex="20">-->
+<!--                <mat-label>YEAR</mat-label>-->
+<!--                <input matInput type="number" [(ngModel)]="cardModel.year" #year required>-->
+<!--                <div *ngIf="!cardModel.year" class="error"></div>-->
+<!--              </mat-form-field>-->
+<!--            </div>-->
+<!--            <div fxFlex fxLayoutAlign="end">-->
+<!--              <button mat-flat-button color="primary" [ladda]="isLoading" (click)="submitPaymentDetail()">Pay Now-->
+<!--              </button>-->
+<!--            </div>-->
+        </div>
+      </div>
+
+      <div fxFlex="30%" fxLayout="column" fxLayoutAlign="start stretch" class="summary">
+        <h4>Your Order</h4>
+        <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+          <!--          <span><b>30 Billion Concert II</b></span>-->
+          <!--          <span>Fri, March 12, 2021</span>-->
+
+          <span><b>{{data.eventData.name}}</b></span>
+          <span>{{data.eventData.start_date | date: 'fullDate'}}</span>
+        </div>
+        <ng-container *ngIf="data.ticketData.length > 0">
+          <div *ngFor="let ticket of data.ticketData" fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+            <span>{{ticket.title}} X {{ticket.quantity}} (N {{ticket.price | number: '1.2-2' : 'en'}}/unit)</span>
+            <span>N {{ticket.quantity * ticket.price | number: '1.2-2' : 'en'}}</span>
+          </div>
+        </ng-container>
+        <mat-divider></mat-divider>
+        <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+          <span>Subtotal</span>
+          <span>N {{calculateTicketSubTotals() | number: '1.2-2' : 'en'}}</span>
+        </div>
+        <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+          <span>Service Charge</span>
+          <span>N {{serviceCharge() | number: '1.2-2' : 'en'}}</span>
+        </div>
+        <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+          <span>Sales Tax & Order Processing Fee</span>
+          <span>N {{processingFee() | number: '1.2-2' : 'en'}}</span>
+        </div>
+        <mat-divider></mat-divider>
+        <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+          <span><b>Your Order</b></span>
+          <span><b>N {{calculateTicketTotal() | number: '1.2-2' : 'en'}}</b></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

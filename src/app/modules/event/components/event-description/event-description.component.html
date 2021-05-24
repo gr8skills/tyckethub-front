@@ -1,0 +1,129 @@
+<app-covid-alert-bar></app-covid-alert-bar>
+<app-header (toggleSearchBoxEvent)="toggleSearchBox($event)"></app-header>
+<div fxHide [ngStyle]="displayStyle" class="search-box-container">
+  <app-mobile-search-box #mobileSearchBox></app-mobile-search-box>
+</div>
+
+<div class="container-fluid" fxHide.xs>
+  <img src="{{backendPath}}/{{createdEventImages.banner}}" alt="Event banner" class="banner-image">
+</div>
+
+<div class="container">
+  <div class="breadcrumb">
+    <a (click)="navigateToHome()">Home
+      <mat-icon>chevron_right</mat-icon>
+    </a>
+    <a (click)="navigateToArtistesPage()">Artistes
+      <mat-icon>chevron_right</mat-icon>
+    </a>
+    <a (click)="navigateToArtistePage(1)">{{createdEvent.artistes[0].name}}
+      <mat-icon>chevron_right</mat-icon>
+    </a>
+    <span>{{createdEvent.name}}</span>
+  </div>
+  <section fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="3%" style="margin-top: 1rem;">
+    <div fxFlex="65%" fxLayout="column" fxLayoutAlign="space-between">
+      <div class="ticket-card">
+        <div class="ticket-card-header">
+          <div fxLayout="row" fxLayoutAlign="space-between center">
+            <div fxFlex="50">
+              <h3>About this event</h3>
+            </div>
+            <div fxFlex="20" fxLayout="row" fxLayoutAlign="end">
+              <button mat-icon-button (click)="toggleFavorite()">
+                <mat-icon [color]="favColor">favorite</mat-icon>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="ticket-card-body">
+          <div fxLayout="row" fxLayoutAlign="start center" style="margin: .7rem auto">
+            <span><mat-icon>event</mat-icon></span>
+            <span><b>Date:</b></span>
+            <span>{{createdEvent.start_date | date: 'fullDate'}}</span>
+          </div>
+          <div fxLayout="row" fxLayoutAlign="start center" style="margin-bottom: .7rem">
+            <span><mat-icon>schedule</mat-icon></span>
+            <span><b>Time:</b></span>
+            <span>{{eventStartTime}}</span>
+          </div>
+          <div fxLayout="row" fxLayoutAlign="space-between start" style="margin: .7rem auto">
+            <div fxFlex="70%" fxLayout="row" fxLayoutAlign="start start">
+              <span><mat-icon>place</mat-icon></span>
+              <span><b>Venue:</b></span>
+              <span>{{createdEvent.location.venue_address}}</span>
+            </div>
+            <div fxFlex="20%" fxLayout="row" fxLayoutAlign="start">
+              <button *ngIf="createdEvent.location.platform !== 2" mat-button color="primary">
+                <mat-icon>shortcut</mat-icon>
+                <span>Get Direction</span>
+              </button>
+
+              <button *ngIf="createdEvent.location.platform === 2" mat-button color="primary">
+                <mat-icon>public</mat-icon>
+                <span>Online</span>
+              </button>
+            </div>
+          </div>
+          <div class="event-description">
+            <p>{{createdEvent.description}}</p>
+<!--            <p>{{createdEvent.description}}</p>-->
+<!--            <div class="text-overlay"></div>-->
+<!--            <span class="read-more">-->
+<!--              <button mat-button color="primary">Read more...</button>-->
+<!--            </span>-->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div fxFlex="32%" fxLayout="column" fxLayoutAlign="start" fxLayoutGap="15px">
+      <div class="ticket-card">
+        <div class="ticket-card-header">
+          <h3 style="margin: 7px 7px 7px 0">Ticket Pricing</h3>
+        </div>
+        <ng-container *ngIf="eventTickets.length > 0">
+          <div *ngFor="let ticket of eventTickets; index as i; last as isLast" class="ticket-card-body">
+            <div fxLayout="row" fxLayoutAlign="space-between center" class="full-width" style="margin-top: 1rem">
+              <div fxFlex="45%">
+                <span>{{ticket.title}}</span>
+              </div>
+              <div fxFlex="25%">
+                N {{ticket.price | number: '1.2-2' : 'en'}}
+              </div>
+              <div fxFlex="20%">
+                <mat-form-field appearance="outline" class="full-width">
+                  <input matInput type="number"
+                         #ticketQuantity
+                         [(ngModel)]="ticketsCount[ticket.title]"
+                         [max]="ticket.maximumAllowed"
+                         (change)="checkValueLimit(ticketQuantity)"
+                         (blur)="checkValueLimit(ticketQuantity)"
+                  >
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+        <div fxLayout="row" fxLayoutAlign="center" style="margin: 1.5rem auto">
+          <button mat-raised-button color="primary"
+                  (click)="openCheckoutModal()">Proceed to payment</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="container spacer-1">
+  <h2 class="title-3">Similar Events</h2>
+  <ngx-slick-carousel class="carousel"
+                      style="margin-top: 2rem"
+                      #slickModal="slick-carousel"
+                      [config]="slickSlideConfig">
+    <div ngxSlickItem *ngFor="let artiste of artistes" class="slide">
+      <app-artiste-card [artiste]="artiste"></app-artiste-card>
+    </div>
+  </ngx-slick-carousel>
+</div>
+
+<app-footer></app-footer>

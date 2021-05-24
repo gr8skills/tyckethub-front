@@ -1,0 +1,130 @@
+<app-header-auth fxHide.gt-xs></app-header-auth>
+<form [formGroup]="signUpForm" (ngSubmit)="signUp()" novalidate>
+<div class="sign-in-container" fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="1%">
+<!--  <div *ngIf="error$ | async as error" class="form-error">-->
+<!--    {{error}}-->
+<!--  </div>-->
+  <div fxFlex="1 1 8" fxLayout="row" fxLayoutAlign="center center">
+    <a routerLink="/">
+      <img src="assets/images/logo.png" alt="logo">
+    </a>
+  </div>
+  <div fxFlex="1 1 8" fxLayout="row" fxLayoutAlign="center center" style="padding-bottom: 20px;">
+    <h2 class="title-3">Sign Up</h2>
+  </div>
+  <div *ngIf="(error$ | async) as error" class="form-error">
+    {{error}}
+  </div>
+  <div fxFlex="1 1 8" fxLayout="row" fxLayoutGap="2%" fxLayoutAlign="space-between center" class="full-width">
+    <div fxFlex="1 1 48" fxLayout="row" fxLayoutAlign="start center">
+      <mat-form-field color="primary" class="full-width" appearance="outline">
+        <mat-label>First Name</mat-label>
+        <input matInput type="text" formControlName="firstName">
+        <mat-icon matSuffix (click)="clearField('firstName')">close</mat-icon>
+        <mat-error *ngIf="controls.firstName?.touched && controls.firstName?.invalid">
+          <span *ngIf="controls.firstName?.hasError('required')">First name required.</span>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div  fxFlex="1 1 48" fxLayout="row" fxLayoutAlign="end center">
+      <mat-form-field color="primary" class="full-width" appearance="outline">
+        <mat-label>Last Name</mat-label>
+        <input matInput type="text" formControlName="lastName">
+        <mat-icon matSuffix (click)="clearField('lastName')">close</mat-icon>
+        <mat-error *ngIf="controls.lastName?.touched && controls.lastName?.invalid">
+          <span *ngIf="controls.lastName?.hasError('required')">Last name required.</span>
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+  <div fxFlex="1 1 8" fxLayout="row" fxLayoutAlign="start center" class="full-width">
+    <mat-form-field color="primary" class="full-width" appearance="outline">
+      <mat-label>Phone Number</mat-label>
+      <input matInput type="tel" formControlName="phone">
+      <mat-icon matSuffix (click)="clearField('phone')">close</mat-icon>
+      <mat-error *ngIf="controls.phone?.touched && controls.phone?.invalid">
+        <span *ngIf="controls.phone?.hasError('required')">Phone number is required.</span>
+        <span *ngIf="controls.phone?.hasError('minlength')">Phone number digits not complete.</span>
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <div fxFlex="1 1 8" fxLayout="row" fxLayoutAlign="start center" class="full-width">
+    <mat-form-field color="primary" class="full-width" appearance="outline">
+      <mat-label>Email</mat-label>
+      <input matInput type="email" formControlName="email">
+      <mat-icon matSuffix (click)="clearField('email')">close</mat-icon>
+      <mat-error *ngIf="controls.email?.touched && controls.email?.invalid">
+        <span *ngIf="controls.email?.hasError('required')">Email address is required.</span>
+        <span *ngIf="controls.email?.hasError('email')">Email address invalid.</span>
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <div fxFlex="1 1 8" fxLayout="row" fxLayoutAlign="start center" class="full-width">
+    <mat-form-field color="primary" class="full-width" appearance="outline">
+      <mat-label>Password</mat-label>
+      <input matInput #passwordField type="password" formControlName="password">
+      <mat-icon matSuffix (click)="toggleVisibility(passwordField, 1)">
+        <ng-container *ngIf="passwordMasked; then visible else invisible"></ng-container>
+        <ng-template #visible>visibility</ng-template>
+        <ng-template #invisible>visibility_off</ng-template>
+      </mat-icon>
+      <mat-error *ngIf="controls.password?.touched && controls.password?.invalid">
+        <span *ngIf="controls.password?.hasError('required')">Password is required.</span>
+        <span *ngIf="controls.password?.hasError('minlength')">Password is not up to 8 characters.</span>
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <div fxFlex="1 1 8" fxLayout="row" fxLayoutAlign="start center" class="full-width">
+    <mat-form-field color="primary" class="full-width" appearance="outline">
+      <mat-label>Confirm Password</mat-label>
+      <input matInput #confirmPassword type="password" formControlName="passwordConfirmation">
+      <mat-icon matSuffix (click)="toggleVisibility(confirmPassword, 2)">
+        <ng-container *ngIf="confirmPasswordMasked; then visible else invisible"></ng-container>
+        <ng-template #visible>visibility</ng-template>
+        <ng-template #invisible>visibility_off</ng-template>
+      </mat-icon>
+      <mat-error *ngIf="controls.passwordConfirmation?.touched && controls.passwordConfirmation?.invalid">
+        <span *ngIf="controls.passwordConfirmation?.hasError('required')">Password is required.</span>
+        <span *ngIf="controls.passwordConfirmation?.hasError('minlength')">Password is not up to 8 characters.</span>
+        <span *ngIf="controls.passwordConfirmation?.hasError('mustMatch')">Passwords must match.</span>
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <div fxFlex="1 1 8" fxLayout="row" fxLayoutAlign="start center" class="full-width">
+    <mat-form-field color="primary" class="full-width" appearance="outline">
+      <mat-label>Sign up as</mat-label>
+      <mat-select formControlName="role">
+          <mat-option [value]="role.id" *ngFor="let role of roles">{{role.name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div fxFlex="1 1 8" fxLayout="row" fxLayoutAlign="center center" class="full-width">
+    <button type="submit" mat-flat-button color="accent"
+            id="submit" class="full-width"
+            [ladda]="isLoading"
+    >Sign Up</button>
+  </div>
+  <div fxFlex="1 1 8" fxLayout="row" fxLayoutAlign="center center">
+    <p class="form-text">By purchasing or signing up, you agree to our<br>
+      <span class="form-link"><a (click)="openTermsDialog()">Terms of use</a></span> and acknowledge our <span class="form-link"><a (click)="openPrivacyPolicy()">privacy policy</a></span>.</p>
+  </div>
+  <div fxFlex="1 1 8" fxLayout="row" fxLayoutAlign="center center">
+    <h4 class="title-5">Or Sign Up with</h4>
+  </div>
+  <div fxFlex="1 1 8" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="2%" class="full-width">
+    <span fxFlex="1 1 45">
+      <button class="social-button full-width" mat-flat-button color="primary" appMaterialCardElevation>
+        <mat-icon>facebook</mat-icon> <span>Facebook</span>
+      </button>
+    </span>
+    <span fxFlex="1 1 45">
+      <button class="social-button full-width" mat-flat-button color="accent" appMaterialCardElevation>
+        <mat-icon>g_translate</mat-icon> <span>Google</span>
+      </button>
+    </span>
+  </div>
+  <div fxFlex="1 1 8" fxLayout="row" fxLayoutAlign="center center" style="padding-top: 30px">
+    <p>Had an account? <a routerLink="/users/sign-in" class="form-link">Sign In Here</a></p>
+  </div>
+</div>
+</form>
