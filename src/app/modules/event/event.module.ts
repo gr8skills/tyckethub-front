@@ -21,6 +21,8 @@ import { EventDescriptionComponent } from './components/event-description/event-
 import {SlickCarouselModule} from 'ngx-slick-carousel';
 import {EventResolver} from './core/event.resolver';
 import {EventParentResolver} from './core/event-parent.resolver';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 const routes: Routes = [
   {
@@ -95,7 +97,9 @@ const routes: Routes = [
     ReactiveFormsModule,
     NgxMaterialTimepickerModule,
     LaddaModule,
-    SlickCarouselModule
+    SlickCarouselModule,
+    InfiniteScrollModule,
+    NgxPaginationModule,
   ],
   declarations: [
     EventComponent,

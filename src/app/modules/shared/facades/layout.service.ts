@@ -7,6 +7,7 @@ import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 export class LayoutService {
 
   handsetLayout$ = this.breakpointObserver.observe(Breakpoints.Handset);
+  status$: any;
 
   constructor(private breakpointObserver: BreakpointObserver) { }
 

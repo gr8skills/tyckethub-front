@@ -16,6 +16,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   isLoggedIn = false;
   routerEventSub = new Subscription();
   userRole: any;
+  userData: any;
 
   constructor(private authService: AuthenticationService,
               private uiService: UiService,
@@ -35,7 +36,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.isLoggedIn = this.authService.loggedIn();
-    this.userRole = this.authService.getUserRole();
+    this.userData = this.authService.currentUserValue;
+    console.log('This User', this.userData);
+    if (this.isLoggedIn && (this.userData !== '' || this.userData !== null)){
+      this.userRole = this.userData.role;
+    }
   }
 
   toggleSearchBox(): void {
@@ -45,6 +50,15 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   logout(): void {
     this.authService.logout();
+  }
+
+  dashboardOrganizer(): void {
+    const path = 'organizer/overview';
+    this.router.navigateByUrl(`/tickets/${path}`).then(r => `/tickets/${path}`);
+  }
+  dashboardAttendee(): void {
+    const path = 'overview';
+    this.router.navigateByUrl(`/tickets/${path}`).then(r => `/tickets/${path}`);
   }
 
   ngOnDestroy(): void {

@@ -16,19 +16,22 @@ import {AuthenticationService} from '../../../shared/facades/authentication.serv
 })
 export class EventComponent implements OnInit, OnDestroy {
 
-  carouselImages = [
-    'assets/images/img_1.png',
-    'assets/images/img_5.png',
-    'assets/images/img_19.png',
-  ];
-
   moreEvents: Event[] = EVENTS_MORE;
+  backendEvent: any;
+  backendMoreEvent: any;
+  carouselImages: any;
   currentUser = this.authService.currentUserValue;
   events$ = this.eventFacadeService.events$;
   sub = new Subscription();
   eventSub = new Subscription();
   matGridLayoutConfig: { col: number, rowHeight: string, gutterSize: string };
   displayStyle = {};
+  page = 1;
+  currentIndex = -1;
+  count = 0;
+  pageSize = 3;
+  pageSizes = [3, 6, 9];
+
 
   // userEvents$ = this.eventFacadeService.getAttendeeEvents(this.currentUser.id);
   // allEvents$ = this.eventFacadeService.getAllEvents();
@@ -54,8 +57,21 @@ export class EventComponent implements OnInit, OnDestroy {
 
   eventsDynamic$ = this.eventFacadeService.getAllEvents()
     .pipe(
-      tap(eventData => console.log('Events from pipe ', eventData)),
+      map(response => {
+        console.log('Resp => ', response);
+        const eventsArray = response.data as Array<any>;
+        const eventsAbridgedArray: Event[] = [];
 
+        eventsArray.forEach(eventAbridged => {
+          eventsAbridgedArray.push(Event.fromJSON(eventAbridged));
+        });
+        console.log('eventsAbridgedArray => ', eventsAbridgedArray);
+        return eventsAbridgedArray;
+      })
+    );
+
+  eventsMore$ = this.eventFacadeService.getMoreEvents()
+    .pipe(
       map(response => {
         const eventsArray = response.data as Array<any>;
         const eventsAbridgedArray: Event[] = [];
@@ -69,6 +85,7 @@ export class EventComponent implements OnInit, OnDestroy {
 
   userEvents: any;
 
+
   constructor(private eventFacadeService: EventFacadeService,
               private breakpointObserver: BreakpointObserver,
               private authService: AuthenticationService,
@@ -76,9 +93,35 @@ export class EventComponent implements OnInit, OnDestroy {
               private uiService: UiService) {
     this.matGridLayoutConfig = {col: 3, rowHeight: '1:1', gutterSize: '20px'};
   }
+  retrieveMoreEvents(): void {
+    this.eventFacadeService.getMoreEvents().subscribe(eventsData => {
+      this.backendMoreEvent = eventsData;
+      console.log('backendEventMoreData => ', this.backendMoreEvent.data);
+    });
+  };
+
 
   ngOnInit(): void {
-    console.log(this.events$);
+    this.events$.subscribe(evts => console.log('EVT ', evts));
+    this.eventFacadeService.getAllEvents().subscribe(eventsData => {
+      this.backendEvent = eventsData;
+      this.carouselImages = [
+        // 'assets/images/img_1.png',
+        // 'assets/images/img_5.png',
+        // 'assets/images/img_19.png',
+        // 'http://tyckethub.test/1621598264_banner_img_22.png',
+        this.backendEvent.data[0]['banner'],
+        this.backendEvent.data[1]['banner'],
+        this.backendEvent.data[2]['banner'],
+        this.backendEvent.data[3]['banner'],
+        this.backendEvent.data[4]['banner'],
+        this.backendEvent.data[5]['banner'],
+        this.backendEvent.data[6]['banner'],
+      ];
+      console.log('backendEventData => ', this.backendEvent.data);
+    });
+    this.retrieveMoreEvents();
+
     if (this.currentUser) {
       this.eventFacadeService.getAttendeeEvents(this.currentUser.id).subscribe(
         response => {
@@ -114,4 +157,13 @@ export class EventComponent implements OnInit, OnDestroy {
     this.eventSub.unsubscribe();
   }
 
+  onScroll(): void {
+    this.page++;
+    this.ngOnInit();
+  }
+
+  handlePageChange(event: number): void {
+    this.page = event;
+    this.retrieveMoreEvents();
+  }
 }

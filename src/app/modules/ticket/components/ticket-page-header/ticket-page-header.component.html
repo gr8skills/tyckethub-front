@@ -18,12 +18,6 @@
             <mat-icon>language</mat-icon>&nbsp;English
           </a>
         </div>
-
-        <div fxLayout="20" fxLayout="row" fxLayoutAlign="end center">
-          <a mat-button>
-            <mat-icon>language</mat-icon>&nbsp;English
-          </a>
-        </div>
       </mat-toolbar-row>
 
       <mat-toolbar-row class="searchbox">
@@ -60,9 +54,23 @@
             <button *ngIf="isLoggedIn" mat-menu-item (click)="logout()">Sign Out</button>
           </mat-menu>
         </div>
-        <div *ngIf="userRole === 'organizer'" class="nav-menus">
-          <button mat-button>Help</button>
-          <button mat-button (click)="logout()"><mat-icon>logout</mat-icon>&nbsp;Logout</button>
+        <div *ngIf="userRole === ('organizer' || 'admin')" class="nav-menus">
+          <a mat-button [matMenuTriggerFor]="profileOption">
+            <mat-icon>person_outline</mat-icon>&nbsp;My Profile
+          </a>
+          <mat-menu #profileOption="matMenu">
+            <button mat-menu-item [routerLink]="'/tickets/organizer/overview'">Overview</button>
+            <button mat-menu-item [routerLink]="'/tickets/rf-id'">RF ID</button>
+            <button mat-menu-item [routerLink]="'/tickets/settings'">Settings</button>
+            <button *ngIf="isLoggedIn" mat-menu-item (click)="logout()">Sign Out</button>
+          </mat-menu>
+          <a *ngIf="userRole === ('organizer' || 'admin')" mat-button>
+            <mat-icon>help</mat-icon>&nbsp;Help
+          </a>
+          <a *ngIf="userRole === ('organizer' || 'admin')" mat-button>
+            <mat-icon>language</mat-icon>&nbsp;English
+          </a>
+          <button *ngIf="userRole === ('organizer' || 'admin')" mat-button (click)="logout()"><mat-icon>logout</mat-icon>&nbsp;Sign Out</button>
         </div>
       </mat-toolbar-row>
     </mat-toolbar>

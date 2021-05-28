@@ -50,6 +50,17 @@ export class EventDashboardComponent implements OnInit {
     this.router.navigateByUrl(path);
   }
 
+  scrollTop(): void {
+    const scrollToTop = window.setInterval(() => {
+      const pos = window.pageYOffset;
+      if (pos > 0) {
+        window.scrollTo(0, pos - 20); // how far to scroll on each step
+      } else {
+        window.clearInterval(scrollToTop);
+      }
+    }, 16);
+  }
+
   async unPublishEvent(): Promise<boolean> {
     let success = false;
     this.uiService.busy = true;

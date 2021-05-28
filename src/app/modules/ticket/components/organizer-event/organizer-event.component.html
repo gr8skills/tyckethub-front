@@ -1,38 +1,86 @@
 <h2 class="title-3">Events</h2>
 <div fxLayout="row"
      fxLayout.xs="column"
-     fxLayoutAlign="space-between center"
+     fxLayoutAlign="space-between start"
      fxLayoutAlign.xs="start start"
-     fxLayoutGap="4%"
-     fxLayoutGap.xs="10px"
+     style="padding: 10px;"
 >
-  <div fxFlex="48%" fxFlex.xs="50%" fxLayout.xs="row" fxLayoutAlign.xs="space-between">
-    <mat-form-field appearance="outline" class="full-width" color="accent">
-      <input matInput class="full-width" placeholder="Search for tickets">
-      <mat-icon matPrefix color="primary">search</mat-icon>
-    </mat-form-field>
+  <div fxFlex="auto">
+    <a mat-stroked-button [class.active-tab]="tabs[0] === openTab"
+       [class.inactive-tab]="tabs[0] !== openTab"
+       (click)="switchTab(tabs[0])">All Events</a>&nbsp;
+    <a mat-stroked-button [class.active-tab]="tabs[1] === openTab"
+       [class.inactive-tab]="tabs[1] !== openTab"
+       (click)="switchTab(tabs[1])">My Events</a>&nbsp;
   </div>
-  <div fxFlex="48%" fxFlex.xs="50%" fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10%" fxLayout.xs="10%">
-    <div fxFlex="60%">
-      <mat-form-field appearance="outline" color="primary" class="long-form-field full-width">
-        <mat-label>Event status</mat-label>
-        <mat-select>
-          <mat-option *ngFor="let status of eventStatuses" [value]="status.id">{{status.name.toString()}}</mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
-    <div fxFlex="30%">
-      <button mat-flat-button
-              color="primary"
-              class="action-btn full-width"
-              routerLink="/events/create"
-      >Create Event</button>
-    </div>
+
+  <div [ngSwitch]="openTab"
+       class="fancy-text"
+       fxLayout="row"
+       fxLayout.xs="column"
+       fxLayoutAlign="space-between"
+       fxLayoutGap="1%"
+       style="margin-top: 15px; padding: 10px">
+    <ng-container *ngSwitchCase="tabs[0]" style="width: 100%">
+      <div fxFlex="48%" fxFlex.xs="50%" fxLayout.xs="row" fxLayoutAlign.xs="space-between">
+        <div class="card-section">
+          <mat-form-field appearance="outline" class="full-width" color="accent">
+            <input matInput class="full-width" placeholder="Search for tickets" id="searchInput">
+            <mat-icon matPrefix color="primary">search</mat-icon>
+          </mat-form-field>
+        </div>
+      </div>
+      <div fxFlex="52%" fxFlex.xs="50%" fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10%" fxLayout.xs="10%">
+        <div fxFlex="50%">
+          <mat-form-field appearance="outline" color="primary" class="long-form-field full-width">
+            <mat-label>Event status</mat-label>
+            <mat-select>
+              <mat-option *ngFor="let status of eventStatuses" [value]="status.id">{{status.name.toString()}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div fxFlex="48%">
+          <button mat-flat-button
+                  color="primary"
+                  class="action-btn full-width"
+                  routerLink="/events/create"
+          >Create Event</button>
+        </div>
+      </div>
+
+    </ng-container>
+
+    <ng-container *ngSwitchCase="tabs[1]" style="width: 100%">
+      <div fxFlex="48%" fxFlex.xs="50%" fxLayout.xs="row" fxLayoutAlign.xs="space-between">
+        <mat-form-field appearance="outline" class="full-width" color="accent">
+          <input matInput class="full-width" placeholder="Search for tickets">
+          <mat-icon matPrefix color="primary">search</mat-icon>
+        </mat-form-field>
+      </div>
+      <div fxFlex="52%" fxFlex.xs="50%" fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10%" fxLayout.xs="10%">
+        <div fxFlex="50%">
+          <mat-form-field appearance="outline" color="primary" class="long-form-field full-width">
+            <mat-label>Event status</mat-label>
+            <mat-select>
+              <mat-option *ngFor="let status of eventStatuses" [value]="status.id">{{status.name.toString()}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div fxFlex="48%">
+          <button mat-flat-button
+                  color="primary"
+                  class="action-btn full-width"
+                  routerLink="/events/create"
+          >Create Event</button>
+        </div>
+      </div>
+    </ng-container>
   </div>
+
 </div>
 <div fxLayout="row" style="padding-top: 20px" class="full-width">
   <div fxFlex="100%">
-    <table mat-table [dataSource]="eventTableSource" class="mat-elevation-z2 full-width">
+    <table mat-table [dataSource]="eventTableSource" class="mat-elevation-z2 full-width row-border hover" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" id="myTable" >
       <!--  Checkbox column-->
       <ng-container matColumnDef="select">
         <th mat-header-cell *matHeaderCellDef class="w-50">
@@ -91,3 +139,19 @@
     </table>
   </div>
 </div>
+
+<script>
+  $(document).ready(function () {
+    $('#listingData').DataTable({
+      responsive: true,
+      "bFilter": true // show search input
+    });
+    $("#listingData_filter").addClass("hidden"); // hidden search input
+
+    $("#searchInput").on("input", function (e) {
+      e.preventDefault();
+      $('#listingData').DataTable().search($(this).val()).draw();
+    });
+  })
+</script>
+

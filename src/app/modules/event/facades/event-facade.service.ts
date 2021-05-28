@@ -18,6 +18,7 @@ export class EventFacadeService {
   eventCreationCompletedSubject = new BehaviorSubject<boolean>(false);
   eventCreationComplete$ = this.eventCreationCompletedSubject.asObservable();
   events$: Observable<Event[]>;
+  moreEvents$: Observable<Event[]>;
   event$: Observable<IEvent> | undefined;
   countries$ = this.eventService.getActiveCountries();
   categories$ = this.eventService.getEventCategories();
@@ -32,7 +33,8 @@ export class EventFacadeService {
               private organizerService: OrganizerService,
               private attendeeService: AttendeeService,
               private artisteService: ArtisteService) {
-    this.events$ = this.eventService.getEvents();
+    this.events$ = this.eventService.getAllEvents();
+    this.moreEvents$ = this.eventService.getMoreEvents();
   }
 
   getEvent(id: number): void {
@@ -41,6 +43,13 @@ export class EventFacadeService {
 
   getAllEvents(): Observable<any> {
     return this.eventService.getAllEvents();
+  }
+  getMoreEvents(): Observable<any> {
+    return this.eventService.getMoreEvents();
+  }
+
+  getSimilarEvents(event: number): Observable<any> {
+    return this.eventService.getSimilarEvents(event);
   }
 
   getCountryStates(countryId: number): Observable<any> {

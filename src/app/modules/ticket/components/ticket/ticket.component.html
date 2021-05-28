@@ -6,7 +6,7 @@
   <app-mobile-search-box #mobileSearchBox></app-mobile-search-box>
 </div>
 
-<div class="container">
+<div class="container" style="height: auto">
   <div fxLayout="row"
        fxLayout.xs="column"
        fxLayoutAlign="start start"
@@ -22,10 +22,11 @@
            fxFlex.xs="1 0 40"
       >
         <app-avatar></app-avatar>
-        <h2 class="title-3">Justus Ali</h2>
+        <h2 class="title-3">{{userData.name}}</h2>
+        <span style="font-size: x-small">{{userData.email}} | {{userData.phone}}</span>
       </div>
       <div class="navs" fxHide.xs>
-        <ng-container *ngIf="userRole === 'attendee'; then attendeeLinks else organizerLinks"></ng-container>
+        <ng-container style="height: auto" *ngIf="userRole === 'attendee'; then attendeeLinks else organizerLinks"></ng-container>
         <ng-template #attendeeLinks>
           <a matRipple class="nav-item" routerLink="/tickets/overview" routerLinkActive="nav-active">Overview</a>
           <a matRipple class="nav-item" routerLink="/tickets/my-tickets" routerLinkActive="nav-active">My Tickets</a>
@@ -34,13 +35,22 @@
           <a matRipple class="nav-item" routerLink="/tickets/favorites" routerLinkActive="nav-active">Favorites</a>
           <a matRipple class="nav-item" routerLink="/tickets/rf-id" routerLinkActive="nav-active">RF ID</a>
           <a matRipple class="nav-item" routerLink="/tickets/settings" routerLinkActive="nav-active">Settings</a>
-          <a matRipple class="nav-item" routerLink="/">Sign Out</a>
+          <a matRipple class="nav-item" (click)="logout()">Sign Out</a>
         </ng-template>
         <ng-template #organizerLinks>
           <a matRipple class="nav-item" routerLink="/tickets/organizer/overview" routerLinkActive="nav-active">Overview</a>
           <a matRipple class="nav-item" routerLink="/tickets/organizer/events" routerLinkActive="nav-active">Events</a>
+          <a matRipple class="nav-item" routerLink="/tickets/organizer/movies" routerLinkActive="nav-active">Movies</a>
+          <a matRipple class="nav-item" routerLink="/tickets/organizer/flights" routerLinkActive="nav-active">Flights</a>
           <a matRipple class="nav-item" routerLink="/tickets/organizer/tickets" routerLinkActive="nav-active">Tickets</a>
-          <a matRipple class="nav-item" routerLink="/tickets/organizer/info" routerLinkActive="nav-active">Organizer's Info</a>
+          <a matRipple class="nav-item" routerLink="/tickets/payments" routerLinkActive="nav-active">Payments</a>
+<!--          <a matRipple class="nav-item" routerLink="/tickets/favorites" routerLinkActive="nav-active">Favourites</a>-->
+<!--          <a matRipple class="nav-item" routerLink="/tickets/organizer/info" routerLinkActive="nav-active">Info</a>-->
+<!--          <a matRipple class="nav-item" routerLink="/tickets/rf-id" routerLinkActive="nav-active">RF ID</a>-->
+          <a matRipple class="nav-item" routerLink="/users/admin" routerLinkActive="nav-active">Users</a>
+          <a matRipple class="nav-item" routerLink="/tickets/site-settings" routerLinkActive="nav-active">Site Settings</a>
+          <a matRipple class="nav-item" (click)="logout()">Sign Out</a>
+
         </ng-template>
 
       </div>

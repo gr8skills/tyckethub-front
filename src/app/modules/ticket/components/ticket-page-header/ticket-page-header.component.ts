@@ -10,12 +10,15 @@ export class TicketPageHeaderComponent implements OnInit {
 
   isLoggedIn = false;
   userRole: any;
+  userData: any;
 
   constructor(private authService: AuthenticationService) { }
 
   ngOnInit(): void {
     this.isLoggedIn = this.authService.loggedIn();
-    this.userRole = this.authService.getUserRole();
+    this.userData = this.authService.currentUserValue;
+    this.userRole = this.userData.role;
+    console.log('LoggedIn User Role: ', this.userRole);
   }
 
   logout(): void {

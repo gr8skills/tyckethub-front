@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, OnDestroy} from '@angular/core';
 import {EventStatusService} from '../../../event/apis/event-status.service';
 import {UiService} from '../../../shared/core/ui.service';
 import {SelectionModel} from '@angular/cdk/collections';
@@ -7,6 +7,7 @@ import {Router} from '@angular/router';
 import {EventFacadeService} from '../../../event/facades/event-facade.service';
 import {AuthenticationService} from '../../../shared/facades/authentication.service';
 import {BaseService} from '../../../shared/facades/base.service';
+import {Subject} from 'rxjs';
 
 interface EventData {
   id: number;
@@ -54,7 +55,12 @@ const EVENT_DATA: EventData[] = [
   templateUrl: './organizer-event.component.html',
   styleUrls: ['./organizer-event.component.scss']
 })
-export class OrganizerEventComponent implements OnInit {
+export class OrganizerEventComponent implements OnInit, OnDestroy {
+
+  dtOptions: DataTables.Settings = {};
+  dtTrigger: Subject<any> = new Subject<any>();
+  tabs = ['all events', 'my events'];
+  openTab = 'all events';
 
   eventStatuses: any;
   organizerEvents: any[] = [];
@@ -79,11 +85,25 @@ export class OrganizerEventComponent implements OnInit {
     this.eventStatusService.status$.subscribe(
       statusesData => {
         this.eventStatuses = statusesData.data;
+        this.dtTrigger.next();
       },
       error => {
         this.uiService.openSnotify(error, 'Error fetching event status', 'error');
       }
     );
+    this.dtOptions = {
+      pagingType: 'full_numbers',
+      pageLength: 5,
+      searchDelay: 100,
+      processing: true,
+      searching: true,
+      responsive: true,
+      deferLoading: 100
+    };
+  }
+
+  switchTab(tabName: string): void {
+    this.openTab = tabName;
   }
 
   private async initializeOrganizerEvents(): Promise<void> {
@@ -145,4 +165,9 @@ export class OrganizerEventComponent implements OnInit {
   openMenu(path: string): void {
     this.router.navigateByUrl(`/events/${path}`);
   }
+
+  ngOnDestroy(): void {
+    this.dtTrigger.unsubscribe();
+  }
+
 }

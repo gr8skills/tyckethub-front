@@ -12,12 +12,16 @@ export class TicketComponent implements OnInit {
   currentPath = 'My Tickets';
   displayStyle = {};
   userRole: any;
+  userData: any;
 
   constructor(private router: Router,
               private authService: AuthenticationService) { }
 
   ngOnInit(): void {
-    this.userRole = this.authService.getUserRole();
+    this.userData = this.authService.currentUserValue;
+    this.userRole = this.userData.role;
+    console.log('User Data: ', this.userData);
+    console.log('User Role: ', this.userRole);
   }
 
   toggleSearchBox(toggleState: boolean): void {
@@ -55,5 +59,9 @@ export class TicketComponent implements OnInit {
 
     this.router.navigate([`/tickets/${path}`])
       .then();
+  }
+
+  logout(): void {
+    this.authService.logout();
   }
 }

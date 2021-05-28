@@ -9,7 +9,11 @@ import {AuthenticationService} from '../../../shared/facades/authentication.serv
 import {CheckoutModalComponent} from '../../../shared/components/checkout-modal/checkout-modal.component';
 import {environment} from '../../../../../environments/environment';
 import {EventTicket} from '../../../shared/models/custom-types';
-import {LocalStorageItems} from "../../../shared/models/enums";
+import {LocalStorageItems} from '../../../shared/models/enums';
+import {stringify} from 'querystring';
+import {EventFacadeService} from '../../facades/event-facade.service';
+import {map} from 'rxjs/operators';
+import {Event} from '../../models/event.model';
 
 @Component({
   selector: 'app-event-description',
@@ -30,11 +34,14 @@ export class EventDescriptionComponent implements OnInit {
   isFavorite = false;
   favColor: ThemePalette = 'accent';
   isMobile = false;
+  inputValue: any;
+  eventId = 21;
+
   slickSlideConfig = {
     slidesToShow: 3,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 5000
+    autoplaySpeed: 2000
   };
   artistes = [
     {image: 'assets/images/img_127-sm.png', name: 'Burna Boy'},
@@ -42,12 +49,27 @@ export class EventDescriptionComponent implements OnInit {
     {image: 'assets/images/img_129-sm.png', name: 'Falz'}
   ];
 
+  similarEvents$ = this.eventFacadeService.getSimilarEvents(this.eventId)
+    .pipe(
+      map(response => {
+        console.log('Similar Events: ', response);
+        const eventsArray = response as Array<any>;
+        const eventsAbridgedArray: Event[] = [];
+
+        eventsArray.forEach(eventAbridged => {
+          eventsAbridgedArray.push(Event.fromJSON(eventAbridged));
+        });
+        return eventsAbridgedArray;
+      })
+    );
+
   constructor(private router: Router,
               private route: ActivatedRoute,
               private baseService: BaseService,
               private uiService: UiService,
               private layoutService: LayoutService,
-              private authService: AuthenticationService) {
+              private authService: AuthenticationService,
+              private eventFacadeService: EventFacadeService) {
   }
 
   ngOnInit(): void {
@@ -68,14 +90,19 @@ export class EventDescriptionComponent implements OnInit {
     return availableTickets;
   }
 
-  checkValueLimit(inputElement: HTMLInputElement): void {
+  checkValueLimit(inputElement: HTMLInputElement): boolean {
+    this.inputValue = inputElement.value;
     if (!inputElement.value) {
       inputElement.value = String(1);
     }
     const maxInput = parseInt(inputElement.max);
     const currInput = parseInt(inputElement.value);
     if (currInput > maxInput) {
+      this.uiService.openSnotify(`Maximum buyable ticket(s) per user (${maxInput}) exceeded`  , 'Attention', 'warning');
       inputElement.value = inputElement.max;
+      return false;
+    }else {
+      return true;
     }
   }
 
@@ -154,6 +181,11 @@ export class EventDescriptionComponent implements OnInit {
 
     if (!this.canCheckout()) {
       this.uiService.openSnotify('Please choose the quantity of ticket(s) you wish to buy', 'Attention', 'warning');
+      return;
+    }
+    // tslint:disable-next-line:prefer-const
+    let ticketQuantity = this.inputValue;
+    if (!this.checkValueLimit(ticketQuantity)) {
       return;
     }
     const data = {

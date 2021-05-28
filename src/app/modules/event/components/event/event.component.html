@@ -40,7 +40,7 @@
 
 <div class="container spacer-1">
   <h3 class="title-3 spacer-xs">Popular Events</h3>
-  <div *ngIf="events$ | async as events">
+  <div *ngIf="eventsDynamic$ | async as events">
     <mat-tab-group>
       <mat-tab label="All">
         <mat-grid-list cols="{{matGridLayoutConfig.col}}"
@@ -176,7 +176,7 @@
 
 <div class=" container spacer-2">
   <h2 class="title-3">More Events</h2>
-  <ng-container *ngIf="eventsDynamic$ | async as additionalEvents">
+  <ng-container *ngIf="eventsMore$ | async as additionalEvents">
     <mat-grid-list [cols]="matGridLayoutConfig.col"
                    gutterSize="{{matGridLayoutConfig.gutterSize}}"
                    rowHeight="{{matGridLayoutConfig.rowHeight}}"
@@ -196,7 +196,13 @@
      fxLayoutAlign="center center"
      class="container spacer-1">
   <div fxFlex="0 1 auto" fxFlex.xs="1 1 100" fxLayout="row" fxLayoutAlign="center">
-    <app-more-button></app-more-button>
+    <pagination-controls
+      previousLabel="Prev"
+      nextLabel="Next"
+      [responsive]="true"
+      (pageChange)="handlePageChange($event)"
+    ></pagination-controls>
+<!--    <app-more-button></app-more-button>-->
   </div>
 </div>
 

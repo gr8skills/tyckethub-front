@@ -37,12 +37,14 @@
               "node_modules/ladda/dist/ladda.min.css",
               "node_modules/slick-carousel/slick/slick.scss",
               "node_modules/slick-carousel/slick/slick-theme.scss",
+              "node_modules/datatables.net-dt/css/jquery.dataTables.css",
               "src/styles.scss"
             ],
             "scripts": [
               "./node_modules/lazysizes/lazysizes.js",
               "node_modules/jquery/dist/jquery.min.js",
-              "node_modules/slick-carousel/slick/slick.min.js"
+              "node_modules/slick-carousel/slick/slick.min.js",
+              "node_modules/datatables.net/js/jquery.dataTables.js"
             ]
           },
           "configurations": {

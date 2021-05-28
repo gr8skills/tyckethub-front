@@ -67,7 +67,7 @@ import {LaddaModule} from 'angular2-ladda';
 import { SummaryPipe } from './core/summary.pipe';
 import { EventPublishAlertModalComponent } from './components/event-publish-alert-modal/event-publish-alert-modal.component';
 import { TimeFormatPipe } from './core/time-format.pipe';
-import {Angular4PaystackModule} from "angular4-paystack";
+import {Angular4PaystackModule} from 'angular4-paystack';
 
 
 @NgModule({

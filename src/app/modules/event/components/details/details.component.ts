@@ -80,6 +80,17 @@ export class DetailsComponent implements OnInit, OnDestroy {
     window.location.reload();
   }
 
+  scrollTop(): void {
+    const scrollToTop = window.setInterval(() => {
+      const pos = window.pageYOffset;
+      if (pos > 0) {
+        window.scrollTo(0, pos - 20); // how far to scroll on each step
+      } else {
+        window.clearInterval(scrollToTop);
+      }
+    }, 16);
+  }
+
   processFile(event: any, imageLabel: string): void {
     const imageFile: File = event.target.files[0];
 
@@ -125,7 +136,6 @@ export class DetailsComponent implements OnInit, OnDestroy {
     this.router.navigateByUrl(`/events/${this.createdEvent.id}/edit/${path}`);
   }
   onUpload(): void {
-    const newRouterLink = '/users:123';
     const path2: string = this.createdEvent.location.platform === 1 ? 'details' : 'online-event';
     this.router.navigateByUrl('/events').then(() => { this.router.navigateByUrl(`/events/${this.createdEvent.id}/edit/${path2}`).then(r => `/events/${this.createdEvent.id}/edit/${path2}`); });
     // this.router.navigateByUrl(`/events/${this.createdEvent.id}/edit/${path2}`);

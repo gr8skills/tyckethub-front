@@ -116,11 +116,12 @@
 
 <div class="container spacer-1">
   <h2 class="title-3">Similar Events</h2>
-  <ngx-slick-carousel class="carousel"
+  <ngx-slick-carousel *ngIf="similarEvents$ | async as similarEvents"
+                      class="carousel"
                       style="margin-top: 2rem"
                       #slickModal="slick-carousel"
                       [config]="slickSlideConfig">
-    <div ngxSlickItem *ngFor="let artiste of artistes" class="slide">
+    <div ngxSlickItem *ngFor="let artiste of similarEvents" class="slide">
       <app-artiste-card [artiste]="artiste"></app-artiste-card>
     </div>
   </ngx-slick-carousel>

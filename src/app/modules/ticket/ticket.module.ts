@@ -20,6 +20,8 @@ import {ArtistePageComponent} from './components/artiste-page/artiste-page.compo
 import {ArtistePageHeaderComponent} from './components/artiste-page-header/artiste-page-header.component';
 import {ArtisteEventsResolver} from '../user/core/artiste-events.resolver';
 import {ArtisteResolver} from '../user/core/artiste.resolver';
+import {SiteSettingsComponent} from './components/site-settings/site-settings.component';
+import {DataTablesModule} from 'angular-datatables';
 
 const routes: Routes = [
   {
@@ -80,6 +82,11 @@ const routes: Routes = [
         component: OrganizerInfoComponent,
         canActivate: [AuthGuard, OrganizerGuard]
       },
+      {
+        path: 'site-settings',
+        component: SiteSettingsComponent,
+        canActivate: [AuthGuard]
+      },
     ],
   },
   {
@@ -110,6 +117,7 @@ const routes: Routes = [
     OrganizerEventComponent,
     OrganizerTicketsComponent,
     OrganizerInfoComponent,
+    SiteSettingsComponent,
     HowToSellComponent,
     ArtistePageComponent,
     ArtistePageHeaderComponent,
@@ -118,6 +126,7 @@ const routes: Routes = [
   imports: [
     MaterialModule,
     RouterModule.forChild(routes),
+    DataTablesModule,
   ]
 })
 

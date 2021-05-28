@@ -24,8 +24,16 @@ export class EventService {
     return of(this.events);
   }
 
-  getAllEvents(): Observable<any[]> {
-    return this.httpClient.get<any[]>(`${this.baseUrl}/events`, this.requestOptions);
+  getAllEvents(page: number = 1): Observable<any[]> {
+    return this.httpClient.get<any[]>(`${this.baseUrl}/events?per_page=9&page=${page}`, this.requestOptions);
+  }
+
+  getMoreEvents(page: number = 1): Observable<any[]> {
+    return this.httpClient.get<any[]>(`${this.baseUrl}/more-events?per_page&page=${page}`, this.requestOptions);
+  }
+
+  getSimilarEvents(id: number): Observable<any> {
+    return this.httpClient.get<any[]>(`${this.baseUrl}/similar-events/${id}`, this.requestOptions);
   }
 
   getEvent(id: number): Observable<any> {

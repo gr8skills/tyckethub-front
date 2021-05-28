@@ -1,0 +1,48 @@
+$border-color: rgba(0,0,0,.2);
+
+.active-tab {
+  color: #5a53af;
+  background-color: transparent;
+}
+.inactive-tab {
+  background-color: #f6f6f6;
+}
+.card-section {
+  border: 1px solid $border-color;
+  min-height: 450px;
+  border-radius: 5px;
+  padding: 1rem;
+}
+.card-header-section {
+  padding: 0;
+  border: 1px solid $border-color;
+  min-height: 450px;
+  border-radius: 5px;
+
+  .header {
+    padding: 10px;
+    border-bottom: 1px solid $border-color;
+    border-radius: 5px 5px 0 0;
+    background-color: #f6f6f6;
+  }
+  .body {
+    padding: 10px;
+  }
+}
+
+.fancy-text {
+  color: #51576d;
+
+  h3 {
+    font-weight: 600;
+    margin-bottom: 0;
+  }
+
+  .toc {
+    //text-decoration: none;
+    a {
+      color: #481fa6;
+    }
+  }
+}
+

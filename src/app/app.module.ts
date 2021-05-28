@@ -19,12 +19,13 @@ import {SnotifyModule, SnotifyService, ToastDefaults} from 'ng-snotify';
 import {NgxUiLoaderModule} from 'ngx-ui-loader';
 import {LaddaModule} from 'angular2-ladda';
 import {SlickCarouselModule} from 'ngx-slick-carousel';
-import {Angular4PaystackModule} from 'angular4-paystack';
 import { FlutterwaveModule } from 'flutterwave-angular-v3';
-import { ReactiveFormsModule } from '@angular/forms';
+import {Angular4PaystackModule} from 'angular4-paystack';
 
-import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
-import { GoogleLoginProvider } from 'angularx-social-login';
+// import { ReactiveFormsModule } from '@angular/forms';
+//
+// import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
+// import { GoogleLoginProvider } from 'angularx-social-login';
 
 
 @NgModule({
@@ -51,30 +52,30 @@ import { GoogleLoginProvider } from 'angularx-social-login';
       spinnerLines: 15,
     }),
     SlickCarouselModule,
-    FlutterwaveModule,
+    // FlutterwaveModule,
     Angular4PaystackModule.forRoot('pk_test_6d6c5c41906108027355e0570a519d3201772851'),
-    ReactiveFormsModule,
-    SocialLoginModule,
+    // ReactiveFormsModule,
+    // SocialLoginModule,
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
     { provide: 'SnotifyToastConfig', useValue: ToastDefaults},
     SnotifyService,
-    {
-      provide: 'SocialAuthServiceConfig',
-      useValue: {
-        autoLogin: false,
-        providers: [
-          {
-            id: GoogleLoginProvider.PROVIDER_ID,
-            provider: new GoogleLoginProvider(
-              '789530711633-omaiut5438k749kin8ktk7215f9e515d.apps.googleusercontent.com'
-            )
-          }
-        ]
-      } as SocialAuthServiceConfig,
-    }
+    // {
+    //   provide: 'SocialAuthServiceConfig',
+    //   useValue: {
+    //     autoLogin: false,
+    //     providers: [
+    //       {
+    //         id: GoogleLoginProvider.PROVIDER_ID,
+    //         provider: new GoogleLoginProvider(
+    //           '789530711633-omaiut5438k749kin8ktk7215f9e515d.apps.googleusercontent.com'
+    //         )
+    //       }
+    //     ]
+    //   } as SocialAuthServiceConfig,
+    // }
   ],
   exports: [],
   bootstrap: [

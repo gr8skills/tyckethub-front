@@ -54,7 +54,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.slickSlideConfig.slidesToShow = 1;
       }
     });
-    if (this.currentUser && this.currentUser.role === 'organizer') {
+    if (this.currentUser && (this.currentUser.role === 'organizer' || this.currentUser.role === 'admin' )) {
       this.init();
     }
     console.log('CURRENT USER ', this.currentUser);
@@ -66,7 +66,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         const events: any[] = response.data;
         console.log('Uncompleted Event ', events);
         if (events.length > 0) {
-          this.uiService.openSnotify('You have an event that requires you to completed the creation process.',
+          this.uiService.openSnotify('You have an event that requires you to complete its creation process.',
             'Attention', 'info');
         }
       },

@@ -48,8 +48,9 @@
       <ng-template #organizerMenu>
         <a mat-button [routerLink]="'/tickets/organizer/overview'">My Events</a>
       </ng-template>
-
       <a *ngIf="!isLoggedIn" mat-button [routerLink]="['/users/sign-in']">Sign In</a>
+      <a *ngIf="userRole === ('admin' || 'organizer')" mat-button (click)="dashboardOrganizer()">Dashboard</a>
+      <a *ngIf="userRole === 'attendee'" mat-button (click)="dashboardAttendee()">Dashboard</a>
       <a *ngIf="isLoggedIn" mat-button (click)="logout()">Logout</a>
       <a mat-flat-button [routerLink]="['/events/create']" color="primary">Create Event</a>
 <!--      <a *ngIf="userRole === 'organizer' && isLoggedIn" mat-flat-button [routerLink]="['/events/create']" color="primary">Create Event</a>-->
