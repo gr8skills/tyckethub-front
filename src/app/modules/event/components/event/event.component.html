@@ -27,8 +27,8 @@
         <div fxFlex="1 1 auto" fxLayout="row" fxLayoutAlign="start center">
           <div [ngSwitch]="i">
             <div *ngSwitchCase="0">
-              <div style="position: absolute; top: 45%; left: 5%;">
-                <button mat-flat-button color="accent" style="padding: 5px 30px;">Get Ticket</button>
+              <div style="position: absolute; top: 45%; left: 85%;">
+                <button mat-flat-button color="accent" style="padding: 5px 30px;" (click)="reloadUrlWithComponent();">Get Ticket</button>
               </div>
             </div>
           </div>
@@ -196,13 +196,13 @@
      fxLayoutAlign="center center"
      class="container spacer-1">
   <div fxFlex="0 1 auto" fxFlex.xs="1 1 100" fxLayout="row" fxLayoutAlign="center">
-    <pagination-controls
-      previousLabel="Prev"
-      nextLabel="Next"
-      [responsive]="true"
-      (pageChange)="handlePageChange($event)"
-    ></pagination-controls>
-<!--    <app-more-button></app-more-button>-->
+<!--    <pagination-controls-->
+<!--      previousLabel="Prev"-->
+<!--      nextLabel="Next"-->
+<!--      [responsive]="true"-->
+<!--      (pageChange)="handlePageChange($event)"-->
+<!--    ></pagination-controls>-->
+    <app-more-button (click)="handlePageChange(1)"></app-more-button>
   </div>
 </div>
 

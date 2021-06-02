@@ -8,6 +8,8 @@ import {BaseService} from '../../../shared/facades/base.service';
 import {UiService} from '../../../shared/core/ui.service';
 import {map, tap} from 'rxjs/operators';
 import {AuthenticationService} from '../../../shared/facades/authentication.service';
+import {componentFactoryName} from "@angular/compiler";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-event',
@@ -90,7 +92,8 @@ export class EventComponent implements OnInit, OnDestroy {
               private breakpointObserver: BreakpointObserver,
               private authService: AuthenticationService,
               private baseService: BaseService,
-              private uiService: UiService) {
+              private uiService: UiService,
+              private router: Router) {
     this.matGridLayoutConfig = {col: 3, rowHeight: '1:1', gutterSize: '20px'};
   }
   retrieveMoreEvents(): void {
@@ -100,24 +103,24 @@ export class EventComponent implements OnInit, OnDestroy {
     });
   };
 
+  buildCarouselImages(): [] {
+    this.carouselImages = [];
+    let $i = -1;
+    while (this.backendEvent.data)
+    {
+      $i++;
+      // tslint:disable-next-line
+      this.carouselImages.push(this.backendEvent.data[$i]['banner']);
+    }
+    return this.carouselImages;
+  }
+
 
   ngOnInit(): void {
     this.events$.subscribe(evts => console.log('EVT ', evts));
     this.eventFacadeService.getAllEvents().subscribe(eventsData => {
       this.backendEvent = eventsData;
-      this.carouselImages = [
-        // 'assets/images/img_1.png',
-        // 'assets/images/img_5.png',
-        // 'assets/images/img_19.png',
-        // 'http://tyckethub.test/1621598264_banner_img_22.png',
-        this.backendEvent.data[0]['banner'],
-        this.backendEvent.data[1]['banner'],
-        this.backendEvent.data[2]['banner'],
-        this.backendEvent.data[3]['banner'],
-        this.backendEvent.data[4]['banner'],
-        this.backendEvent.data[5]['banner'],
-        this.backendEvent.data[6]['banner'],
-      ];
+      this.buildCarouselImages();
       console.log('backendEventData => ', this.backendEvent.data);
     });
     this.retrieveMoreEvents();
@@ -165,5 +168,12 @@ export class EventComponent implements OnInit, OnDestroy {
   handlePageChange(event: number): void {
     this.page = event;
     this.retrieveMoreEvents();
+  }
+
+  reloadUrlWithComponent(): void {
+    const currentUrl = this.router.url;
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    this.router.onSameUrlNavigation = 'reload';
+    this.router.navigate([currentUrl]);
   }
 }

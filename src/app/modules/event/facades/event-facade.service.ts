@@ -98,6 +98,10 @@ export class EventFacadeService {
     console.log('Payload => ', payload);
     return this.eventService.uploadEventImages(payload, +eventId);
   }
+  createSlideImage(payload: any): Observable<any> {
+    console.log('Payload => ', payload);
+    return this.eventService.createSlideImage(payload);
+  }
 
   getAttendeeEvents(attendeeId: any): Observable<any> {
     return this.attendeeService.getAttendeeEvents(+attendeeId);
@@ -106,4 +110,30 @@ export class EventFacadeService {
   getArtisteEvents(artisteId: any): Observable<any> {
     return this.artisteService.getArtisteEvents(+artisteId);
   }
+
+  createEventStatus(payload: any): Observable<any> {
+    return this.eventService.createEventStatus(payload);
+  }
+
+  createArtisteData(payload: any): Observable<any> {
+    return this.artisteService.createArtisteData(payload);
+  }
+
+  deleteEventStatus(payload: number): Observable<any> {
+    return this.eventService.deleteEventStatus(payload);
+  }
+
+  approveEvent(eventId: any): Observable<any> {
+    return this.eventService.approveEvent(+eventId);
+  }
+
+  deleteArtisteData(payload: number): Observable<any> {
+    return this.artisteService.deleteArtisteData(payload);
+  }
+
+  searchEvent(payload: any): Observable<any> {
+    console.log(payload);
+    return this.eventService.searchEvent(payload);
+  }
+
 }

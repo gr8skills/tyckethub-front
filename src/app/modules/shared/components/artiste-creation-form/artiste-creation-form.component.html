@@ -1,0 +1,25 @@
+<form [formGroup]="artisteCreationForm" (ngSubmit)="save()">
+  <div class="form-error" *ngIf="formErrorValue$ | async as formError">
+    {{formError}}
+  </div>
+  <div fxLayout="column" fxLayoutAlign="center start" fxLayoutGap="10px">
+    <div fxFlex fxLayout="column" class="full-width">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Name</mat-label>
+        <input matInput type="text" formControlName="name" class="full-width" required>
+      </mat-form-field>
+    </div>
+    <div fxFlex fxLayout="column" class="full-width">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Bio</mat-label>
+        <textarea matInput formControlName="bio" class="full-width"></textarea>
+      </mat-form-field>
+    </div>
+    <div fxFlex fxLayout="row" fxLayoutAlign="start center">
+      <button mat-flat-button color="primary" type="submit">
+        <mat-icon>save</mat-icon>
+        Save
+      </button>
+    </div>
+  </div>
+</form>

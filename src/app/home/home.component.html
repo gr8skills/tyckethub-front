@@ -71,7 +71,7 @@
 
   <div fxLayout="row"
        fxLayoutAlign="space-between center">
-    <div class="horizontal-scroll" fxHide.xs>
+    <div class="horizontal-scroll" *ngIf="eventsDynamic$ | async as events" fxHide.xs>
       <ngx-slick-carousel class="carousel full-width"
                           #slickModal="slick-carousel"
                           [config]="slickSlideConfig"

@@ -13,35 +13,35 @@
   <ng-container *ngIf="openTab === tabs[0]">
     <div fxFlex="auto" fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="2%" class="tab-container">
       <h3 class="tab-container-into">Which event are you looking for?</h3>
-      <div fxFlex="1 1 auto" class="field-container">
-        <mat-form-field appearance="outline" class="full-width" color="primary">
-          <mat-label>Enter event name</mat-label>
-          <input type="text" matInput>
-          <mat-icon matPrefix color="primary">search</mat-icon>
-        </mat-form-field>
-      </div>
-      <div fxFlex="1 1 auto" class="field-container">
-        <mat-form-field appearance="outline" class="full-width" color="accent">
-          <mat-label>Lagos state</mat-label>
-          <input type="text" matInput>
-          <mat-icon matPrefix color="primary">place</mat-icon>
-        </mat-form-field>
-      </div>
-      <div fxFlex="1 1 auto" class="field-container">
-        <mat-form-field appearance="outline" class="full-width" color="accent">
-          <mat-label>Date</mat-label>
-          <mat-select>
-            <mat-option value="All Date">All Date</mat-option>
-            <mat-option value="This Week">This Week</mat-option>
-            <mat-option value="This Weekend">This Weekend</mat-option>
-            <mat-option value="Next Week">Next Week</mat-option>
-          </mat-select>
-          <mat-icon matPrefix color="primary">event</mat-icon>
-        </mat-form-field>
-      </div>
-      <div fxFlex="1 1 auto">
-        <button mat-flat-button color="warn" class="full-width" id="search">Search</button>
-      </div>
+        <div fxFlex="1 1 auto" class="field-container">
+          <mat-form-field appearance="outline" class="full-width" color="primary">
+            <mat-label>Enter event name</mat-label>
+            <input type="text" matInput [(ngModel)]="eventName">
+            <mat-icon matPrefix color="primary">search</mat-icon>
+          </mat-form-field>
+        </div>
+        <div fxFlex="1 1 auto" class="field-container">
+          <mat-form-field appearance="outline" class="full-width" color="accent">
+            <mat-label>Lagos state</mat-label>
+            <input type="text" matInput [(ngModel)]="place">
+            <mat-icon matPrefix color="primary">place</mat-icon>
+          </mat-form-field>
+        </div>
+        <div fxFlex="1 1 auto" class="field-container">
+          <mat-form-field appearance="outline" class="full-width" color="accent">
+            <mat-label>Date</mat-label>
+            <mat-select [(ngModel)]="date">
+              <mat-option value="All Date">All Date</mat-option>
+              <mat-option value="This Week">This Week</mat-option>
+              <mat-option value="This Weekend">This Weekend</mat-option>
+              <mat-option value="Next Week">Next Week</mat-option>
+            </mat-select>
+            <mat-icon matPrefix color="primary">event</mat-icon>
+          </mat-form-field>
+        </div>
+        <div fxFlex="1 1 auto">
+          <button mat-flat-button color="warn" class="full-width" id="search" type="submit" (click)="submit()">Search</button>
+        </div>
     </div>
   </ng-container>
   <ng-container *ngIf="openTab === tabs[1]">

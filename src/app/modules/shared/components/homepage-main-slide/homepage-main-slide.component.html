@@ -1,0 +1,49 @@
+<form [formGroup]="slideCreationForm" (ngSubmit)="save()">
+  <div class="form-error" *ngIf="formErrorValue$ | async as formError">
+    {{formError}}
+  </div>
+  <div fxLayout="column" fxLayoutAlign="center start" fxLayoutGap="10px">
+    <div fxFlex fxLayout="column" fxLayoutAlign="center">
+      <input #slideImageInput
+             type="file"
+             accept="image/*"
+             class="upload-btn"
+             formControlName="imgFile"
+             id="imgFile"
+             (change)="processFile($event, 'banner')"
+      >
+      <div fxLayout="row" fxLayoutAlign="center stretch" class="file-upload full-width">
+        <button mat-flat-button color="accent" (click)="slideImageInput.click()">
+          <mat-icon>upload_file</mat-icon>&nbsp;<mat-label>File</mat-label>
+        </button>
+      </div>
+    </div>
+<!--    <div fxFlex fxLayout="column" class="full-width">-->
+<!--      <mat-form-field appearance="outline" class="full-width">-->
+<!--        <mat-label>Name</mat-label>-->
+<!--        <input matInput type="text" formControlName="name" class="full-width" required>-->
+<!--      </mat-form-field>-->
+<!--    </div>-->
+<!--    <div fxFlex fxLayout="column" class="full-width">-->
+<!--      <mat-form-field appearance="outline" class="full-width" color="accent">-->
+<!--        <mat-label>Active?</mat-label>-->
+<!--        <mat-select formControlName="active">-->
+<!--          <mat-option value="1">Yes</mat-option>-->
+<!--          <mat-option value="0">No</mat-option>-->
+<!--        </mat-select>-->
+<!--      </mat-form-field>-->
+<!--    </div>-->
+    <div fxFlex fxLayout="column" class="full-width">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Description</mat-label>
+        <textarea matInput formControlName="description" class="full-width"></textarea>
+      </mat-form-field>
+    </div>
+    <div fxFlex fxLayout="row" fxLayoutAlign="start center">
+      <button mat-flat-button color="primary" type="submit">
+        <mat-icon>save</mat-icon>
+        Save
+      </button>
+    </div>
+  </div>
+</form>

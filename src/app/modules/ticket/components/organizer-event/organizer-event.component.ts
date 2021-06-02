@@ -8,16 +8,20 @@ import {EventFacadeService} from '../../../event/facades/event-facade.service';
 import {AuthenticationService} from '../../../shared/facades/authentication.service';
 import {BaseService} from '../../../shared/facades/base.service';
 import {Subject} from 'rxjs';
+import {LocalStorageItems} from '../../../shared/models/enums';
+import {DeleteModalComponent} from '../../../shared/components/delete-modal/delete-modal.component';
 
 interface EventData {
   id: number;
   date: Date;
   name: string;
+  organizer: string;
+  approved: string;
   ticketSold: number;
   totalTicket: number;
   revenue: number;
   status: string;
-  action: { label: string, link: string }[];
+  action: { label: string, link: string, id: number }[];
 }
 
 const EVENT_DATA: EventData[] = [
@@ -25,6 +29,8 @@ const EVENT_DATA: EventData[] = [
     id: 1,
     date: new Date(),
     name: '30 Billion Concert II',
+    organizer: 'Skillz',
+    approved: 'No',
     ticketSold: 2,
     totalTicket: 10,
     revenue: 5000,
@@ -32,19 +38,23 @@ const EVENT_DATA: EventData[] = [
     action: [
       {
         label: 'View',
-        link: ''
+        link: '',
+        id: 0,
       },
       {
         label: 'Edit',
-        link: '2/edit/basic-info'
+        link: '2/edit/basic-info',
+        id: 0,
       },
       {
         label: 'Copy URL',
-        link: ''
+        link: '',
+        id: 0,
       },
       {
         label: 'Postpone',
-        link: ''
+        link: '',
+        id: 0,
       }
     ]
   }
@@ -66,10 +76,14 @@ export class OrganizerEventComponent implements OnInit, OnDestroy {
   organizerEvents: any[] = [];
   currentUser: any = this.authService.currentUserValue;
   eventTableSource: any;
+  ticketQtySold: any[] = [];
+  ticketsQty: any;
+  ticketSalesRevenue: any;
+  isMobile = false;
 
   selection = new SelectionModel<any>(true, []);
   dataSource = new MatTableDataSource<EventData>(EVENT_DATA);
-  displayColumns = ['select', 'date', 'event', 'ticketSold', 'revenue', 'status', 'action'];
+  displayColumns = ['select', 'date', 'event', 'organizer', 'approved', 'ticketSold', 'revenue', 'status', 'action'];
 
   constructor(private eventStatusService: EventStatusService,
               private uiService: UiService,
@@ -120,6 +134,7 @@ export class OrganizerEventComponent implements OnInit, OnDestroy {
     );
   }
 
+
   private prepareOrganizerEventsTableDataSource(): any[] {
     const eventContainer: EventData[] = [];
     this.organizerEvents.forEach((event: any) => {
@@ -127,15 +142,18 @@ export class OrganizerEventComponent implements OnInit, OnDestroy {
         id: event.id,
         date: event.start_date,
         name: event.name,
-        ticketSold: 0,
-        totalTicket: 1000,
+        organizer: event.organizer,
+        approved: event.is_published,
+        ticketSold: event.tickets.all_attendees,
+        totalTicket: event.tickets.quantity,
         revenue: 0,
-        status: event.status.name,
+        status: event.status,
         action: [
-          {label: 'View', link: `${event.id}/edit/dashboard`},
-          {label: 'Edit', link: `${event.id}/edit/details`},
-          {label: 'Copy URL', link: ''},
-          {label: 'Postpone', link: ''}
+          {label: 'View', link: `${event.id}/edit/dashboard`, id: event.id},
+          {label: 'Edit', link: `${event.id}/edit/details`, id: event.id},
+          {label: 'Copy URL', link: `${event.id}/edit/details`, id: event.id},
+          // tslint:disable-next-line:triple-equals
+          {label: event.is_published == 1 ? 'Reject' : 'Approve', link: `approve/${event.id}`, id: event.id}
         ]
       };
       eventContainer.push(tempEvent);
@@ -162,8 +180,42 @@ export class OrganizerEventComponent implements OnInit, OnDestroy {
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.id + 1}`;
   }
 
-  openMenu(path: string): void {
-    this.router.navigateByUrl(`/events/${path}`);
+  openMenu(event: any, path: string, id: number): void {
+    console.log('clicked', path);
+    if (path.includes('approve')){
+      this.baseService.storeLocalItem(LocalStorageItems.ADMIN_APPROVE_EVENT, JSON.stringify(id));
+      this.openApproveModal();
+    }else {
+      this.router.navigateByUrl(`/events/${path}`);
+    }
+  }
+
+  openApproveModal(): void {
+    const dialogRef = this.uiService.openDialog(DeleteModalComponent, this.isMobile, null);
+    dialogRef.afterClosed().subscribe(
+      approvePayload => {
+        if (approvePayload) {
+          const payload: number = JSON.parse(this.baseService.getLocalItem(LocalStorageItems.ADMIN_APPROVE_EVENT));
+          this.uiService.busy = true;
+          console.log('Approve ID ', payload);
+          this.eventFacade.approveEvent(payload).subscribe(
+            createdEventStatus => {
+              this.uiService.busy = false;
+              this.uiService.openSnackBar('Event Set successfully.', 'OK');
+            },
+            error => {
+              this.uiService.busy = false;
+              const errorMessage = this.baseService.processResponseError(error);
+              this.uiService.openSnackBar(errorMessage, 'OK');
+            }
+          );
+          this.baseService.removeLocalItem(LocalStorageItems.ADMIN_APPROVE_EVENT);
+          this.router.navigateByUrl('/tickets/organizer/overview').then(() => { this.router.navigateByUrl(`/tickets/organizer/events`); });
+        } else {
+          this.uiService.openSnackBar('Error setting status', 'OK');
+        }
+      }
+    );
   }
 
   ngOnDestroy(): void {

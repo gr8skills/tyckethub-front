@@ -91,7 +91,7 @@ export class EventDescriptionComponent implements OnInit {
   }
 
   checkValueLimit(inputElement: HTMLInputElement): boolean {
-    this.inputValue = inputElement.value;
+    this.inputValue = inputElement;
     if (!inputElement.value) {
       inputElement.value = String(1);
     }

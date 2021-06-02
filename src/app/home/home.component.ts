@@ -8,6 +8,7 @@ import {UiService} from '../modules/shared/core/ui.service';
 import {Subscription} from 'rxjs';
 import {EventFacadeService} from '../modules/event/facades/event-facade.service';
 import {AuthenticationService} from '../modules/shared/facades/authentication.service';
+import {map} from "rxjs/operators";
 
 @Component({
   selector: 'app-home',
@@ -23,7 +24,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     'assets/images/img_104.jpg'
   ];
 
-  events: Event[] = [...EVENTS, ...EVENTS_MORE];
+  events: Event[] = EVENTS_MORE;
   flights: Flight[] = [...FLIGHTS, ...MORE_FLIGHTS];
   movies: Movie[] = [...MOVIES];
   // eventsDynamic$ = this.eventFacade.getAllEvents();
@@ -39,10 +40,26 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   displayStyle = {};
 
+  eventsDynamic$ = this.eventFacadeService.getAllEvents()
+    .pipe(
+      map(response => {
+        console.log('Resp => ', response);
+        const eventsArray = response.data as Array<any>;
+        const eventsAbridgedArray: Event[] = [];
+
+        eventsArray.forEach(eventAbridged => {
+          eventsAbridgedArray.push(Event.fromJSON(eventAbridged));
+        });
+        console.log('eventsAbridgedArray => ', eventsAbridgedArray);
+        return eventsAbridgedArray;
+      })
+    );
+
   constructor(private layoutService: LayoutService,
               private uiService: UiService,
               private eventFacade: EventFacadeService,
-              private authService: AuthenticationService) {
+              private authService: AuthenticationService,
+              private eventFacadeService: EventFacadeService) {
     this.flights = this.flights.filter(flight => flight.type !== FlightType.Featured);
     this.slickMoviesSlideConfig = {...this.slickSlideConfig};
   }
@@ -91,4 +108,5 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.layoutServiceSub.unsubscribe();
     this.eventCreationProgressSub.unsubscribe();
   }
+
 }

@@ -21,7 +21,6 @@ import {LaddaModule} from 'angular2-ladda';
 import {SlickCarouselModule} from 'ngx-slick-carousel';
 import { FlutterwaveModule } from 'flutterwave-angular-v3';
 import {Angular4PaystackModule} from 'angular4-paystack';
-
 // import { ReactiveFormsModule } from '@angular/forms';
 //
 // import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';

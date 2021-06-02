@@ -1,0 +1,19 @@
+<form [formGroup]="eventStatusForm" (ngSubmit)="save()">
+  <div class="form-error" *ngIf="formErrorValue$ | async as formError">
+    {{formError}}
+  </div>
+  <div fxLayout="column" fxLayoutAlign="center start" fxLayoutGap="10px">
+    <div fxFlex fxLayout="column" class="full-width">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Status</mat-label>
+        <input matInput type="text" formControlName="name" class="full-width" required>
+      </mat-form-field>
+    </div>
+    <div fxFlex fxLayout="row" fxLayoutAlign="start center">
+      <button mat-flat-button color="primary" type="submit">
+        <mat-icon>save</mat-icon>
+        Save
+      </button>
+    </div>
+  </div>
+</form>

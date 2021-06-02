@@ -201,4 +201,8 @@ export class AuthenticationService {
       },
     );
   }
+
+  getSlides(): Observable<any> {
+    return this.http.get<any>(`${this.endPoint}/homepage/slides`, this.requestHeaderOptions);
+  }
 }

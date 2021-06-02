@@ -26,7 +26,7 @@
         <span style="font-size: x-small">{{userData.email}} | {{userData.phone}}</span>
       </div>
       <div class="navs" fxHide.xs>
-        <ng-container style="height: auto" *ngIf="userRole === 'attendee'; then attendeeLinks else organizerLinks"></ng-container>
+        <ng-container style="height: auto" *ngIf="userRole === 'attendee'; then attendeeLinks; else organizerLinks"></ng-container>
         <ng-template #attendeeLinks>
           <a matRipple class="nav-item" routerLink="/tickets/overview" routerLinkActive="nav-active">Overview</a>
           <a matRipple class="nav-item" routerLink="/tickets/my-tickets" routerLinkActive="nav-active">My Tickets</a>
@@ -47,8 +47,8 @@
 <!--          <a matRipple class="nav-item" routerLink="/tickets/favorites" routerLinkActive="nav-active">Favourites</a>-->
 <!--          <a matRipple class="nav-item" routerLink="/tickets/organizer/info" routerLinkActive="nav-active">Info</a>-->
 <!--          <a matRipple class="nav-item" routerLink="/tickets/rf-id" routerLinkActive="nav-active">RF ID</a>-->
-          <a matRipple class="nav-item" routerLink="/users/admin" routerLinkActive="nav-active">Users</a>
-          <a matRipple class="nav-item" routerLink="/tickets/site-settings" routerLinkActive="nav-active">Site Settings</a>
+          <a matRipple class="nav-item" routerLink="/users/admin" *ngIf="userRole === 'admin'" routerLinkActive="nav-active">Users</a>
+          <a matRipple class="nav-item" *ngIf="userRole === 'admin'" routerLink="/tickets/site-settings" routerLinkActive="nav-active">Site Settings</a>
           <a matRipple class="nav-item" (click)="logout()">Sign Out</a>
 
         </ng-template>

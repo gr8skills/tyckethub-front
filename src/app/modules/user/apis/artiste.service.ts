@@ -24,4 +24,12 @@ export class ArtisteService {
   getArtisteEvents(artisteId: number): Observable<any> {
     return this.httpClient.get<any>(`${this.endPoint}/artistes/${artisteId}/events`, this.requestOption);
   }
+
+  deleteArtisteData(payload: any): Observable<any> {
+    return this.httpClient.delete<any>(`${this.endPoint}/artiste/delete/${payload}`, this.requestOption);
+  }
+
+  createArtisteData(payload: any): Observable<any> {
+    return this.httpClient.post<any>(`${this.endPoint}/artiste-data/create`, payload, this.requestOption);
+  }
 }

@@ -21,7 +21,9 @@ export enum LocalStorageItems {
   EVENT_PROGRESS = 'eventProgress',
   EVENT_ONLINE_DETAILS = 'eventOnlineDetails',
   EVENT_TICKET_DATA = 'eventTicketData',
-  EVENT_TICKET_SETTING = 'eventTicketSetting'
+  EVENT_TICKET_SETTING = 'eventTicketSetting',
+  DELETE_TABLE_ITEM = 'deleteTableItem',
+  ADMIN_APPROVE_EVENT = 'adminApproveEvent',
 }
 
 export enum EventImageTypes {
