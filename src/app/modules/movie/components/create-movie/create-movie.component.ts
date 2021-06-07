@@ -211,7 +211,7 @@ export class CreateMovieComponent implements OnInit, OnDestroy {
 
     if (this.form.valid) {
       const event = new MovieDto(this.form.value as RawMovieFormValue);
-      console.log('MOVIE PAYLOAD => ', event);
+      console.log('MOVIE PAYLOAD => ', event); return;
       this.uiService.busy = true;
       this.movieFacade.createMovie(event).subscribe(
         createdMovie => {

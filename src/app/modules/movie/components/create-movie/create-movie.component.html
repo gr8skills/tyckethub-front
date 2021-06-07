@@ -28,7 +28,7 @@
              class="full-width"
         >
           <mat-form-field appearance="outline" color="primary" class="full-width">
-            <mat-label>Event Title</mat-label>
+            <mat-label>Movie Title</mat-label>
             <input matInput type="text" formControlName="title" id="title" required>
             <mat-error *ngIf="controls.title?.touched && controls.title?.invalid">
               <span *ngIf="controls.title?.hasError('required')">Movie title is required.</span>
@@ -160,7 +160,7 @@
                     type="button"
                     #live color="accent"
                     class="btn-add px-1"
-                    (click)="selectVenuePlatform('live')"
+                    (click)="selectVenuePlatform('cinema')"
                     [ngClass]="{'venue-button-active' : locationVenueButtons.cinema}"
             >Cinema
             </button>
