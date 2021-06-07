@@ -36,7 +36,7 @@ export class MoviePageHeaderComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.isLoggedIn = this.authService.loggedIn();
-    this.userRole = this.authService.getUserRole();
+    this.userRole = this.authService.currentUserValue.role;
     console.log('this.userRole ', this.userRole);
   }
 

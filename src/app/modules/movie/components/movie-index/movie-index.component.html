@@ -15,7 +15,7 @@
            fxLayoutAlign.xs="start center"
            fxLayoutGap="2%" style="margin-top: 30px;" class="card-wrapper">
         <app-movie-card
-          *ngFor="let movie of filteredMovies.slice(0,4); let i = index" [movie]="movie"
+          *ngFor="let movie of filteredNowPlaying.slice(0,4); let i = index" [movie]="movie"
           fxFlex="auto"
         >
         </app-movie-card>
@@ -25,7 +25,7 @@
            fxLayoutAlign.xs="start center"
            fxLayoutGap="2%" style="margin-top: 30px;" class="card-wrapper">
         <app-movie-card
-          *ngFor="let movie of filteredMovies.slice(4,8); let i = index" [movie]="movie"
+          *ngFor="let movie of filteredNowPlaying.slice(4,8); let i = index" [movie]="movie"
           fxFlex="auto"
         >
         </app-movie-card>
@@ -35,19 +35,20 @@
            fxLayoutAlign.xs="start center"
            fxLayoutGap="2%" style="margin-top: 30px;" class="card-wrapper">
         <app-movie-card
-          *ngFor="let movie of filteredMovies.slice(8,12); let i = index" [movie]="movie"
+          *ngFor="let movie of filteredNowPlaying.slice(8,12); let i = index" [movie]="movie"
           fxFlex="auto"
         >
         </app-movie-card>
       </div>
     </mat-tab>
+
     <mat-tab label="Coming Soon">
       <div fxLayout="row" fxLayout.xs="column"
            fxLayoutAlign="space-between center"
            fxLayoutAlign.xs="start center"
            fxLayoutGap="2%" style="margin-top: 30px;" class="card-wrapper">
         <app-movie-card
-          *ngFor="let movie of filteredMovies.slice(0,4); let i = index" [movie]="movie"
+          *ngFor="let movie of filteredComingSoon.slice(0,4); let i = index" [movie]="movie"
           fxFlex="auto"
         >
         </app-movie-card>
@@ -57,7 +58,7 @@
            fxLayoutAlign.xs="start center"
            fxLayoutGap="2%" style="margin-top: 30px;" class="card-wrapper">
         <app-movie-card
-          *ngFor="let movie of filteredMovies.slice(4,8); let i = index" [movie]="movie"
+          *ngFor="let movie of filteredComingSoon.slice(4,8); let i = index" [movie]="movie"
           fxFlex="auto"
         >
         </app-movie-card>
@@ -67,19 +68,21 @@
            fxLayoutAlign.xs="start center"
            fxLayoutGap="2%" style="margin-top: 30px;" class="card-wrapper">
         <app-movie-card
-          *ngFor="let movie of filteredMovies.slice(8,12); let i = index" [movie]="movie"
+          *ngFor="let movie of filteredComingSoon.slice(8,12); let i = index" [movie]="movie"
           fxFlex="auto"
         >
         </app-movie-card>
       </div>
     </mat-tab>
+
+
     <mat-tab label="Blockbusters">
       <div fxLayout="row" fxLayout.xs="column"
            fxLayoutAlign="space-between center"
            fxLayoutAlign.xs="start center"
            fxLayoutGap="2%" style="margin-top: 30px;" class="card-wrapper">
         <app-movie-card
-          *ngFor="let movie of filteredMovies.slice(0,4); let i = index" [movie]="movie"
+          *ngFor="let movie of filteredBlockbuster.slice(0,4); let i = index" [movie]="movie"
           fxFlex="auto"
         >
         </app-movie-card>
@@ -89,7 +92,7 @@
            fxLayoutAlign.xs="start center"
            fxLayoutGap="2%" style="margin-top: 30px;" class="card-wrapper">
         <app-movie-card
-          *ngFor="let movie of filteredMovies.slice(4,8); let i = index" [movie]="movie"
+          *ngFor="let movie of filteredBlockbuster.slice(4,8); let i = index" [movie]="movie"
           fxFlex="auto"
         >
         </app-movie-card>
@@ -99,7 +102,7 @@
            fxLayoutAlign.xs="start center"
            fxLayoutGap="2%" style="margin-top: 30px;" class="card-wrapper">
         <app-movie-card
-          *ngFor="let movie of filteredMovies.slice(8,12); let i = index" [movie]="movie"
+          *ngFor="let movie of filteredBlockbuster.slice(8,12); let i = index" [movie]="movie"
           fxFlex="auto"
         >
         </app-movie-card>
@@ -111,7 +114,7 @@
            fxLayoutAlign.xs="start center"
            fxLayoutGap="2%" style="margin-top: 30px;" class="card-wrapper">
         <app-movie-card
-          *ngFor="let movie of filteredMovies.slice(0,4); let i = index" [movie]="movie"
+          *ngFor="let movie of filteredDrama.slice(0,4); let i = index" [movie]="movie"
           fxFlex="auto"
         >
         </app-movie-card>
@@ -121,7 +124,7 @@
            fxLayoutAlign.xs="start center"
            fxLayoutGap="2%" style="margin-top: 30px;" class="card-wrapper">
         <app-movie-card
-          *ngFor="let movie of filteredMovies.slice(4,8); let i = index" [movie]="movie"
+          *ngFor="let movie of filteredDrama.slice(4,8); let i = index" [movie]="movie"
           fxFlex="auto"
         >
         </app-movie-card>
@@ -131,7 +134,7 @@
            fxLayoutAlign.xs="start center"
            fxLayoutGap="2%" style="margin-top: 30px;" class="card-wrapper">
         <app-movie-card
-          *ngFor="let movie of filteredMovies.slice(8,12); let i = index" [movie]="movie"
+          *ngFor="let movie of filteredDrama.slice(8,12); let i = index" [movie]="movie"
           fxFlex="auto"
         >
         </app-movie-card>
@@ -143,7 +146,7 @@
            fxLayoutAlign.xs="start center"
            fxLayoutGap="2%" style="margin-top: 30px;" class="card-wrapper">
         <app-movie-card
-          *ngFor="let movie of filteredMovies.slice(0,4); let i = index" [movie]="movie"
+          *ngFor="let movie of filteredAction.slice(0,4); let i = index" [movie]="movie"
           fxFlex="auto"
         >
         </app-movie-card>
@@ -153,7 +156,7 @@
            fxLayoutAlign.xs="start center"
            fxLayoutGap="2%" style="margin-top: 30px;" class="card-wrapper">
         <app-movie-card
-          *ngFor="let movie of filteredMovies.slice(4,8); let i = index" [movie]="movie"
+          *ngFor="let movie of filteredAction.slice(4,8); let i = index" [movie]="movie"
           fxFlex="auto"
         >
         </app-movie-card>
@@ -163,7 +166,7 @@
            fxLayoutAlign.xs="start center"
            fxLayoutGap="2%" style="margin-top: 30px;" class="card-wrapper">
         <app-movie-card
-          *ngFor="let movie of filteredMovies.slice(8,12); let i = index" [movie]="movie"
+          *ngFor="let movie of filteredAction.slice(8,12); let i = index" [movie]="movie"
           fxFlex="auto"
         >
         </app-movie-card>
@@ -175,7 +178,7 @@
            fxLayoutAlign.xs="start center"
            fxLayoutGap="2%" style="margin-top: 30px;" class="card-wrapper">
         <app-movie-card
-          *ngFor="let movie of filteredMovies.slice(0,4); let i = index" [movie]="movie"
+          *ngFor="let movie of filteredThriller.slice(0,4); let i = index" [movie]="movie"
           fxFlex="auto"
         >
         </app-movie-card>
@@ -185,7 +188,7 @@
            fxLayoutAlign.xs="start center"
            fxLayoutGap="2%" style="margin-top: 30px;" class="card-wrapper">
         <app-movie-card
-          *ngFor="let movie of filteredMovies.slice(4,8); let i = index" [movie]="movie"
+          *ngFor="let movie of filteredThriller.slice(4,8); let i = index" [movie]="movie"
           fxFlex="auto"
         >
         </app-movie-card>
@@ -195,7 +198,7 @@
            fxLayoutAlign.xs="start center"
            fxLayoutGap="2%" style="margin-top: 30px;" class="card-wrapper">
         <app-movie-card
-          *ngFor="let movie of filteredMovies.slice(8,12); let i = index" [movie]="movie"
+          *ngFor="let movie of filteredThriller.slice(8,12); let i = index" [movie]="movie"
           fxFlex="auto"
         >
         </app-movie-card>
@@ -207,7 +210,7 @@
            fxLayoutAlign.xs="start center"
            fxLayoutGap="2%" style="margin-top: 30px;" class="card-wrapper">
         <app-movie-card
-          *ngFor="let movie of filteredMovies.slice(0,4); let i = index" [movie]="movie"
+          *ngFor="let movie of filteredComedy.slice(0,4); let i = index" [movie]="movie"
           fxFlex="auto"
         >
         </app-movie-card>
@@ -217,7 +220,7 @@
            fxLayoutAlign.xs="start center"
            fxLayoutGap="2%" style="margin-top: 30px;" class="card-wrapper">
         <app-movie-card
-          *ngFor="let movie of filteredMovies.slice(4,8); let i = index" [movie]="movie"
+          *ngFor="let movie of filteredComedy.slice(4,8); let i = index" [movie]="movie"
           fxFlex="auto"
         >
         </app-movie-card>
@@ -227,7 +230,7 @@
            fxLayoutAlign.xs="start center"
            fxLayoutGap="2%" style="margin-top: 30px;" class="card-wrapper">
         <app-movie-card
-          *ngFor="let movie of filteredMovies.slice(8,12); let i = index" [movie]="movie"
+          *ngFor="let movie of filteredComedy.slice(8,12); let i = index" [movie]="movie"
           fxFlex="auto"
         >
         </app-movie-card>

@@ -25,6 +25,7 @@ export class CheckoutModalComponent implements OnInit {
   };
 
   reference = '';
+  ref = [];
   title = '';
 
   paymentInit(): void {
@@ -32,8 +33,10 @@ export class CheckoutModalComponent implements OnInit {
   }
 
   paymentDone(ref: any): any {
+    this.reference = ref;
     this.submitPaymentDetail();
     this.title = 'Payment successful';
+    this.attendeeService.updateTicketTransaction(ref,  +this.data.user.id).subscribe();
     console.log(this.title, ref);
   }
 
@@ -119,6 +122,16 @@ export class CheckoutModalComponent implements OnInit {
     return canSubmit;
   }
 
+  private payload(): any {
+    const payDetails: any = this.extractPaymentDetails();
+    const refDetails: any = this.ref;
+
+    return {
+      payDetails,
+      refDetails
+    };
+  }
+
   private extractPaymentDetails(): any {
     const cardDetails = this.cardModel;
     const ticketsDetails: any[] = this.data.ticketData;
@@ -131,7 +144,7 @@ export class CheckoutModalComponent implements OnInit {
       ticketsDetails,
       userId,
       eventId,
-      amount
+      amount,
     };
   }
 }

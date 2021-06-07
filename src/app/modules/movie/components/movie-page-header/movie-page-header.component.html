@@ -41,7 +41,7 @@
           </ng-template>
           <a *ngIf="!isLoggedIn" mat-button [routerLink]="['/users/sign-in']" color="accent">Sign In</a>
           <a *ngIf="isLoggedIn" mat-button (click)="logout()" color="accent">Logout</a>
-          <a mat-flat-button [routerLink]="['/events/create']" color="primary">Create Event</a>
+          <a mat-flat-button [routerLink]="['/movies/create']" *ngIf="userRole === 'admin'" color="primary">Create Movie</a>
 <!--          <a *ngIf="userRole === 'organizer' && isLoggedIn" mat-flat-button [routerLink]="['/events/create']" color="primary">Create Event</a>-->
         </div>
       </mat-toolbar-row>

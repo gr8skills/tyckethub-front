@@ -172,96 +172,128 @@ export const MOVIES: Movie[] = [
     id: 1,
     name: 'Rattle Snake',
     bigImage: 'assets/images/img_78.png',
-    smallImage: 'assets/images/img_77.png'
+    smallImage: 'assets/images/img_77.png',
+    genre: ['Action', 'Thriller'],
+    released: true
   }),
   new Movie({
     id: 2,
     name: 'The Croods A New Age',
     bigImage: 'assets/images/img_72.png',
-    smallImage: 'assets/images/img_71.png'
+    smallImage: 'assets/images/img_71.png',
+    genre: ['Action', 'Drama'],
+    released: true
   }),
   new Movie({
     id: 3,
     name: 'Voiceless',
     bigImage: 'assets/images/img_74.png',
-    smallImage: 'assets/images/img_73.png'
+    smallImage: 'assets/images/img_73.png',
+    genre: ['Drama', 'Action'],
+    released: false
   }),
   new Movie({
     id: 4,
     name: 'Fati',
     bigImage: 'assets/images/img_76.png',
-    smallImage: 'assets/images/img_75.png'
+    smallImage: 'assets/images/img_75.png',
+    genre: ['Comedy', ''],
+    released: true
   }),
   new Movie({
     id: 5,
     name: 'Tenet',
     bigImage: 'assets/images/img_85.png',
-    smallImage: 'assets/images/img_84.png'
+    smallImage: 'assets/images/img_84.png',
+    genre: ['Action', ''],
+    released: true,
   }),
   new Movie({
     id: 6,
     name: 'Loud',
     bigImage: 'assets/images/img_70.png',
-    smallImage: 'assets/images/img_79.png'
+    smallImage: 'assets/images/img_79.png',
+    genre: ['Blockbuster', 'Comedy'],
+    released: true
   }),
   new Movie({
     id: 7,
     name: 'Kambili',
     bigImage: 'assets/images/img_81.png',
-    smallImage: 'assets/images/img_80.png'
+    smallImage: 'assets/images/img_80.png',
+    genre: ['Thriller', 'Action'],
+    released: false
   }),
   new Movie({
     id: 8,
     name: 'Wonder Woman 1984',
     bigImage: 'assets/images/img_83.png',
-    smallImage: 'assets/images/img_82.png'
+    smallImage: 'assets/images/img_82.png',
+    genre: ['Comedy', 'Action'],
+    released: false
   }),
   new Movie({
     id: 9,
     name: 'Finding Hubby',
     bigImage: 'assets/images/img_93.png',
-    smallImage: 'assets/images/img_92.png'
+    smallImage: 'assets/images/img_92.png',
+    genre: ['Thriller', 'Action'],
+    released: false
   }),
   new Movie({
     id: 10,
     name: 'Greenland',
     bigImage: 'assets/images/img_87.png',
-    smallImage: 'assets/images/img_86.png'
+    smallImage: 'assets/images/img_86.png',
+    genre: ['Thriller', 'Action'],
+    released: false
   }),
   new Movie({
     id: 11,
     name: 'Quam\'s Money',
     bigImage: 'assets/images/img_89.png',
-    smallImage: 'assets/images/img_88.png'
+    smallImage: 'assets/images/img_88.png',
+    genre: ['Blockbuster', 'Action'],
+    released: false
   }),
   new Movie({
     id: 12,
     name: 'Broken Hearted',
     bigImage: 'assets/images/img_91.png',
-    smallImage: 'assets/images/img_90.png'
+    smallImage: 'assets/images/img_90.png',
+    genre: ['Drama', 'Action'],
+    released: true
   }),
   new Movie({
     id: 13,
     name: 'Son of Mercy',
     bigImage: 'assets/images/img_101.png',
-    smallImage: 'assets/images/img_100.png'
+    smallImage: 'assets/images/img_100.png',
+    genre: ['Thriller', 'Action'],
+    released: true
   }),
   new Movie({
     id: 14,
     name: 'Love Bane',
     bigImage: 'assets/images/img_95.png',
-    smallImage: 'assets/images/img_94.png'
+    smallImage: 'assets/images/img_94.png',
+    genre: ['Comedy', 'Thriller'],
+    released: true
   }),
   new Movie({
     id: 15,
     name: 'The War with Grandpa',
     bigImage: 'assets/images/img_97.png',
-    smallImage: 'assets/images/img_96.png'
+    smallImage: 'assets/images/img_96.png',
+    genre: ['Blockbuster', 'Action'],
+    released: true
   }),
   new Movie({
     id: 16,
     name: 'Lady Buckit and The Montley Monster',
     bigImage: 'assets/images/img_99.png',
-    smallImage: 'assets/images/img_98.png'
+    smallImage: 'assets/images/img_98.png',
+    genre: ['Thriller', 'Action'],
+    released: true
   }),
 ];

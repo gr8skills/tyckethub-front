@@ -19,6 +19,9 @@ export class OrganizerService {
   getOrganizerUncompletedEvents(organizerId: number): Observable<any> {
     return this.httpClient.get<any>(`${this.endPoint}/organizers/${organizerId}/uncompleted-events`, this.requestOption);
   }
+  getOrganizerUncompletedMovies(organizerId: number): Observable<any> {
+    return this.httpClient.get<any>(`${this.endPoint}/organizers/${organizerId}/uncompleted-movies`, this.requestOption);
+  }
 
   getOrganizerTickets(organizerId: number): Observable<any> {
     return this.httpClient.get<any>(`${this.endPoint}/organizers/${organizerId}/tickets`, this.requestOption);

@@ -5,7 +5,7 @@ import {Observable, of, from, combineLatest, BehaviorSubject} from 'rxjs';
 import {EVENTS, EVENTS_MORE} from '../../shared/data';
 import {environment} from '../../../../environments/environment';
 import {EventStatusService} from './event-status.service';
-import {stringify} from "querystring";
+import {stringify} from 'querystring';
 
 @Injectable({
   providedIn: 'root'

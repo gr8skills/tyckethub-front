@@ -33,4 +33,9 @@ export class AttendeeService {
   resellTickets(payload: any, attendeeId: number, ticketId: number): Observable<any> {
     return this.httpClient.post<any>(`${this.endPoint}/attendees/${attendeeId}/tickets/${ticketId}/re-sell`, payload, this.requestOptions);
   }
+
+  updateTicketTransaction(payload: any, attendeeId: number): Observable<any> {
+    console.log('Prepare to update: ', payload);
+    return this.httpClient.post<any>(`${this.endPoint}/attendees/${attendeeId}/purchase-tickets/update`, payload, this.requestOptions);
+  }
 }

@@ -8,8 +8,8 @@ import {BaseService} from '../../../shared/facades/base.service';
 import {UiService} from '../../../shared/core/ui.service';
 import {map, tap} from 'rxjs/operators';
 import {AuthenticationService} from '../../../shared/facades/authentication.service';
-import {componentFactoryName} from "@angular/compiler";
-import {Router} from "@angular/router";
+import {componentFactoryName} from '@angular/compiler';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-event',

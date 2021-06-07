@@ -14,6 +14,7 @@ export enum EventTicketType {
 export enum LocalStorageItems {
   RETURN_URL = 'returnUrl',
   CREATED_EVENT = 'createdEvent',
+  CREATED_MOVIE = 'createdMovie',
   TO_ARTISTE_TAB = 'toArtisteTab',
   ACCESS_TOKEN = 'access_token',
   CURRENT_USER = 'currentUser',
