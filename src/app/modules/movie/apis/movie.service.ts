@@ -34,7 +34,7 @@ export class MovieService {
     return this.httpClient.get<any>(`${this.baseUrl}/movie-genres`, this.requestOptions);
   }
   getMovieRestrictions(): Observable<any> {
-    return this.httpClient.get<any>(`${this.baseUrl}/movie-age-restrictions`, this.requestOptions);
+    return this.httpClient.get<any>(`${this.baseUrl}/event-age-restrictions`, this.requestOptions);
   }
 
   getArtistes(): Observable<any> {
@@ -51,5 +51,13 @@ export class MovieService {
 
   updateMovie(event: any): Observable<any> {
     return this.httpClient.patch<any>(`${this.baseUrl}/movies/${event.id}`, event, this.requestOptions);
+  }
+
+  uploadMovieImages(imagePayload: any, eventId: number): Observable<any> {
+    const headers = new HttpHeaders();
+    headers.append('Content-Type', 'multipart/form-data');
+    headers.append('Accept', 'application/json');
+
+    return this.httpClient.post<any>(`${this.baseUrl}/movies/${eventId}/images`, imagePayload, {headers});
   }
 }

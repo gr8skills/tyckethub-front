@@ -89,16 +89,16 @@ export class MovieFacadeService {
     return this.organizerService.getOrganizerUncompletedMovies(+organizerId);
   }
 
+  uploadMovieImages(payload: any, movieId: any): Observable<any> {
+    console.log('Payload => ', payload);
+    return this.movieService.uploadMovieImages(payload, +movieId);
+  }
   /*
-  uploadEventsImages(payload: any, eventId: any): Observable<any> {
-    console.log('Payload => ', payload);
-    return this.eventService.uploadEventImages(payload, +eventId);
-  }
-  createSlideImage(payload: any): Observable<any> {
-    console.log('Payload => ', payload);
-    return this.eventService.createSlideImage(payload);
-  }
-   */
+ createSlideImage(payload: any): Observable<any> {
+   console.log('Payload => ', payload);
+   return this.eventService.createSlideImage(payload);
+ }
+  */
 
   getAttendeeEvents(attendeeId: any): Observable<any> {
     return this.attendeeService.getAttendeeEvents(+attendeeId);

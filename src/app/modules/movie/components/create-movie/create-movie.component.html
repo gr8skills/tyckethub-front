@@ -87,48 +87,48 @@
           </div>
         </div>
 
-        <h3 class="title-4">Tags</h3>
-        <p>Adding tags relevant to your movies, to make it easier to find.</p>
+<!--        <h3 class="title-4">Tags</h3>-->
+<!--        <p>Adding tags relevant to your movies, to make it easier to find.</p>-->
 
-        <div fxLayout="row" fxLayoutGap="2%" fxLayoutAlign="space-between center" class="full-width">
-          <div fxFlex="1 1 100" fxLayout="row" fxLayoutAlign="start" class="full-width">
-            <mat-form-field appearance="outline" class="full-width no-margin" color="primary">
-              <mat-label>Hit the enter button to add tag</mat-label>
-              <mat-chip-list #tagList>
-                <mat-chip *ngFor="let tag of selectedMovieTags"
-                          [selectable]="selectable"
-                          [removable]="removable"
-                          (removed)="removeMovieTag(tag)"
-                >
-                  {{tag}}
-                  <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-                </mat-chip>
-                <input matInput
-                       [matChipInputFor]="tagList"
-                       formControlName="tags"
-                       [matChipInputAddOnBlur]="addOnBlur"
-                       [matChipInputSeparatorKeyCodes]="separatorKeyCode"
-                       (matChipInputTokenEnd)="addMovieTags($event)"
-                       placeholder="Add search keyword to your event">
-              </mat-chip-list>
-            </mat-form-field>
-          </div>
-        </div>
+<!--        <div fxLayout="row" fxLayoutGap="2%" fxLayoutAlign="space-between center" class="full-width">-->
+<!--          <div fxFlex="1 1 100" fxLayout="row" fxLayoutAlign="start" class="full-width">-->
+<!--            <mat-form-field appearance="outline" class="full-width no-margin" color="primary">-->
+<!--              <mat-label>Hit the enter button to add tag</mat-label>-->
+<!--              <mat-chip-list #tagList>-->
+<!--                <mat-chip *ngFor="let tag of selectedMovieTags"-->
+<!--                          [selectable]="selectable"-->
+<!--                          [removable]="removable"-->
+<!--                          (removed)="removeMovieTag(tag)"-->
+<!--                >-->
+<!--                  {{tag}}-->
+<!--                  <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>-->
+<!--                </mat-chip>-->
+<!--                <input matInput-->
+<!--                       [matChipInputFor]="tagList"-->
+<!--                       formControlName="tags"-->
+<!--                       [matChipInputAddOnBlur]="addOnBlur"-->
+<!--                       [matChipInputSeparatorKeyCodes]="separatorKeyCode"-->
+<!--                       (matChipInputTokenEnd)="addMovieTags($event)"-->
+<!--                       placeholder="Add search keyword to your event">-->
+<!--              </mat-chip-list>-->
+<!--            </mat-form-field>-->
+<!--          </div>-->
+<!--        </div>-->
 
-        <h3 class="title-4">Artistes</h3>
-        <p>Add artistes participating to the movie.</p>
+<!--        <h3 class="title-4">Artistes</h3>-->
+<!--        <p>Add artistes participating to the movie.</p>-->
 
-        <div fxLayout="row" fxLayoutGap="2%" fxLayoutAlign="space-between center" class="full-width">
-          <div fxFlex="1 1 100" fxLayout="row" fxLayoutAlign="start" class="full-width">
-            <mat-form-field appearance="outline" class="full-width no-margin" color="primary">
-              <mat-label>Movie Artiste(s)</mat-label>
-              <mat-select multiple formControlName="artistes">
-                <mat-option *ngFor="let artiste of artistes"
-                            [value]="artiste.id">{{artiste.name}}</mat-option>
-              </mat-select>
-            </mat-form-field>
-          </div>
-        </div>
+<!--        <div fxLayout="row" fxLayoutGap="2%" fxLayoutAlign="space-between center" class="full-width">-->
+<!--          <div fxFlex="1 1 100" fxLayout="row" fxLayoutAlign="start" class="full-width">-->
+<!--            <mat-form-field appearance="outline" class="full-width no-margin" color="primary">-->
+<!--              <mat-label>Movie Artiste(s)</mat-label>-->
+<!--              <mat-select multiple formControlName="artistes">-->
+<!--                <mat-option *ngFor="let artiste of artistes"-->
+<!--                            [value]="artiste.id">{{artiste.name}}</mat-option>-->
+<!--              </mat-select>-->
+<!--            </mat-form-field>-->
+<!--          </div>-->
+<!--        </div>-->
       </div>
     </div>
   </div>

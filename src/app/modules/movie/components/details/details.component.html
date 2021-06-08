@@ -1,0 +1,136 @@
+<!--  <form [formGroup]="eventDetailForm" (ngSubmit)="submit()" enctype="multipart/form-data" novalidate>-->
+
+<div class="container-local">
+  <div fxLayout="row"
+       fxLayout.xs="column"
+       fxLayoutAlign="space-between start"
+       style="margin-bottom: 20px;"
+       fxLayoutGap="2%" class="spacer-1">
+    <div fxFlex="1 0 10%"
+         fxLayout="column"
+         fxLayoutAlign="start end">
+      <span><img src="assets/images/icon_22.png"></span>
+    </div>
+    <div fxFlex="1 1 88%" fxLayout="column" fxLayoutAlign="start stretch">
+      <h2 class="title-2 no-margin">Movie Image</h2>
+      <p>Add Movie banner image, event banner and mobile images.</p>
+      <div fxLayout="column" fxLayoutAlign="center center" class="image-canvas">
+        <div fxFlex fxLayout="column" fxLayoutAlign="center">
+          <input #bannerImageInput
+                 type="file"
+                 accept="image/*"
+                 class="upload-btn"
+                 (change)="processFile($event, 'banner')" disabled="disabled">
+          <div fxLayout="row" fxLayoutAlign="center stretch" class="file-upload full-width">
+            <button mat-flat-button color="accent" (click)="bannerImageInput.click()">
+              <mat-icon>upload_file</mat-icon>
+            </button>
+          </div>
+        </div>
+        <div fxFlex fxLayout="column" fxLayoutAlign="center" class="banner-image-placement">
+          <div *ngIf="fileNames.thumb">
+            {{fileNames.thumb}}
+          </div>
+          <ng-container *ngIf="!fileNames.thumb">
+            <p *ngIf="!createdMovieImages.thumb" style="text-align: center"><span
+              style="font-size: 1.2rem; font-weight: 600;">Add Movie Banner Image.</span><br>
+              (1440px X 400px not larger than 5mb. Please avoid including text on image)</p>
+            <p style="text-align: center" *ngIf="createdMovieImages.thumb">
+              <img src="{{backendPath}}/{{createdMovieImages.thumb}}" height="280" class="full-width"
+                   alt="Event Banner Image">
+            </p>
+          </ng-container>
+        </div>
+      </div>
+
+      <div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="2%" style="margin-top: 20px">
+        <div fxFlex="49%" fxLayout="column" fxLayoutAlign="center center" class="image-canvas">
+          <div fxFlex fxLayout="column" fxLayoutAlign="center">
+            <input #mobileImageInput
+                   type="file"
+                   accept="image/*"
+                   class="upload-btn"
+                   (change)="processFile($event, 'mobile')" [disabled]="true">
+            <div fxLayout="row" fxLayoutAlign="center stretch" class="file-upload full-width">
+              <button mat-flat-button color="accent" (click)="mobileImageInput.click()">
+                <mat-icon>upload_file</mat-icon>
+              </button>
+            </div>
+          </div>
+          <div fxFlex fxLayout="column" fxLayoutAlign="center" class="mobile-image-placement">
+            <div *ngIf="fileNames.thumb">
+              {{fileNames.thumb}}
+            </div>
+            <ng-container *ngIf="!fileNames.thumb">
+              <p *ngIf="!createdMovieImages.thumb" style="text-align: center"><span
+                style="font-size: 0.9rem; font-weight: 500;">Add Mobile Image.</span><br>
+                <span style="font-size: 0.8rem">(1440px X 400px not larger than 5mb. Please avoid including text on image)</span>
+              </p>
+              <p *ngIf="createdMovieImages.thumb" style="text-align: center">
+                <img src="{{backendPath}}/{{createdMovieImages.thumb}}" alt="Event mobile image" height="250"
+                     class="full-width">
+              </p>
+            </ng-container>
+          </div>
+        </div>
+        <div fxFlex="49%" fxLayout="column" fxLayoutAlign="center center" class="image-canvas">
+          <div fxFlex fxLayout="column" fxLayoutAlign="center">
+            <input #coverImageInput
+                   type="file"
+                   accept="image/*"
+                   class="upload-btn"
+                   (change)="processFile($event, 'thumb')">
+            <div fxLayout="row" fxLayoutAlign="center stretch" class="file-upload full-width">
+              <button mat-flat-button color="accent" (click)="coverImageInput.click()">
+                <mat-icon>upload_file</mat-icon>
+              </button>
+            </div>
+          </div>
+          <div fxFlex fxLayout="column" fxLayoutAlign="center" class="mobile-image-placement">
+            <div *ngIf="fileNames.thumb">
+              {{fileNames.thumb}}
+            </div>
+            <ng-container *ngIf="!fileNames.thumb">
+              <p *ngIf="!createdMovieImages.thumb" style="text-align: center"><span
+                style="font-size: 0.9rem; font-weight: 500;">Add Movie Cover Image.</span><br>
+                <span
+                  style="font-size: 0.8rem">(1440px X 400px not larger than 5mb. Please avoid including text on image)</span>
+              </p>
+              <p *ngIf="createdMovieImages.thumb" style="text-align: center">
+                <img src="{{backendPath}}/{{createdMovieImages.thumb}}" alt="Event mobile image" height="250"
+                     class="full-width">
+              </p>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="2%" fxLayoutAlign.xs="space-between"
+       class="full-width" style="padding: 30px 0;">
+    <div *ngIf="createdMovie.is_completed !== 1" fxFlex="1 1 20" fxFlex.xs="1 1 49">
+      <button type="button" mat-stroked-button color="primary" class="full-width btn-add"
+              (click)="onCancel()">
+        Discard
+      </button>
+    </div>
+    <div *ngIf="createdMovie.is_completed !== 1" fxFlex="1 1 20" fxFlex.xs="1 1 49">
+      <button type="button" mat-stroked-button color="primary" class="full-width btn-add"
+              (click)="onCancel()">
+        Cancel
+      </button>
+    </div>
+    <div fxFlex="1 1 20" fxFlex.xs="1 1 49">
+      <button mat-flat-button color="primary"
+              class="full-width btn-add" type="submit"
+              (click)="onSubmit()"
+              [ladda]="isLoading"
+      >
+        Next
+      </button>
+    </div>
+  </div>
+</div>
+
+<!--</form>-->
+

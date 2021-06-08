@@ -32,4 +32,7 @@ export enum EventImageTypes {
   COVER = 'thumb',
   MOBILE = 'mobile'
 }
+export enum MovieImageTypes {
+  COVER = 'thumb',
+}
 

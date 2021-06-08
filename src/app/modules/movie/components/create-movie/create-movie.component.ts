@@ -56,9 +56,9 @@ export class CreateMovieComponent implements OnInit, OnDestroy {
       Validators.minLength(10)
     ]),
     genre: new FormControl(null, [Validators.required]),
-    artistes: new FormControl(''),
+    // artistes: new FormControl(''),
     ageRestriction: new FormControl(null),
-    tags: new FormControl(),
+    // tags: new FormControl(),
     location: new FormGroup({
       address: new FormControl(null, []),
       city: new FormControl(null, []),
@@ -77,8 +77,8 @@ export class CreateMovieComponent implements OnInit, OnDestroy {
     description: this.form.controls.description,
     genre: this.form.controls.genre,
     ageRestriction: this.form.controls.ageRestriction,
-    tags: this.form.controls.tags,
-    artistes: this.form.controls.artistes,
+    // tags: this.form.controls.tags,
+    // artistes: this.form.controls.artistes,
     address: this.form.get('location.address'),
     city: this.form.get('location.city'),
     state: this.form.get('location.state'),
@@ -211,7 +211,7 @@ export class CreateMovieComponent implements OnInit, OnDestroy {
 
     if (this.form.valid) {
       const event = new MovieDto(this.form.value as RawMovieFormValue);
-      console.log('MOVIE PAYLOAD => ', event); return;
+      console.log('MOVIE PAYLOAD => ', event);
       this.uiService.busy = true;
       this.movieFacade.createMovie(event).subscribe(
         createdMovie => {

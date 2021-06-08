@@ -4,6 +4,10 @@ export interface EventUploadedImages {
   thumb?: string;
 }
 
+export interface MovieUploadedImages {
+  thumb?: string;
+}
+
 export interface EventTicket {
   id: number;
   price: number;
