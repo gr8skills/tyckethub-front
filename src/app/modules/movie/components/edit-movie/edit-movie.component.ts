@@ -25,7 +25,7 @@ export class EditMovieComponent implements OnInit {
               private uiService: UiService) { }
 
   ngOnInit(): void {
-    this.userRole = this.authService.currentUserValue().role;
+    this.userRole = this.authService.currentUserValue.role;
     console.log('Created Movie => ', this.createdMovie);
   }
 

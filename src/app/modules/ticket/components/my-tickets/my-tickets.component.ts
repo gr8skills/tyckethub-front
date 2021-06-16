@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {UiService} from '../../../shared/core/ui.service';
 import {SellTicketModalComponent} from '../../../shared/components/sell-ticket-modal/sell-ticket-modal.component';
 import {Subscription} from 'rxjs';
@@ -7,6 +7,7 @@ import {TicketFacade} from '../../facade/ticket-facade';
 import {AuthenticationService} from '../../../shared/facades/authentication.service';
 import {AttendeeTicketTableData, TicketResellDialogResult} from '../../../shared/models/custom-types';
 import {MatTableDataSource} from '@angular/material/table';
+import {MatPaginator} from '@angular/material/paginator';
 import {BaseService} from '../../../shared/facades/base.service';
 
 @Component({
@@ -14,8 +15,10 @@ import {BaseService} from '../../../shared/facades/base.service';
   templateUrl: './my-tickets.component.html',
   styleUrls: ['./my-tickets.component.scss']
 })
-export class MyTicketsComponent implements OnInit {
 
+export class MyTicketsComponent implements OnInit, AfterViewInit {
+  dtOptions: DataTables.Settings = {};
+  @ViewChild(MatPaginator) paginator: MatPaginator;
   tickets = [
     {
       name: '30 Billion Concert II',
@@ -42,6 +45,7 @@ export class MyTicketsComponent implements OnInit {
   currentUser = this.authService.currentUserValue;
   attendeeTickets: any[] = [];
   ticketsTableSource: any;
+  source: any;
   displayColumns = ['select', 'name', 'date', 'qty', 'type', 'id', 'price', 'status', 'actions'];
   layoutSub = new Subscription();
   isMobile = false;
@@ -67,7 +71,15 @@ export class MyTicketsComponent implements OnInit {
     this.initializeAttendeeOpenTickets().then();
   }
 
+
   ngOnInit(): void {
+    this.dtOptions = {
+      pagingType: 'full_numbers',
+      pageLength: 5,
+      processing: true,
+      searching: false,
+    };
+    this.ticketsTableSource.paginator = this.paginator;
     this.layoutSub = this.layoutService.handsetLayout$.subscribe(x => this.isMobile = x.matches);
   }
 
@@ -101,6 +113,11 @@ export class MyTicketsComponent implements OnInit {
     });
 
     return ticketsArray;
+  }
+
+  ngAfterViewInit(): void {
+    // this.ticketsTableSource = new MatTableDataSource<AttendeeTicketTableData>(this.prepareAttendeeOpenTicketsTableDataSource());
+    this.ticketsTableSource.paginator = this.paginator;
   }
 
   openResellTicketModal(ticket: any): void {

@@ -1,11 +1,11 @@
 import {Injectable} from '@angular/core';
 import {HttpHeaders} from '@angular/common/http';
 import {Router} from '@angular/router';
-import {EventImageTypes, LocalStorageItems} from '../models/enums';
+import {EventImageTypes, LocalStorageItems, MovieImageTypes} from '../models/enums';
 import {ImageSnippet} from '../models/image-snippet.model';
 import {ImageService} from '../apis/image.service';
 import {UiService} from '../core/ui.service';
-import {EventTicket, EventUploadedImages} from '../models/custom-types';
+import {EventTicket, EventUploadedImages, MovieTicket, MovieUploadedImages} from '../models/custom-types';
 
 
 @Injectable({
@@ -163,6 +163,25 @@ export class BaseService {
     return images;
   }
 
+  processMovieImages(createdMovieImages: any[]): MovieUploadedImages {
+    if (!createdMovieImages) {
+      return { thumb: '' };
+    }
+    const images: MovieUploadedImages = {thumb: ''};
+
+    createdMovieImages.forEach(image => {
+      switch (image.tag as MovieImageTypes) {
+        case MovieImageTypes.COVER:
+          images.thumb = image.image_url;
+          break;
+        case MovieImageTypes.OTHER:
+          images.thumb = image.image_url;
+      }
+    });
+
+    return images;
+  }
+
   processEventTickets(createdEventTicket: any[]): any[] {
     if (!createdEventTicket) {
       return [];
@@ -171,6 +190,26 @@ export class BaseService {
     const ticketArray: EventTicket[] = [];
     createdEventTicket.forEach(ticket => {
       const abridgedTicket: EventTicket = {price: 0, maximumAllowed: 1, title: '', type: 1, id: 1 };
+      abridgedTicket.price = ticket.price;
+      abridgedTicket.maximumAllowed = ticket.setting.allowed_per_order_max;
+      abridgedTicket.title = ticket.title;
+      abridgedTicket.type = ticket.type;
+      abridgedTicket.id = +ticket.id;
+
+      ticketArray.push(abridgedTicket);
+    });
+
+    return ticketArray;
+  }
+
+  processMovieTickets(createdMovieTicket: any[]): any[] {
+    if (!createdMovieTicket) {
+      return [];
+    }
+
+    const ticketArray: MovieTicket[] = [];
+    createdMovieTicket.forEach(ticket => {
+      const abridgedTicket: MovieTicket = {price: 0, maximumAllowed: 1, title: '', type: 1, id: 1 };
       abridgedTicket.price = ticket.price;
       abridgedTicket.maximumAllowed = ticket.setting.allowed_per_order_max;
       abridgedTicket.title = ticket.title;

@@ -95,7 +95,6 @@ export class OrganizerEventComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    console.log('this.eventTableSource ', this.eventTableSource);
     this.eventStatusService.status$.subscribe(
       statusesData => {
         this.eventStatuses = statusesData.data;
@@ -112,7 +111,6 @@ export class OrganizerEventComponent implements OnInit, OnDestroy {
       processing: true,
       searching: true,
       responsive: true,
-      deferLoading: 100
     };
   }
 
@@ -138,25 +136,27 @@ export class OrganizerEventComponent implements OnInit, OnDestroy {
   private prepareOrganizerEventsTableDataSource(): any[] {
     const eventContainer: EventData[] = [];
     this.organizerEvents.forEach((event: any) => {
-      const tempEvent: EventData = {
-        id: event.id,
-        date: event.start_date,
-        name: event.name,
-        organizer: event.organizer,
-        approved: event.is_published,
-        ticketSold: event.tickets.all_attendees,
-        totalTicket: event.tickets.quantity,
-        revenue: 0,
-        status: event.status,
-        action: [
-          {label: 'View', link: `${event.id}/edit/dashboard`, id: event.id},
-          {label: 'Edit', link: `${event.id}/edit/details`, id: event.id},
-          {label: 'Copy URL', link: `${event.id}/edit/details`, id: event.id},
-          // tslint:disable-next-line:triple-equals
-          {label: event.is_published == 1 ? 'Reject' : 'Approve', link: `approve/${event.id}`, id: event.id}
-        ]
-      };
-      eventContainer.push(tempEvent);
+      // if (this.currentUser.role === ('admin' || 'staff'))
+        const tempEvent: EventData = {
+          id: event.id,
+          date: event.start_date,
+          name: event.name,
+          organizer: event.organizer,
+          approved: event.is_published,
+          ticketSold: event.tickets.all_attendees,
+          totalTicket: event.tickets.quantity,
+          revenue: 0,
+          status: event.status,
+          action: [
+            {label: 'View', link: `${event.id}/edit/dashboard`, id: event.id},
+            {label: 'Edit', link: `${event.id}/edit/details`, id: event.id},
+            {label: 'Copy URL', link: `${event.id}/edit/details`, id: event.id},
+            // tslint:disable-next-line:triple-equals
+            {label: event.is_published == 1 ? `${this.currentUser.role === (1 || 2) ? 'Reject' : 'Request Take-down'}` : `${this.currentUser.role === (1 || 2) ? 'Approve' : 'Request Approval'}`, link: `approve/${event.id}`, id: event.id}
+          ]
+        };
+
+        eventContainer.push(tempEvent);
     });
     return eventContainer;
   }
@@ -182,11 +182,17 @@ export class OrganizerEventComponent implements OnInit, OnDestroy {
 
   openMenu(event: any, path: string, id: number): void {
     console.log('clicked', path);
-    if (path.includes('approve')){
+    if (path.includes('approve') && this.currentUser.role === ('admin' || 'staff')) {
       this.baseService.storeLocalItem(LocalStorageItems.ADMIN_APPROVE_EVENT, JSON.stringify(id));
       this.openApproveModal();
-    }else {
-      this.router.navigateByUrl(`/events/${path}`);
+    }else if (path.includes('dashboard')) {
+      this.router.navigateByUrl(`events/${path}`);
+    }else if (path.includes('details')) {
+      this.router.navigateByUrl(`events/${path}`);
+    } else {
+      // this.router.navigateByUrl(`/events/${path}`);
+      this.router.navigateByUrl(`tickets/organizer/events`);
+      this.uiService.openSnackBar('Request sent successfully.', 'OK');
     }
   }
 

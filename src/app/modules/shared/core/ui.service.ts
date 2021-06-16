@@ -79,6 +79,15 @@ export class UiService {
     return this.dialog.open(component, config);
   }
 
+  openPaymentDialog(component: any, isMobile = false, data?: any): MatDialogRef<any> {
+    const config: MatDialogConfig = {
+      data,
+      width: isMobile ? '50%' : '35vw',
+      closeOnNavigation: true
+    };
+    return this.dialog.open(component, config);
+  }
+
   blockPage(): void {
     this.uiLoaderService.start();
   }

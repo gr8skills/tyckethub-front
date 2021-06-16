@@ -5,6 +5,9 @@ import {AttendeeService} from '../../../user/apis/attendee.service';
 import {BaseService} from '../../facades/base.service';
 import { Angular4PaystackModule } from 'angular4-paystack';
 import {Flutterwave, InlinePaymentOptions, PaymentSuccessResponse} from 'flutterwave-angular-v3';
+import {Router} from '@angular/router';
+import {AuthenticationService} from '../../facades/authentication.service';
+import {PaymentResponseModalComponent} from '../payment-response-modal/payment-response-modal.component';
 
 
 @Component({
@@ -27,6 +30,8 @@ export class CheckoutModalComponent implements OnInit {
   reference = '';
   ref = [];
   title = '';
+  role: any;
+  isMobile: any;
 
   paymentInit(): void {
     console.log('Payment initialized');
@@ -35,9 +40,17 @@ export class CheckoutModalComponent implements OnInit {
   paymentDone(ref: any): any {
     this.reference = ref;
     this.submitPaymentDetail();
+    this.uiService.unBlockPage();
+    const dailog = this.uiService.openPaymentDialog(PaymentResponseModalComponent, this.isMobile, ref);
     this.title = 'Payment successful';
+    // console.log(this.title, ref);
+    // this.role = this.authService.currentUserValue.role;
+    // if (this.role === 'attendee'){
+    //   this.router.navigateByUrl(`tickets/overview`);
+    // }else {
+    //   this.router.navigateByUrl(`tickets/organizer/overview`);
+    // }
     this.attendeeService.updateTicketTransaction(ref,  +this.data.user.id).subscribe();
-    console.log(this.title, ref);
   }
 
   paymentCancel(): void {
@@ -48,7 +61,9 @@ export class CheckoutModalComponent implements OnInit {
               @Inject(MAT_DIALOG_DATA) public data: any,
               private uiService: UiService,
               private attendeeService: AttendeeService,
-              private baseService: BaseService) {
+              private baseService: BaseService,
+              private router: Router,
+              private authService: AuthenticationService) {
   }
 
   ngOnInit(): void {
@@ -97,7 +112,7 @@ export class CheckoutModalComponent implements OnInit {
       this.attendeeService.purchaseEventTickets(this.extractPaymentDetails(), +this.data.user.id).subscribe(
         response => {
           this.uiService.busy = false;
-          this.uiService.openSnotify('Ticket(s) successfully purchased.', 'Success', 'success');
+          // this.uiService.openSnotify('Ticket(s) successfully purchased.', 'Success', 'success');
           this.dialogRef.close();
         },
         error => {

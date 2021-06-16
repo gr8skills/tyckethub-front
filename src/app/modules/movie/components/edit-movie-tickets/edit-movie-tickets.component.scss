@@ -1,0 +1,112 @@
+@import "src/app/theme/colors";
+.container-local {
+  //width: 50%;
+  margin: 0 auto;
+}
+
+.no-margin {
+  margin: 2px 0 0 0;
+}
+
+//:host ::ng-deep .mat-form-field-wrapper{
+//  margin: 0 !important;
+//  padding: 0;
+//}
+
+mat-form-field{
+  margin-top: 15px;
+}
+
+p{
+  color: color(custom-gray);
+}
+.ticket-panel {
+  border: 1px dotted color(custom-gray);
+}
+.btn-add {
+  padding: 0.5rem;
+  margin-right: 1.2rem;
+  border: 1px solid color(custom-gray);
+  border-radius: 5px;
+}
+.select-btn {
+  margin-right: 1.0rem;
+  border: 1px solid color(custom-gray-light);
+  border-radius: 5px;
+}
+.select-btn-active {
+  background-color: color(custom-sky-blue-light);
+  color: color(custom-base-light);
+  border: 1px solid color(custom-base-light);
+}
+p.info {
+  color: #1880E7;
+}
+button.info {
+  margin: 1rem 0;
+}
+.px-1 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+.label-group {
+  margin-top: 15px;
+}
+:host ::ng-deep .mat-checkbox-label {
+  font-weight: 500;
+}
+.label-adjust {
+  padding-left: 1.4rem;
+}
+.venue-button-active {
+  background-color: color(custom-sky-blue-light);
+  color: color(custom-base-light);
+  border: 1px solid color(custom-base-light);
+  border-radius: 5px;
+}
+.form-error {
+  color: color(custom-danger);
+}
+.image-canvas {
+  border: 1px solid color(custom-gray-light);
+  min-height: 200px;
+  border-radius: 3px;
+  padding: 0 10px;
+  //text-align: center;
+}
+.upload-btn {
+  border: none;
+  padding: 0.2rem;
+}
+.online-event-form {
+  width: 80%;
+  position: relative;
+  margin-top: 2rem;
+}
+.clear-btn {
+  position: absolute;
+  top: 25px;
+  right: -30px;
+}
+.video-add-btn {
+  margin-right: 2rem;
+  display: inline-block;
+  text-align: center;
+}
+.input-header {
+  font-weight: bold;
+}
+
+@media screen and (max-width: 599px){
+  .container-local {
+    width: 95%;
+    margin: 70px 0 auto;
+    padding: 0 10px
+  }
+  .btn-add {
+    padding: 0.5rem 0.7rem;
+  }
+  .online-event-form {
+    width: 100%
+  }
+}

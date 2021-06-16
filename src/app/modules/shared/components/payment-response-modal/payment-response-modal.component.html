@@ -1,0 +1,49 @@
+<section class="modal-container-md">
+  <button mat-icon-button class="close" (click)="closeDialog()" color="accent" style="float: right;">
+    <mat-icon color="primary">close</mat-icon>
+  </button>
+  <div fxLayout="column" fxLayoutAlign="space-between stretch" class="full-width">
+    <span class="mat-button-wrapper" style="text-align: center">
+      <img _ngcontent-rsb-c89="" src="assets/images/logo.png" alt="">
+    </span>
+
+    <h2 class="modal-title text-success" style="text-align: center;">
+      <mat-icon color="primary" style="color: blue; size: 50px;" class="">assignment_turned_in</mat-icon>
+      Transaction Successful
+    </h2>
+    <div fxLayout="row" fxLayoutAlign="space-between start" fxLayoutGap="5%">
+      <div fxFlex="100%" fxLayout="column" fxLayoutAlign="start stretch">
+        <span style="text-align: center; font-style: italic; padding-bottom: 20px; word-wrap: normal !important;">Thanks for your purchase, please check back for more exciting movies and breath-taking events, a copy of the receipt has been sent to your mail</span>
+<!--        <h4>Payment Description</h4>-->
+<!--        <div fxFlex fxLayout="row" fxLayoutAlign="space-between">-->
+<!--          <div fxFlex="47%">-->
+<!--            <mat-form-field appearance="outline">-->
+<!--              <mat-label>Ticket Ref</mat-label>-->
+<!--              <input matInput type="text" required [value]="data?.ref?.split(' ')[0]" readonly>-->
+<!--            </mat-form-field>-->
+<!--          </div>-->
+<!--          <div fxFlex="47%">-->
+<!--            <mat-form-field appearance="outline">-->
+<!--              <mat-label>Amount</mat-label>-->
+<!--              <input matInput type="text" required [value]="data?.user?.name.split(' ')[1]" readonly>-->
+<!--            </mat-form-field>-->
+<!--          </div>-->
+<!--        </div>-->
+
+        <span style="text-align: center; align: center">
+          <button mat-flat-button color="primary" (click)="closeDialog()"> Dashboard </button>
+        </span>
+
+        <div fxFlex fxLayout="column" fxLayoutAlign="start stretch" class="card-field-group">
+          <div fxFlex="" fxLayout="row" fxLayoutAlign="end center">
+            <span class="platform-logo"><img src="assets/images/logo_flutter-wave.svg" alt=""></span>
+            <span class="platform-logo"><img src="assets/images/logo_paystack-sm.png" alt=""></span>
+            <span class="platform-logo"><img src="assets/images/logo_master-card.svg" alt=""></span>
+            <span class="platform-logo"><img src="assets/images/logo_visa.svg" alt=""></span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

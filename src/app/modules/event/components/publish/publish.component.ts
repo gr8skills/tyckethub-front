@@ -55,7 +55,6 @@ export class PublishComponent implements OnInit {
   }
 
   onCancel(): void {
-
   }
 
   previewEvent(): void {

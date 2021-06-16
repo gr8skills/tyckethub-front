@@ -1,12 +1,12 @@
 <mat-card class="event-card mat-elevation-z1" appMaterialCardElevation>
 <!--  <img mat-card-image [src]="event.imageUrl" alt="event picture">-->
-  <img mat-card-image data-src="{{event.imageUrl}}" class="lazyload" alt="event picture">
+  <img mat-card-image data-src="{{event.imageUrl}}" class="lazyload" alt="event picture" [routerLink]="['/events', event.id, 'description']">
   <mat-card-content>
     <h3 [routerLink]="['/events', event.id, 'description']">
       {{event.title}}
     </h3>
-    <p>{{event.date | date:'medium'}}</p>
-    <span class="tag" *ngIf="event.status">{{event.status}}</span>
+    <p [routerLink]="['/events', event.id, 'description']">{{event.date | date:'medium'}}</p>
+    <span class="tag" *ngIf="event.status" [routerLink]="['/events', event.id, 'description']">{{event.status}}</span>
   </mat-card-content>
   <mat-card-actions>
     <button mat-mini-fab color="" (click)="toggleFavorite()">

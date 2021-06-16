@@ -11,15 +11,17 @@ import {LaddaModule} from 'angular2-ladda';
 import {AuthGuard} from '../shared/facades/auth-guard';
 import { EditMovieComponent } from './components/edit-movie/edit-movie.component';
 import {OrganizerGuard} from '../user/facades/organizer-guard';
-import {EventResolver} from '../event/core/event.resolver';
-import {OnlineEventComponent} from '../event/components/online-event/online-event.component';
-import {EditEventTicketsComponent} from '../event/components/edit-event-tickets/edit-event-tickets.component';
-import {PublishComponent} from '../event/components/publish/publish.component';
-import {EventDashboardComponent} from '../event/components/event-dashboard/event-dashboard.component';
 import {MovieParentResolver} from './core/movie-parent.resolver';
 import { BasicInfoComponent } from './components/basic-info/basic-info.component';
 import {MovieResolver} from './core/movie.resolver';
 import { DetailsComponent } from './components/details/details.component';
+import { OnlineMovieComponent } from './components/online-movie/online-movie.component';
+import { OnlineMovieLinkFormComponent } from './components/online-movie-link-form/online-movie-link-form.component';
+import { EditMovieTicketsComponent } from './components/edit-movie-tickets/edit-movie-tickets.component';
+import { PublishComponent } from './components/publish/publish.component';
+import { MovieDashboardComponent } from './components/movie-dashboard/movie-dashboard.component';
+import { CompleteMovieComponent } from './components/complete-movie/complete-movie.component';
+import { MovieDescriptionComponent } from './components/movie-description/movie-description.component';
 
 const routes: Routes = [
   {
@@ -54,26 +56,36 @@ const routes: Routes = [
       },
       {
         path: 'online-movie',
-        component: OnlineEventComponent,
+        component: OnlineMovieComponent,
         resolve: {event: MovieResolver},
       },
       {
         path: 'tickets',
-        component: EditEventTicketsComponent,
-        resolve: {event: EventResolver},
+        component: EditMovieTicketsComponent,
+        resolve: {event: MovieResolver},
       },
       {
         path: 'publish',
         component: PublishComponent,
-        resolve: {event: EventResolver},
+        resolve: {event: MovieResolver},
       },
       {
         path: 'dashboard',
-        component: EventDashboardComponent,
-        resolve: {event: EventResolver},
+        component: MovieDashboardComponent,
+        resolve: {event: MovieResolver},
       }
     ]
   },
+  {
+    path: 'complete',
+    component: CompleteMovieComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: ':id/description',
+    component: MovieDescriptionComponent,
+    resolve: {event: MovieParentResolver},
+  }
 ];
 
 @NgModule({
@@ -84,6 +96,13 @@ const routes: Routes = [
     EditMovieComponent,
     BasicInfoComponent,
     DetailsComponent,
+    OnlineMovieComponent,
+    OnlineMovieLinkFormComponent,
+    EditMovieTicketsComponent,
+    PublishComponent,
+    MovieDashboardComponent,
+    CompleteMovieComponent,
+    MovieDescriptionComponent,
   ],
   exports: [],
   imports: [

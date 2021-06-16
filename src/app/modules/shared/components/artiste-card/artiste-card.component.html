@@ -1,5 +1,4 @@
 <div class="artiste-card">
-  <img [src]="artiste.imageUrl" class="card-image" loading="lazyload" alt="artiste image"
-       (click)="whenClicked()">
-  <span class="card-text" (click)="whenClicked()">{{artiste.title}}</span>
+  <img [src]="artiste.imageUrl" class="card-image" loading="lazyload" alt="artiste image" (click)="whenClicked(artiste.id)">
+  <span class="card-text" (click)="whenClicked(artiste.id)">{{artiste.title}}</span>
 </div>

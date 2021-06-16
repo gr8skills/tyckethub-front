@@ -22,6 +22,8 @@ import {ArtisteEventsResolver} from '../user/core/artiste-events.resolver';
 import {ArtisteResolver} from '../user/core/artiste.resolver';
 import {SiteSettingsComponent} from './components/site-settings/site-settings.component';
 import {DataTablesModule} from 'angular-datatables';
+import { OrganizerMovieComponent } from './components/organizer-movie/organizer-movie.component';
+import {MatPaginatorModule} from "@angular/material/paginator";
 
 const routes: Routes = [
   {
@@ -73,6 +75,11 @@ const routes: Routes = [
         canActivate: [AuthGuard, OrganizerGuard]
       },
       {
+        path: 'organizer/movies',
+        component: OrganizerMovieComponent,
+        canActivate: [AuthGuard, OrganizerGuard]
+      },
+      {
         path: 'organizer/tickets',
         component: OrganizerTicketsComponent,
         canActivate: [AuthGuard, OrganizerGuard]
@@ -121,13 +128,15 @@ const routes: Routes = [
     HowToSellComponent,
     ArtistePageComponent,
     ArtistePageHeaderComponent,
+    OrganizerMovieComponent,
   ],
   exports: [],
-  imports: [
-    MaterialModule,
-    RouterModule.forChild(routes),
-    DataTablesModule,
-  ]
+    imports: [
+        MaterialModule,
+        RouterModule.forChild(routes),
+        DataTablesModule,
+        MatPaginatorModule,
+    ]
 })
 
 export class TicketModule {

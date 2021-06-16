@@ -16,6 +16,14 @@ export interface EventTicket {
   type: 1;
 }
 
+export interface MovieTicket {
+  id: number;
+  price: number;
+  maximumAllowed: number;
+  title: string;
+  type: 1;
+}
+
 export interface OrganizerTicketTableData {
   eventName: string;
   ticketSold: number;

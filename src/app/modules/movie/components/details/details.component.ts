@@ -122,7 +122,7 @@ export class DetailsComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(): void {
-    const path: string = this.createdMovie.location.platform === 2 ? 'online-event' : 'tickets';
+    const path: string = this.createdMovie.location.platform === 2 ? 'online-movie' : 'tickets';
     this.router.navigateByUrl(`/movies/${this.createdMovie.id}/edit/${path}`);
   }
 

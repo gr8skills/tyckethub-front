@@ -23,12 +23,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
               private router: Router) {
     this.routerEventSub = this.router.events.subscribe((routerEvent: Event) => {
       if (routerEvent instanceof NavigationStart) {
-        console.log('Navigation start');
+        // console.log('Navigation start');
         this.uiService.blockPage();
       }
       if (routerEvent instanceof NavigationEnd || routerEvent instanceof NavigationCancel
         || routerEvent instanceof NavigationError) {
-        console.log('Navigation end');
+        // console.log('Navigation end');
         this.uiService.unBlockPage();
       }
     });

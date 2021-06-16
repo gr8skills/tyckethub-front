@@ -45,19 +45,45 @@ export class MovieService {
     return this.httpClient.get<any[]>(`${this.baseUrl}/similar-events/${id}`, this.requestOptions);
   }
 
-  addMovie(event: any): Observable<any> {
-    return this.httpClient.post<any>(`${this.baseUrl}/movies`, event, this.requestOptions);
+  addMovie(movie: any): Observable<any> {
+    return this.httpClient.post<any>(`${this.baseUrl}/movies`, movie, this.requestOptions);
   }
 
-  updateMovie(event: any): Observable<any> {
-    return this.httpClient.patch<any>(`${this.baseUrl}/movies/${event.id}`, event, this.requestOptions);
+  updateMovie(movie: any): Observable<any> {
+    return this.httpClient.patch<any>(`${this.baseUrl}/movies/${movie.id}`, movie, this.requestOptions);
   }
 
-  uploadMovieImages(imagePayload: any, eventId: number): Observable<any> {
+  uploadMovieImages(imagePayload: any, movieId: number): Observable<any> {
     const headers = new HttpHeaders();
     headers.append('Content-Type', 'multipart/form-data');
     headers.append('Accept', 'application/json');
 
-    return this.httpClient.post<any>(`${this.baseUrl}/movies/${eventId}/images`, imagePayload, {headers});
+    return this.httpClient.post<any>(`${this.baseUrl}/movies/${movieId}/images`, imagePayload, {headers});
+  }
+
+  createMovieOnlinePlatform(platformPayload: any, movieId: number): Observable<any> {
+    return this.httpClient.post<any>(`${this.baseUrl}/movies/${movieId}/onlinePlatform`, platformPayload, this.requestOptions);
+  }
+
+  createMovieOnlinePlatformExtra(platformExtraPayload: any, movieId: number): Observable<any> {
+    return this.httpClient.post<any>(`${this.baseUrl}/movies/${movieId}/onlinePlatformExtra`, platformExtraPayload, this.requestOptions);
+  }
+
+  createMovieTicketWithSettings(payload: any, movieId: number): Observable<any> {
+    return this.httpClient.post<any>(`${this.baseUrl}/movies/${movieId}/tickets`, payload, this.requestOptions);
+  }
+
+  publishMovie(payload: any, movieId: number): Observable<any> {
+    return this.httpClient.post<any>(`${this.baseUrl}/movies/${movieId}/publish`, payload, this.requestOptions);
+  }
+
+  unPublishMovie(movieId: number): Observable<any> {
+    return this.httpClient.get(`${this.baseUrl}/movies/${movieId}/unpublish`, this.requestOptions);
+  }
+
+  approveMovie(movieId: any): Observable<any> {
+    let id = parseInt(movieId);
+    console.log('Approve ', movieId);
+    return this.httpClient.post<any>(`${this.baseUrl}/movies/status/${id}/approve`, this.requestOptions);
   }
 }

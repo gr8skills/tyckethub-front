@@ -21,7 +21,8 @@
 
 <div class="table-wrapper">
   <div class="full-width">
-    <table mat-table [dataSource]="ticketsTableSource" class="mat-elevation-z1">
+    <table mat-table [dataSource]="ticketsTableSource" class="mat-elevation-z1" datatable [dtOptions]="dtOptions">
+      <mat-paginator #paginator [pageSizeOptions]="[5, 10, 15, 20]" showFirstLastButtons></mat-paginator>
       <ng-container matColumnDef="select">
         <th mat-header-cell *matHeaderCellDef>
           <mat-checkbox color="primary"></mat-checkbox>

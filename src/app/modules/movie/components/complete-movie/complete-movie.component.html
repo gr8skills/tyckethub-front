@@ -1,0 +1,19 @@
+<app-covid-alert-bar fxHide.xs></app-covid-alert-bar>
+<app-ticket-page-header fxHide.xs></app-ticket-page-header>
+<app-header fxHide.gt-xs></app-header>
+<div class="container-local">
+  <h3 class="title-4">Movie created successfully. Please upload movie images to complete the process.</h3>
+  <p>The banner image should be 1920px by 600px. The thumbnail image suffice for all and should be 420px by 240px.</p>
+  <form class="full-width">
+    <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="0" style="margin: 50px 0;">
+      <div fxFlex="1 1 auto">
+        <app-image-upload label="Upload Movie Banner" size="banner" [url]="url"></app-image-upload>
+      </div>
+    </div>
+    <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="0">
+      <div fxFlex="1 1 auto">
+        <app-image-upload label="Upload Movie Thumbnail" size="thumb" [url]="url"></app-image-upload>
+      </div>
+    </div>
+  </form>
+</div>

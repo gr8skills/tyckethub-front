@@ -30,6 +30,14 @@ export class AttendeeService {
     return this.httpClient.get<any>(`${this.endPoint}/attendees/${attendeeId}/tickets`, this.requestOptions);
   }
 
+  getAttendeeTicketsOverview(attendeeId: number): Observable<any> {
+    return this.httpClient.get<any>(`${this.endPoint}/attendees/${attendeeId}/tickets/overview`, this.requestOptions);
+  }
+
+  getAttendeeTicketsOverviewMovie(attendeeId: number): Observable<any> {
+    return this.httpClient.get<any>(`${this.endPoint}/attendees/${attendeeId}/tickets/overview-movie`, this.requestOptions);
+  }
+
   resellTickets(payload: any, attendeeId: number, ticketId: number): Observable<any> {
     return this.httpClient.post<any>(`${this.endPoint}/attendees/${attendeeId}/tickets/${ticketId}/re-sell`, payload, this.requestOptions);
   }

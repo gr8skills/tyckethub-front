@@ -1,1 +1,251 @@
-<p>basic-info works!</p>
+<form [formGroup]="movieInfoForm" (ngSubmit)="updateMovie()" novalidate>
+  <div *ngIf="formHasError" class="form-error full-width">
+    {{movieInfoForm.errors}}
+  </div>
+  <div class="container-local">
+    <div fxLayout="row"
+         fxLayout.xs="column"
+         fxLayoutAlign="space-between start"
+         fxLayoutGap="2%"
+         class="spacer-1 full-width">
+      <div fxFlex="1 0 10%"
+           fxLayout="column"
+           fxLayoutAlign="start end"
+      >
+        <span><img src="assets/images/icon_5.svg"></span>
+      </div>
+
+      <div fxFlex="1 1 88%" fxLayout="column" fxLayoutAlign="start stretch">
+        <h2 class="title-2 no-margin">Basic Info</h2>
+        <p>Name your movie and tell event-goers why they should come. Add details<br>that highlight what makes it
+          unique.</p>
+        <div fxLayout="row"
+             fxLayout.xs="column"
+             fxLayoutAlign="start stretch"
+             class="full-width"
+        >
+          <mat-form-field appearance="outline" color="primary" class="full-width">
+            <mat-label>Movie Title</mat-label>
+            <input matInput type="text"
+                   formControlName="title"
+                   [value]="createdMovie?.name"
+                   id="title" required>
+            <mat-error *ngIf="controls.title?.touched && controls.title?.invalid">
+              <span *ngIf="controls.title?.hasError('required')">Movie title is required.</span>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div fxLayout="row"
+             fxLayout.xs="column"
+             fxLayoutAlign="start stretch"
+             class="full-width"
+        >
+          <mat-form-field appearance="outline" class="full-width" color="primary">
+            <mat-label>Movie Description</mat-label>
+            <textarea matInput formControlName="description" required rows="5">{{createdMovie?.description}}</textarea>
+            <mat-error *ngIf="controls.description?.touched && controls.description?.invalid">
+              <span *ngIf="controls.description?.hasError('required')">Movie description is required.</span>
+              <span *ngIf="controls.description?.hasError('minLength')">Movie description should not be less than 15 characters long.</span>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+<!--        <div fxLayout="row"-->
+<!--             fxLayout.xs="column"-->
+<!--             fxLayoutAlign="start stretch"-->
+<!--             class="full-width"-->
+<!--        >-->
+<!--          <mat-form-field appearance="outline" class="full-width" color="primary">-->
+<!--            <mat-label>Event Organizer's Name</mat-label>-->
+<!--            <input matInput formControlName="organizer" required type="text">-->
+<!--            <mat-error *ngIf="controls.organizer?.touched && controls.organizer?.invalid">-->
+<!--              <span *ngIf="controls.organizer?.hasError('required')">Organizer's name is required.</span>-->
+<!--            </mat-error>-->
+<!--          </mat-form-field>-->
+<!--        </div>-->
+
+        <div fxLayout="row"
+             fxLayout.xs="column"
+             fxLayoutGap="2%"
+             fxLayoutAlign="space-between center"
+             class="full-width">
+          <div fxFlex="1 1 49"
+               class="full-width"
+          >
+            <mat-form-field appearance="outline" class="full-width" color="primary">
+              <mat-label>Select Genre</mat-label>
+              <mat-select formControlName="genre" multiple required>
+                <mat-option *ngFor="let genre of movieGenres"
+                            [value]="genre.id">{{genre.name}}</mat-option>
+              </mat-select>
+              <mat-error *ngIf="controls.genre?.touched && controls.genre?.invalid">
+                <span *ngIf="controls.genre?.hasError('required')">Movie Genre is required.</span>
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div fxFlex="1 1 49"
+               class="full-width"
+          >
+            <mat-form-field appearance="outline" class="full-width" color="primary">
+              <mat-label>Select Age Restriction</mat-label>
+              <mat-select formControlName="ageRestriction">
+                <mat-option *ngFor="let age of ageRestrictions"
+                            [value]="age.id">{{age.name}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="container-local">
+    <div fxLayout="row"
+         fxLayout.xs="column"
+         fxLayoutAlign="space-between start"
+         fxLayoutGap="2%" class="spacer-1">
+      <div fxFlex="1 0 10%"
+           fxLayout="column"
+           fxLayoutAlign="start end"
+      >
+        <span><img src="assets/images/icon_6.svg"></span>
+      </div>
+      <div fxFlex="1 1 88%" formGroupName="location" fxLayout="column" fxLayoutAlign="start">
+        <h2 class="title-2 no-margin">Location</h2>
+        <p>Help people in the area discover your movie and let your attendees know the<br>Cinema location.</p>
+
+        <div fxLayout="row"
+             fxLayoutAlign="start center"
+             fxLayoutGap="10px"
+             fxLayoutGap.xs="5px"
+             style="margin-top: 20px">
+          <div fxFlex="1 1 10"
+               fxFlex.xs="1 1 20"
+          >
+            <button mat-flat-button
+                    type="button"
+                    #live color="accent"
+                    class="btn-add px-1"
+                    (click)="selectVenuePlatform('live')"
+                    [ngClass]="{'venue-button-active' : locationVenueButtons.live}"
+            >Live
+            </button>
+          </div>
+          <div fxFlex="1 1 10"
+               fxFlex.xs="1 1 20"
+          >
+            <button mat-flat-button
+                    type="button"
+                    #online color="accent"
+                    class="btn-add px-1"
+                    (click)="selectVenuePlatform('online')"
+                    [ngClass]="{'venue-button-active' : locationVenueButtons.online}"
+            >Online
+            </button>
+          </div>
+          <div fxFlex="1 1 10"
+               fxFlex.xs="1 1 20"
+          >
+            <button mat-flat-button
+                    type="button"
+                    #announced color="accent"
+                    class="btn-add px-1"
+                    (click)="selectVenuePlatform('tobeAnnounced')"
+                    [ngClass]="{'venue-button-active': locationVenueButtons.tobeAnnounced}"
+            >To be announced
+            </button>
+          </div>
+        </div>
+
+
+        <mat-form-field appearance="outline" class="full-width" color="primary">
+          <mat-label>Venue Location</mat-label>
+          <input matInput formControlName="address" required type="text">
+          <mat-error *ngIf="controls.address?.touched && controls.address?.invalid">
+            <span *ngIf="controls.address?.hasError('required')">Event venue address is required.</span>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width" color="primary">
+          <mat-label>Country</mat-label>
+          <mat-select formControlName="country" (selectionChange)="fetchStates($event.value)">
+            <mat-option [value]="country.id" *ngFor="let country of countries">
+              {{country.name}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="controls.country?.touched && controls.country?.invalid">
+            <span *ngIf="controls.country?.hasError('required')">Event country is required.</span>
+          </mat-error>
+        </mat-form-field>
+
+        <div fxLayout="row"
+             fxLayout.xs="column"
+             fxLayoutGap="2%"
+             fxLayoutAlign="space-between center"
+             class="full-width">
+          <div fxFlex="1 1 49" class="full-width">
+            <mat-form-field appearance="outline" class="full-width" color="primary">
+              <mat-label>State</mat-label>
+              <mat-select formControlName="state">
+                <mat-option [value]="state.id" *ngFor="let state of countryStates">{{state.name}}</mat-option>
+              </mat-select>
+              <mat-error *ngIf="controls.state?.touched && controls.state?.invalid">
+                <span *ngIf="controls.state?.hasError('required')">Event state is required.</span>
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div fxFlex="1 1 49" class="full-width">
+            <mat-form-field appearance="outline" class="full-width" color="primary">
+              <mat-label>City</mat-label>
+              <input type="text" matInput formControlName="city" required>
+              <mat-error *ngIf="controls.city?.touched && controls.city?.invalid">
+                <span *ngIf="controls.city?.hasError('required')">Event city is required.</span>
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-local">
+    <div fxLayout="row"
+         fxLayout.xs="column"
+         fxLayoutAlign="space-between start"
+         style="margin-bottom: 20px;"
+         fxLayoutGap="2%" class="spacer-1">
+      <div fxFlex="1 0 10%"
+           fxLayout="column"
+           fxLayoutAlign="start end">
+      </div>
+      <div fxFlex="1 1 88%" fxLayout="column" fxLayoutAlign="start stretch">
+        <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="2%" fxLayoutAlign.xs="space-between"
+             class="full-width" style="padding: 30px 0;">
+          <div *ngIf="createdMovie.is_completed !== 1" fxFlex="1 1 20" fxFlex.xs="1 1 49">
+            <button type="button" mat-stroked-button color="primary" class="full-width btn-add" (click)="onCancel()">
+              Discard
+            </button>
+          </div>
+          <div *ngIf="createdMovie.is_completed !== 1" fxFlex="1 1 20" fxFlex.xs="1 1 49">
+            <button type="button" mat-stroked-button color="primary" class="full-width btn-add" (click)="onCancel()">
+              Cancel
+            </button>
+          </div>
+          <div fxFlex="1 1 20" fxFlex.xs="1 1 49">
+            <button mat-flat-button color="primary"
+                    class="full-width btn-add" type="submit"
+                    [ladda]="isLoading"
+            >
+              <span *ngIf="createdMovie.is_completed !== 1">Save</span>
+              <span *ngIf="createdMovie.is_completed === 1">Next</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+
+

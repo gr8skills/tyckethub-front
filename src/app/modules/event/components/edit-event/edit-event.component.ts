@@ -27,7 +27,7 @@ export class EditEventComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.userRole = this.authService.currentUserValue().role;
+    this.userRole = this.authService.currentUserValue.role;
     console.log('Created Event => ', this.createdEvent);
   }
 

@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {SelectionModel} from '@angular/cdk/collections';
 import {MatTableDataSource} from '@angular/material/table';
 import {EventStatusService} from '../../../event/apis/event-status.service';
 import {UiService} from '../../../shared/core/ui.service';
@@ -19,7 +18,6 @@ export class OrganizerTicketsComponent implements OnInit {
   currentUser: any = this.authService.currentUserValue;
   organizerTickets: any[] = [];
   ticketTableSource: any;
-  // selection = new SelectionModel<any>(true, []);
   displayColumns = ['select', 'event', 'ticketSold', 'ticketType', 'ticketId', 'pricePerTicket', 'status'];
 
   constructor(private eventStatusService: EventStatusService,

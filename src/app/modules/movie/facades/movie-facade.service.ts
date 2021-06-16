@@ -58,31 +58,29 @@ export class MovieFacadeService {
     return this.movieService.updateMovie(event);
   }
 
-  /*
-  createEventOnlinePlatform(payload: any, eventId: any): Observable<any> {
-    console.log('Event facade payload ', payload);
-    return this.eventService.createEventOnlinePlatform(payload, +eventId);
+  createMovieOnlinePlatform(payload: any, movieId: any): Observable<any> {
+    console.log('Movie facade payload ', payload);
+    return this.movieService.createMovieOnlinePlatform(payload, +movieId);
   }
 
-  createEventOnlinePlatformExtra(payload: any, eventId: any): Observable<any> {
-    return this.eventService.createEventOnlinePlatformExtra(payload, +eventId);
+  createMovieOnlinePlatformExtra(payload: any, movieId: any): Observable<any> {
+    return this.movieService.createMovieOnlinePlatformExtra(payload, +movieId);
   }
 
-  createEventTicketWithSettings(payload: any, eventId: any): Observable<any> {
-    return this.eventExtraService.createEventTicketWithSettings(payload, +eventId);
+  createMovieTicketWithSettings(payload: any, movieId: any): Observable<any> {
+    return this.movieService.createMovieTicketWithSettings(payload, +movieId);
   }
 
-  publishEvent(payload: any, eventId: any): Observable<any> {
-    return this.eventExtraService.publishEvent(payload, +eventId);
+  publishMovie(payload: any, movieId: any): Observable<any> {
+    return this.movieService.publishMovie(payload, +movieId);
   }
 
-  unPublishEvent(eventId: any): Observable<any> {
-    return this.eventExtraService.unPublishEvent(+eventId);
+  unPublishMovie(movieId: any): Observable<any> {
+    return this.movieService.unPublishMovie(+movieId);
   }
-   */
 
-  getOrganizerEvent(organizerId: any): Observable<any> {
-    return this.organizerService.getOrganizerEvents(+organizerId);
+  getOrganizerMovies(organizerId: any): Observable<any> {
+    return this.organizerService.getOrganizerMovies(+organizerId);
   }
 
   getOrganizerUncompletedMovies(organizerId: any): Observable<any> {
@@ -116,6 +114,10 @@ export class MovieFacadeService {
     return this.artisteService.deleteArtisteData(payload);
   }
 
+  approveMovie(movieId: any): Observable<any> {
+    return this.movieService.approveMovie(+movieId);
+  }
+
   /*
   deleteEventStatus(payload: number): Observable<any> {
     return this.eventService.deleteEventStatus(payload);
@@ -125,9 +127,6 @@ export class MovieFacadeService {
     return this.eventService.createEventStatus(payload);
   }
 
-  approveEvent(eventId: any): Observable<any> {
-    return this.eventService.approveEvent(+eventId);
-  }
 
   searchEvent(payload: any): Observable<any> {
     console.log(payload);

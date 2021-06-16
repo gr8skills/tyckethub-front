@@ -2,6 +2,7 @@ export class MovieDto {
   id?: number;
   name?: string;
   description?: string;
+  // tslint:disable:variable-name
   user_id?: number;
   genre_ids?: number[];
   age_restriction?: string;

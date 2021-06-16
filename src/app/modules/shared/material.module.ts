@@ -72,6 +72,9 @@ import { EventStatusFormComponent } from './components/event-status-form/event-s
 import { DeleteModalComponent } from './components/delete-modal/delete-modal.component';
 import { ArtisteCreationFormComponent } from './components/artiste-creation-form/artiste-creation-form.component';
 import { HomepageMainSlideComponent } from './components/homepage-main-slide/homepage-main-slide.component';
+import { MovieTicketFormComponent } from './components/movie-ticket-form/movie-ticket-form.component';
+import { MoviePublishAlertModalComponent } from './components/movie-publish-alert-modal/movie-publish-alert-modal.component';
+import { PaymentResponseModalComponent } from './components/payment-response-modal/payment-response-modal.component';
 
 
 @NgModule({
@@ -139,6 +142,7 @@ import { HomepageMainSlideComponent } from './components/homepage-main-slide/hom
         EventStatusFormComponent,
         ArtisteCreationFormComponent,
         HomepageMainSlideComponent,
+        MovieTicketFormComponent,
     ],
     imports: [
         FlexLayoutModule,
@@ -213,6 +217,9 @@ import { HomepageMainSlideComponent } from './components/homepage-main-slide/hom
     DeleteModalComponent,
     ArtisteCreationFormComponent,
     HomepageMainSlideComponent,
+    MovieTicketFormComponent,
+    MoviePublishAlertModalComponent,
+    PaymentResponseModalComponent,
   ]
 })
 

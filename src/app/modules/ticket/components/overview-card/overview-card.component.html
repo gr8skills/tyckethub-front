@@ -4,7 +4,7 @@
       <ng-content select=".title"></ng-content>
     </h3>
     <span *ngIf="displayViewButton">
-      <button mat-button color="primary">View all <mat-icon>keyboard_arrow_right</mat-icon></button>
+      <button mat-button color="primary" (click)="viewAll()">View all <mat-icon>keyboard_arrow_right</mat-icon></button>
     </span>
   </div>
   <div class="card-body">

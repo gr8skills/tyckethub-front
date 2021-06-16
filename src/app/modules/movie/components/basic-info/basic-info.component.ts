@@ -26,7 +26,8 @@ export class BasicInfoComponent implements OnInit, OnDestroy {
   countryStates$ = this.countryStatesSubject.asObservable();
   currentUser = this.authService.currentUserValue;
   loaderSub = new Subscription();
-  movieGenres: any; // Category ===> Genre
+  movieGenres: any;
+  ageRestrictions: any;
   artistes: any;
   countries: any;
   countryStates: any;
@@ -51,10 +52,10 @@ export class BasicInfoComponent implements OnInit, OnDestroy {
     ]),
     organizer: new FormControl(!this.createdMovie.organizer ? this.currentUser.name : this.createdMovie.organizer,
       [Validators.required]),
-    genre: new FormControl(this.extractMovieGenreIds(this.createdMovie.categories), [Validators.required]),
-    ageRestriction: new FormControl(''),
-    artistes: new FormControl(this.extractMovieArtisteIds(this.createdMovie.artistes), [Validators.required]),
-    tags: new FormControl(),
+    genre: new FormControl(this.extractMovieGenreIds(this.createdMovie.genres), [Validators.required]),
+    ageRestriction: new FormControl(),
+    // artistes: new FormControl(this.extractMovieArtisteIds(this.createdMovie.artistes), [Validators.required]),
+    // tags: new FormControl(),
     location: new FormGroup({
       address: new FormControl(this.prepareMovieLocationPayload(this.createdMovie?.location)?.address, [Validators.required]),
       city: new FormControl(this.prepareMovieLocationPayload(this.createdMovie?.location)?.city, [Validators.required]),
@@ -66,7 +67,7 @@ export class BasicInfoComponent implements OnInit, OnDestroy {
   controls = {
     title: this.movieInfoForm.controls.title,
     description: this.movieInfoForm.controls.description,
-    category: this.movieInfoForm.controls.genre,
+    genre: this.movieInfoForm.controls.genre,
     ageRestriction: this.movieInfoForm.controls.ageRestriction,
     tags: this.movieInfoForm.controls.tags,
     artistes: this.movieInfoForm.controls.artistes,
@@ -88,6 +89,15 @@ export class BasicInfoComponent implements OnInit, OnDestroy {
     this.movieFacade.genres$.subscribe(
       movieCats => {
         this.movieGenres = movieCats.data;
+        console.log('Movie Genres: ', this.movieGenres);
+      },
+      error => {
+      }
+    );
+    this.movieFacade.restrictions$.subscribe(
+      ageRestrictions => {
+        this.ageRestrictions = ageRestrictions.data;
+        console.log('Age Limits: ', this.ageRestrictions);
       },
       error => {
       }
@@ -238,8 +248,8 @@ export class BasicInfoComponent implements OnInit, OnDestroy {
     return {
       address: location.venue_address,
       city: location.city_name,
-      state: location.state_id,
       country: location.country_id,
+      state: location.state_id,
       platform: location.platform
     };
   }

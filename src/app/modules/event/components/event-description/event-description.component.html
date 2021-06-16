@@ -93,7 +93,7 @@
               </div>
               <div fxFlex="20%">
                 <mat-form-field appearance="outline" class="full-width">
-                  <input matInput type="number"
+                  <input matInput type="number" min="1"
                          #ticketQuantity
                          [(ngModel)]="ticketsCount[ticket.title]"
                          [max]="ticket.maximumAllowed"

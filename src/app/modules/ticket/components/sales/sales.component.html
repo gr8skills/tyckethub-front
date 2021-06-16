@@ -19,7 +19,7 @@
   </div>
 </div>
 <div class="table-wrapper">
-  <table mat-table [dataSource]="tickets" class="mat-elevation-z3">
+  <table mat-table [dataSource]="tickets" class="mat-elevation-z3" datatable [dtOptions]="dtOptions">
     <ng-container matColumnDef="select">
       <th mat-header-cell *matHeaderCellDef>
         <mat-checkbox color="primary"></mat-checkbox>

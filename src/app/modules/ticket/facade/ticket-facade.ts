@@ -19,6 +19,14 @@ export class TicketFacade {
     return this.attendeeService.getAttendeeTickets(+attendeeId);
   }
 
+  getAttendeeTicketsOverview(attendeeId: any): Observable<any> {
+    return this.attendeeService.getAttendeeTicketsOverview(+attendeeId);
+  }
+
+  getAttendeeTicketsOverviewMovie(attendeeId: any): Observable<any> {
+    return this.attendeeService.getAttendeeTicketsOverviewMovie(+attendeeId);
+  }
+
   attendeeResellTickets(payload: any, attendeeId: any, ticketId: any): Observable<any> {
     return this.attendeeService.resellTickets(payload, +attendeeId, +ticketId);
   }

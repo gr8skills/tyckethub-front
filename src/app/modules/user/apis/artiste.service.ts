@@ -32,4 +32,5 @@ export class ArtisteService {
   createArtisteData(payload: any): Observable<any> {
     return this.httpClient.post<any>(`${this.endPoint}/artiste-data/create`, payload, this.requestOption);
   }
+
 }

@@ -26,8 +26,8 @@ export class ArtisteCardComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  whenClicked(): void {
-    this.router.navigateByUrl(`/events`).then(r => this.router.navigateByUrl(`/events`));
+  whenClicked(id: any): void {
+    this.router.navigateByUrl(`/events`).then(r => this.router.navigateByUrl(`/events/${id}/description`));
   }
 
 }

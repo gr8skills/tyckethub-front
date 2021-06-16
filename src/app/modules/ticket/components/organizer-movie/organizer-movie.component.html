@@ -1,0 +1,165 @@
+<h2 class="title-3">Movies</h2>
+<div fxLayout="row"
+     fxLayout.xs="column"
+     fxLayoutAlign="space-between start"
+     fxLayoutAlign.xs="start start"
+     style="padding: 10px;"
+>
+  <div fxFlex="auto">
+    <a mat-stroked-button [class.active-tab]="tabs[0] === openTab"
+       [class.inactive-tab]="tabs[0] !== openTab"
+       (click)="switchTab(tabs[0])">{{ currentUser.role == 'admin' ? 'All Movies' : 'My Movies'}}</a>&nbsp;
+    <a mat-stroked-button [class.active-tab]="tabs[1] === openTab"
+       [class.inactive-tab]="tabs[1] !== openTab"
+       (click)="switchTab(tabs[1])"></a>&nbsp;
+  </div>
+
+  <div [ngSwitch]="openTab"
+       class="fancy-text"
+       fxLayout="row"
+       fxLayout.xs="column"
+       fxLayoutAlign="space-between"
+       fxLayoutGap="1%"
+       style="margin-top: 15px; padding: 10px">
+    <ng-container *ngSwitchCase="tabs[0]" style="width: 100%">
+      <div fxFlex="48%" fxFlex.xs="50%" fxLayout.xs="row" fxLayoutAlign.xs="space-between">
+        <div class="card-section">
+          <mat-form-field appearance="outline" class="full-width" color="accent">
+            <input matInput class="full-width" placeholder="Search for tickets" id="searchInput">
+            <mat-icon matPrefix color="primary">search</mat-icon>
+          </mat-form-field>
+        </div>
+      </div>
+      <div fxFlex="52%" fxFlex.xs="50%" fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10%" fxLayout.xs="10%">
+        <div fxFlex="50%">
+          <mat-form-field appearance="outline" color="primary" class="long-form-field full-width">
+            <mat-label>Movie status</mat-label>
+            <mat-select>
+              <mat-option *ngFor="let status of movieStatuses" [value]="status.id">{{status.name.toString()}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div fxFlex="48%">
+          <button mat-flat-button
+                  color="primary"
+                  class="action-btn full-width"
+                  routerLink="/movies/create"
+          >Create Movie</button>
+        </div>
+      </div>
+
+    </ng-container>
+
+    <ng-container *ngSwitchCase="tabs[1]" style="width: 100%">
+      <div fxFlex="48%" fxFlex.xs="50%" fxLayout.xs="row" fxLayoutAlign.xs="space-between">
+        <mat-form-field appearance="outline" class="full-width" color="accent">
+          <input matInput class="full-width" placeholder="Search for tickets">
+          <mat-icon matPrefix color="primary">search</mat-icon>
+        </mat-form-field>
+      </div>
+      <div fxFlex="52%" fxFlex.xs="50%" fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10%" fxLayout.xs="10%">
+        <div fxFlex="50%">
+          <mat-form-field appearance="outline" color="primary" class="long-form-field full-width">
+            <mat-label>Movie status</mat-label>
+            <mat-select>
+              <mat-option *ngFor="let status of movieStatuses" [value]="status.id">{{status.name.toString()}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div fxFlex="48%">
+          <button mat-flat-button
+                  color="primary"
+                  class="action-btn full-width"
+                  routerLink="/events/create"
+          >Create Movie</button>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+
+</div>
+<div fxLayout="row" style="padding-top: 20px" class="full-width">
+  <div fxFlex="100%">
+    <table mat-table [dataSource]="movieTableSource" class="mat-elevation-z2 full-width row-border hover" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" id="myTable" >
+      <!--  Checkbox column-->
+      <ng-container matColumnDef="select">
+        <th mat-header-cell *matHeaderCellDef class="w-50">
+          <mat-checkbox color="primary"></mat-checkbox>
+        </th>
+        <td mat-cell *matCellDef="let row">
+          <mat-checkbox color="primary"></mat-checkbox>
+        </td>
+      </ng-container>
+
+      <!--  Date Column-->
+      <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef class="w-75">Date</th>
+        <td mat-cell *matCellDef="let element">
+          {{element.date | date:'MMM'}} <br>
+          {{element.date | date: 'd'}}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="event">
+        <th mat-header-cell *matHeaderCellDef class="w-250">Movie</th>
+        <td mat-cell *matCellDef="let element" style="text-align: center" class="tx-lf">
+          {{element.name}}<br>
+          {{element.date | date: 'fullDate'}}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="organizer">
+        <th mat-header-cell *matHeaderCellDef class="w-100">Organizer</th>
+        <td mat-cell *matCellDef="let element">{{element.organizer}}</td>
+      </ng-container>
+      <ng-container matColumnDef="approved">
+        <th mat-header-cell *matHeaderCellDef class="w-100">Approved?</th>
+        <td mat-cell *matCellDef="let element" style="text-align: center; color: darkblue" class="text-{{element.approved == 1 ? 'primary' : 'warning'}} ">{{element.approved == 1 ? 'YES' : 'NO'}}</td>
+      </ng-container>
+      <ng-container matColumnDef="ticketSold">
+        <th mat-header-cell *matHeaderCellDef class="w-100">Tickets Sold</th>
+        <td mat-cell *matCellDef="let element">{{element.ticketSold}}/{{element.totalTicket}}</td>
+      </ng-container>
+      <ng-container matColumnDef="revenue">
+        <th mat-header-cell *matHeaderCellDef class="w-100">Revenue</th>
+        <td mat-cell *matCellDef="let element">{{element.revenue}}</td>
+      </ng-container>
+<!--      <ng-container matColumnDef="status">-->
+<!--        <th mat-header-cell *matHeaderCellDef class="w-100">Status</th>-->
+<!--        <td mat-cell *matCellDef="let element">{{(element.status).toUpperCase()}}</td>-->
+<!--      </ng-container>-->
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef class="w-100">Actions</th>
+        <td mat-cell *matCellDef="let element">
+          <button [matMenuTriggerFor]="actionMenu" mat-icon-button>
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #actionMenu="matMenu">
+            <ng-container *ngFor="let menu of element.action">
+              <button mat-menu-item (click)="openMenu($event, menu.link, menu.id)">{{menu.label}}</button>
+            </ng-container>
+          </mat-menu>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayColumns;"></tr>
+    </table>
+  </div>
+</div>
+
+<script>
+  $(document).ready(function () {
+    $('#listingData').DataTable({
+      responsive: true,
+      "bFilter": true // show search input
+    });
+    $("#listingData_filter").addClass("hidden"); // hidden search input
+
+    $("#searchInput").on("input", function (e) {
+      e.preventDefault();
+      $('#listingData').DataTable().search($(this).val()).draw();
+    });
+  })
+</script>
+

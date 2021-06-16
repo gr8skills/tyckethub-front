@@ -1,3 +1,5 @@
+import {IMovieLocation} from './movie-location.model';
+
 export class Movie {
   id: number;
   name: string;
@@ -15,6 +17,17 @@ export class Movie {
     this.smallImage = smallImage;
     this.genre = genre;
     this.released = released;
+  }
+
+  public static fromJSON(attributes: any): Movie {
+    return new Movie({
+      id: attributes.id,
+      name: attributes.name,
+      bigImage: attributes.bigImage,
+      smallImage: attributes.smallImage,
+      genre: attributes.genre,
+      released: attributes.released,
+    });
   }
 }
 

@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sales.component.scss']
 })
 export class SalesComponent implements OnInit {
-
+  dtOptions: DataTables.Settings = {};
   tickets = [
     {
       name: '30 Billion Concert II',
@@ -35,6 +35,12 @@ export class SalesComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    this.dtOptions = {
+      pagingType: 'full_numbers',
+      pageLength: 5,
+      processing: true,
+      searching: false,
+    };
   }
 
 }

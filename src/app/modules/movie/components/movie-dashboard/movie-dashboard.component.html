@@ -1,0 +1,110 @@
+<div class="container-local">
+  <div fxLayout="row"
+       fxLayout.xs="column"
+       fxLayoutAlign="space-between start"
+       style="margin-bottom: 20px;"
+       class="full-width"
+       fxLayoutGap="2%" class="spacer-1">
+    <div fxFlex="1 0 10%"
+         fxLayout="column"
+         fxLayoutAlign="start end">
+      <span><img src="assets/images/icon_19.png"></span>
+    </div>
+    <div fxFlex="1 1 88%" fxLayout="column" fxLayoutAlign="space-between stretch">
+      <div fxFlex fxLayout="row" fxLayoutAlign="space-between" class="full-width">
+        <h2 style="margin-bottom: 10px" class="title-2 no-margin">Movie Dashboard</h2>
+      </div>
+      <mat-divider></mat-divider>
+      <div fxFlex fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between start" style="padding-top: 15px;">
+        <div fxFlex="35%" fxLayout="row" fxLayoutGap="2%" fxLayoutAlign="space-between start" class="dashboard-card">
+          <span fxFlex="10%"><mat-icon>drive_file_rename_outline</mat-icon></span>
+          <div fxFlex="88%">
+            <h4 style="margin-top: -5px;">Missing info
+              <button *ngIf="showEditableButtons"
+                      mat-button color="primary"
+                      (click)="editButtonAction(editablePagePaths[0])"
+                      class="card-button">Edit
+              </button>
+            </h4>
+            <p style="margin-top: 10px; font-size: 0.8rem">Your movie will be ready to go live as soon as you:</p>
+          </div>
+        </div>
+        <div fxFlex="35%" fxLayout="row" fxLayoutGap="2%" fxLayoutAlign="space-between start" class="dashboard-card">
+          <span fxFlex="10%"><mat-icon>language</mat-icon></span>
+          <div fxFlex="90%">
+            <h4 style="margin-top: -5px;">Public
+              <button *ngIf="showEditableButtons"
+                      mat-button color="primary"
+                      (click)="editButtonAction(editablePagePaths[1])"
+                      class="card-button">Edit
+              </button>
+            </h4>
+            <p style="margin-top: 10px; font-size: 0.8rem">Your movie will be listed and searchable once it's live</p>
+          </div>
+        </div>
+        <div fxFlex="25%" class="dashboard-card">
+          <b>0 Ticket Sold/Unlimited</b>
+        </div>
+      </div>
+
+      <div fxFlex fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start start" style="padding-top: 15px">
+        <div fxFlex="75%" fxLayout="row" fxLayoutGap="0" fxLayoutAlign="start start">
+          <div fxFlex="60%" fxLayout="column" fxLayoutAlign="space-between start" class="dashboard-card-mega">
+            <div fxFlex class="full-width">
+              <h4 style="margin: 0; padding: 0">Tickets</h4>
+              <p style="margin: 0; padding: 0; font-size: 0.8rem">All time</p>
+            </div>
+            <div *ngIf="createdMovie.is_completed === 1" fxFlex fxLayout="column" fxLayoutAlign="end center"
+                 class="full-width">
+              <div class="status-text">
+                <span class="status-indicator"></span>
+                <span>Available</span>
+              </div>
+            </div>
+            <div *ngIf="createdMovie.is_completed !== 1" fxFlex fxLayout="column" fxLayoutAlign="end center"
+                 class="full-width">
+              <div class="status-text">
+                <span class="status-indicator-danger"></span>
+                <span>Not Available</span>
+              </div>
+            </div>
+          </div>
+          <div fxFlex="40%" fxLayout="column" fxLayoutGap="0" fxLayoutAlign="start space-between" class="">
+            <div fxFlex class="full-width dashboard-card-mini">
+              <h4>Tickets Sold</h4>
+              <p>0</p>
+            </div>
+            <div fxFlex class="full-width dashboard-card-mini">
+              <h4>Recent Orders</h4>
+              <p>0</p>
+            </div>
+            <div fxFlex class="full-width dashboard-card-mini">
+              <h4>Page Views</h4>
+              <p>0</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div fxFlex fxLayout="row" style="margin-top: 20px;" class="full-width">
+        <div fxFlex="75%" fxLayout="column" fxLayoutAlign="start start">
+          <h3 class="title-4">Your Links</h3>
+          <mat-form-field appearance="outline" class="full-width">
+            <input matInput type="text"
+                   [value]="createdMovie.organizer_link"
+                   [readonly]="true"
+                   placeholder="Your organizer URL: https://tyckethub.com">
+          </mat-form-field>
+          <h4 style="margin-bottom: 0"><b>Your Event URL</b></h4>
+          <mat-form-field appearance="outline" class="full-width">
+            <input matInput type="text"
+                   [value]="createdMovie.event_link"
+                   [readonly]="true"
+                   placeholder="Your organizer URL: https://tyckethub.com">
+          </mat-form-field>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
